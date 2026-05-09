@@ -1,0 +1,20 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: activityservice
+
+  mongodb:
+    uri: "mongodb+srv://swarnadeep:swarna%40123@swarnadeep.lx7vex8.mongodb.net/aifitness?retryWrites=true&w=majority"
+    database: aifitness
+    auto-index-creation: true
+
+# Swagger
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /docs.html
+#    operationsSorter: method
+# Swagger path: http://localhost:8080/docs.html or http://localhost:8080/swagger-ui/index.html

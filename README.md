@@ -108,14 +108,8 @@ flowchart LR
 ## 👤 User Service
 
 - Remote Swagger URL: 
-- Local Swagger URL : [http://localhost:8080/docs.html](http://localhost:8080/docs.html)
+- Local Swagger URL : [http://localhost:8081/docs.html](http://localhost:8081/docs.html)
 - 📘 API Details
-
-| API                            | Method | Purpose          |
-| ------------------------------ | ------ | ---------------- |
-| `/api/users/register`          | POST   | Create user      |
-| `/api/users/{userId}`          | GET    | Get user profile |
-| `/api/users/{userId}/validate` | GET    | Validate user    |
 
 | #    | API              | Method | Endpoint                     | Description            | Request                                                      | Response                                                     |
 | ---- | ---------------- | ------ | ---------------------------- | ---------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -125,11 +119,52 @@ flowchart LR
 
 
 
+> #TODO
+>
+> 1. Exception handling
+> 2. Context path
+
+
+
+
+
 ## 🏃 Activity Service
 
 - Remote Swagger URL: 
-- Local Swagger URL : [http://localhost:8080/docs.html](http://localhost:8080/docs.html)
-- 📘 API Details
+
+- Local Swagger URL : [http://localhost:8083/docs.html](http://localhost:8083/docs.html)
+
+- MongoDB Atlas URL: [MongoDB Cloud | Clusters](https://cloud.mongodb.com/v2/69fb994bb5a8f4731c06f720#/clusters)
+
+- 📘 API Details : 
+
+- | #    | API             | Method | Endpoint        | Description                 | Request                                                      | Response                                                     |
+  | ---- | --------------- | ------ | --------------- | --------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+  | 1    | Save Activities | POST   | /api/activities | Save an activity in MongoDB | `{"userId":"user3098","type":"SWIMMING","duration":30,"caloriesBurned":280,"startTime":"2026-05-10T06:45:00","additionalMetrics":{"laps":24,"poolLengthMeters":25,"averageHeartRate":128,"strokeType":"Freestyle"}}` | `{"additionalMetrics":{"laps":24,"poolLengthMeters":25,"averageHeartRate":128,"strokeType":"Freestyle"},"caloriesBurned":280,"createdAt":"2026-05-09T12:18:54.8861262","duration":30,"id":"69fed8d76a2a50f1c0dfd4fd","startTime":"2026-05-10T06:45:00","type":"SWIMMING","updatedAt":"2026-05-09T12:18:54.8861262","userId":"user3098"}` |
+  |      |                 |        |                 |                             |                                                              |                                                              |
+
+
+
+- **Remote MongoDB Details**
+
+  ```sh
+  mongodb username : swarnadeep
+  password: swarna@123
+  mongodb cluster name: swarnadeep
+  Connection URL : mongodb+srv://swarnadeep:swarna@123@swarnadeep.lx7vex8.mongodb.net/
+  ```
+
+- ***application.yaml*** for MongoDB 
+
+  ```yaml
+  spring:
+    mongodb:
+      uri: "mongodb+srv://swarnadeep:swarna%40123@swarnadeep.lx7vex8.mongodb.net/aifitness?retryWrites=true&w=majority"
+      database: aifitness
+      auto-index-creation: true
+  ```
+
+  
 
 
 
