@@ -232,7 +232,114 @@ flowchart LR
   </dependency>
   ```
 
+- ***WebClientConfig.java*** - Creating WebClientConfig to call external api
 
+  ```java
+  import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+  import org.springframework.context.annotation.Bean;
+  import org.springframework.context.annotation.Configuration;
+  import org.springframework.web.reactive.function.client.WebClient;
+  
+  @Configuration
+  public class WebClientConfig {
+  
+      // @LoadBalanced ensure to use service names registered on eureka, not their hostname or IP addresses
+      @Bean
+      @LoadBalanced
+      public WebClient.Builder webClientBuilder() {
+          return WebClient.builder();
+      }
+  
+      @Bean
+      public WebClient userServiceWebClient(WebClient.Builder webClientBuilder) {
+          return webClientBuilder
+                  .baseUrl("http://USERSERVICE")
+                  .build();
+      }
+  }
+  ```
+
+- ***UserValidationService.java*** - Calling external API
+
+  ```java
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.beans.factory.annotation.Autowired;
+  import org.springframework.http.HttpStatus;
+  import org.springframework.stereotype.Service;
+  import org.springframework.web.reactive.function.client.WebClient;
+  import org.springframework.web.reactive.function.client.WebClientResponseException;
+  
+  @Service
+  @Slf4j
+  public class UserValidationService {
+      @Autowired
+      private WebClient userServiceWebClient;
+  
+      public boolean validateUser(String userId) {
+          log.info("Calling User Validation API for userId: {}", userId);
+          try {
+              return Boolean.TRUE.equals(userServiceWebClient.get()
+                      .uri("/api/users/{userId}/validate", userId)
+                      .retrieve()
+                      .bodyToMono(Boolean.class)
+                      .block());
+          } catch (WebClientResponseException e) {
+              if (e.getStatusCode() == HttpStatus.NOT_FOUND)
+                  throw new RuntimeException("User Not Found: " + userId);
+              else if (e.getStatusCode() == HttpStatus.BAD_REQUEST)
+                  throw new RuntimeException("Invalid Request: " + userId);
+          }
+          return false;
+      }
+  }
+  ```
+
+- API Call Example (`cURL`): 
+  ```sh
+  # Validate api
+  curl --location 'http://localhost:8081/api/users/dc9d9946-dd7b-4a4c-a123-0a5b4a7f7f09/validate' \
+  --header 'accept: */*'
+  # Response : true
+  
+  
+  # Saving Activity with saved api
+  curl --location 'http://localhost:8083/api/activities' \
+  --header 'accept: */*' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "userId": "dc9d9946-dd7b-4a4c-a123-0a5b4a7f7f09",
+    "type": "SWIMMING",
+    "duration": 30,
+    "caloriesBurned": 280,
+    "startTime": "2026-05-10T06:45:00",
+    "additionalMetrics": {
+      "laps": 24,
+      "poolLengthMeters": 25,
+      "averageHeartRate": 128,
+      "strokeType": "Freestyle"
+    }
+  }'
+  
+  # Response : 
+  {
+      "additionalMetrics": {
+          "laps": 24,
+          "poolLengthMeters": 25,
+          "averageHeartRate": 128,
+          "strokeType": "Freestyle"
+      },
+      "caloriesBurned": 280,
+      "createdAt": "2026-05-11T23:37:08.604859",
+      "duration": 30,
+      "id": "6a021acc00980700fb23d824",
+      "startTime": "2026-05-10T06:45:00",
+      "type": "SWIMMING",
+      "updatedAt": "2026-05-11T23:37:08.604859",
+      "userId": "dc9d9946-dd7b-4a4c-a123-0a5b4a7f7f09"
+  }
+  ```
+
+  
 
 
 
