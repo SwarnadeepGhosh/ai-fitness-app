@@ -164,13 +164,81 @@ flowchart LR
       auto-index-creation: true
   ```
 
-  
+
+
+
+
+## 📡Eureka Naming Server
+
+- Remote URL: 
+- Local URL : [http://localhost:8761/](http://localhost:8761/)
+
+
+
+## Inter Service Communication
+
+[Spring Framework Rest Clients](https://docs.spring.io/spring-framework/reference/integration/rest-clients.html) :
+
+- The Spring Framework provides the following choices for making calls to REST endpoints:
+
+  - [`RestClient`](https://docs.spring.io/spring-framework/reference/integration/rest-clients.html#rest-restclient) — synchronous client with a fluent API
+
+  - [`WebClient`](https://docs.spring.io/spring-framework/reference/integration/rest-clients.html#rest-webclient) — non-blocking, reactive client with fluent API
+
+  - [`RestTemplate`](https://docs.spring.io/spring-framework/reference/integration/rest-clients.html#rest-resttemplate) — synchronous client with template method API, now deprecated in favor of `RestClient`
+
+  - [HTTP Service Clients](https://docs.spring.io/spring-framework/reference/integration/rest-clients.html#rest-http-service-client) — annotated interface backed by generated proxy
+
+- We will use WebClient here. 
+
+
+
+### `WebClient`
+
+-  [**WebClient**](https://docs.spring.io/spring-framework/reference/web/webflux-webclient.html) is a non-blocking, reactive client to perform HTTP requests. It was introduced in 5.0 and offers an alternative to the `RestTemplate`, with support for synchronous, asynchronous, and streaming scenarios.
+
+- `WebClient` supports the following:
+
+  - Non-blocking I/O
+
+  - Reactive Streams back pressure
+
+  - High concurrency with fewer hardware resources
+
+  - Functional-style, fluent API that takes advantage of lambda expressions
+
+  - Synchronous and asynchronous interactions
+
+  - Streaming up to or streaming down from a server.
+
+- **Spring WebClient is a non-blocking and reactive web client to perform HTTP requests.** **It is also the replacement for the classic [RestTemplate](https://www.geeksforgeeks.org/springboot/spring-resttemplate/)**. It is a part of **spring-webflux library** and also offers support for both synchronous and asynchronous operations. The DefaultWebClient class implements this WebClient interface.
+
+- `WebClient` needs an HTTP client library to perform requests. There is built-in support for the following:
+
+  - [Reactor Netty](https://github.com/reactor/reactor-netty)
+  - [JDK HttpClient](https://docs.oracle.com/en/java/javase/17/docs/api/java.net.http/java/net/http/HttpClient.html)
+  - [Jetty Reactive HttpClient](https://github.com/jetty-project/jetty-reactive-httpclient)
+  - [Apache HttpComponents](https://hc.apache.org/index.html)
+  - Others can be plugged in via `ClientHttpConnector`.
+
+- **How to Use WebClient in Spring Boot Project?**
+
+  Add this dependency to the pom.xml file.
+
+  ```xml
+  <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-webflux</artifactId>
+  </dependency>
+  ```
 
 
 
 
 
-## 🔷 AI Service
+
+
+## 🤖 AI Service
 
 - Remote Swagger URL: 
 - Local Swagger URL : [http://localhost:8080/docs.html](http://localhost:8080/docs.html)

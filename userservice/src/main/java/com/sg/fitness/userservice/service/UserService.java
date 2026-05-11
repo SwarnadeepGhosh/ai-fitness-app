@@ -37,6 +37,6 @@ public class UserService {
 
     public Boolean existByUserId(String userId) {
         log.info("Calling User Validation API for userId: {}", userId);
-        return userRepo.existsByKeycloakId(userId);
+        return userRepo.existsById(userId);
     }
 }
