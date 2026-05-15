@@ -101,7 +101,7 @@ flowchart LR
     style J fill:#ccc,stroke:#333,stroke-width:1px
 ```
 
-
+![Updated architecture diagram with Kafka as async communication layer between Activity microservice and AI microservice](https://copilot.microsoft.com/th/id/BCO.e718b1c9-32e9-4f6d-a2e1-0630ca6dee86.png)
 
 # Microservices
 
@@ -121,8 +121,7 @@ flowchart LR
 
 > #TODO
 >
-> 1. Exception handling
-> 2. Context path
+> 1. Context path
 
 
 
@@ -174,6 +173,7 @@ flowchart LR
 - Local URL : [http://localhost:8761/](http://localhost:8761/)
 
 
+---
 
 ## Inter Service Communication
 
@@ -193,7 +193,7 @@ flowchart LR
 
 
 
-### `WebClient`
+### Spring WebClient
 
 -  [**WebClient**](https://docs.spring.io/spring-framework/reference/web/webflux-webclient.html) is a non-blocking, reactive client to perform HTTP requests. It was introduced in 5.0 and offers an alternative to the `RestTemplate`, with support for synchronous, asynchronous, and streaming scenarios.
 
@@ -339,7 +339,145 @@ flowchart LR
   }
   ```
 
+### **Kafka** - Async Communication
+
+- Setup : 
   
+  - **Kafka Producer => Activity Service**
+  - **Kafka Consumer => AI Service** (to generate recommendation)
+  
+- Common Dependency: ***pom.xml***
+
+  ```xml
+  <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-kafka</artifactId>
+  </dependency>
+  ```
+
+  
+
+#### Producer Code
+
+- **Producer**: ***application.yml***
+
+  ```properties
+  spring:
+    kafka:
+      # bootstrap-servers: localhost:9092
+      bootstrap-servers: pkc-l7pr2.ap-south-1.aws.confluent.cloud:9092
+      properties:
+        security.protocol: SASL_SSL
+        sasl.mechanism: PLAIN
+        sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username='CUUOKL3RGKJVNKOV' password='cfltTxZBE4MgNNnav4jo2SDiABuLjtVGLguZuGmulYZPIUdosp0XAIQB9Q9Dl1GA';
+        session.timeout.ms: 45000
+        client.id: ccloud-springboot-client-1912bc0e-dc67-49f8-812c-786705966c96
+      producer:
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  
+  kafka-topic: ai-fitness
+  ```
+
+- Topic Creation : ***KafkaConfig.java***
+
+  ```java
+  import org.apache.kafka.clients.admin.NewTopic;
+  import org.springframework.beans.factory.annotation.Value;
+  import org.springframework.context.annotation.Bean;
+  import org.springframework.context.annotation.Configuration;
+  
+  @Configuration
+  public class KafkaConfig {
+  
+      @Value("${kafka-topic}")
+      private String topicName;
+  
+      @Bean
+      public NewTopic createTopic() {
+          return new NewTopic(topicName, 1, (short) 3);
+      }
+  }
+  ```
+
+- Producer : **Saving Data in Kafka Topic:** ***ActivityService.java***
+
+  ```java
+  ...
+  import org.springframework.beans.factory.annotation.Value;
+  import org.springframework.kafka.core.KafkaTemplate;
+  
+  public class ActivityService {
+  ...
+      private final KafkaTemplate<String, ActivityEntity> kafkaTemplate;
+  
+      public ActivityService(KafkaTemplate<String, ActivityEntity> kafkaTemplate) {
+          this.kafkaTemplate = kafkaTemplate;
+      }
+  
+      @Value("${kafka-topic}")
+      private String topicName;
+  
+  ...
+          try {
+              kafkaTemplate.send(topicName, savedActivity.getUserId(), savedActivity);
+          } catch (Exception e) {
+              log.error("Kafka-Exception occurred: ACTIVITY-SERVICE:: " + e.getClass().getSimpleName() + ": " + e.getMessage());
+          }
+  ...
+  ```
+
+  
+
+#### Consumer Code
+
+- **Consumer**: ***application.yml***
+
+  ```properties
+  spring:
+    kafka:
+      # bootstrap-servers: localhost:9092
+      bootstrap-servers: pkc-l7pr2.ap-south-1.aws.confluent.cloud:9092
+      properties:
+        security.protocol: SASL_SSL
+        sasl.mechanism: PLAIN
+        sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username='CUUOKL3RGKJVNKOV' password='cfltTxZBE4MgNNnav4jo2SDiABuLjtVGLguZuGmulYZPIUdosp0XAIQB9Q9Dl1GA';
+        session.timeout.ms: 45000
+        client.id: ccloud-springboot-client-1912bc0e-dc67-49f8-812c-786705966c96
+  
+      consumer:
+        group-id: aifitness-group
+        auto-offset-reset: earliest
+        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+  #      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+        properties:
+          spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+          spring.json.trusted.packages: "*"
+          spring.json.use.type.headers: false
+          spring.json.value.default.type: com.sg.fitness.aiservice.model.Activity
+  
+  kafka-topic: ai-fitness
+  ```
+
+- Consumer: **Listening and fetch Data from Kafka Topic:** ***ActivityService.java***
+
+  ```java
+  import org.springframework.kafka.annotation.KafkaListener;
+  ...
+  public class ActivityMessageListener {
+  
+      private final RecommendationRepo recommendationRepository;
+  
+      @KafkaListener(topics = "${kafka-topic}", groupId = "${spring.kafka.consumer.group-id}")
+      public void processActivity(Activity activity) {
+          log.info("Received activity for processing: {}", activity.getUserId());
+  //        log.info("Generated Recommendation: {}", aiService.generateRecommendation(activity));
+  //        Recommendation recommendation = aiService.generateRecommendation(activity);
+  //        recommendationRepository.save(recommendation);
+      }
+  }
+  ```
 
 
 
@@ -356,10 +494,6 @@ flowchart LR
 | 1    | Get  Recommendation by user     | GET    | /api/recommendations/user/{userId}         |             |         |          |
 | 2    | Get  Recommendation by activity | GET    | /api/recommendations/activity/{activityId} |             |         |          |
 | 3    |                                 |        |                                            |             |         |          |
-
-
-
-
 
 
 
