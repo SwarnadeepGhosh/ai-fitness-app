@@ -302,7 +302,7 @@ flowchart LR
   # Response : true
   
   
-  # Saving Activity with saved api
+  # Saving Activity with saved user
   curl --location 'http://localhost:8083/api/activities' \
   --header 'accept: */*' \
   --header 'Content-Type: application/json' \
@@ -348,8 +348,16 @@ flowchart LR
 ## 🤖 AI Service
 
 - Remote Swagger URL: 
-- Local Swagger URL : [http://localhost:8080/docs.html](http://localhost:8080/docs.html)
+- Local Swagger URL : [http://localhost:8084/docs.html](http://localhost:8084/docs.html)
 - 📘 API Details
+
+| #    | API                             | Method | Endpoint                                   | Description | Request | Response |
+| ---- | ------------------------------- | ------ | ------------------------------------------ | ----------- | ------- | -------- |
+| 1    | Get  Recommendation by user     | GET    | /api/recommendations/user/{userId}         |             |         |          |
+| 2    | Get  Recommendation by activity | GET    | /api/recommendations/activity/{activityId} |             |         |          |
+| 3    |                                 |        |                                            |             |         |          |
+
+
 
 
 
