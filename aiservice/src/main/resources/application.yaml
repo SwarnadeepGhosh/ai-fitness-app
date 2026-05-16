@@ -35,6 +35,10 @@ spring:
         spring.json.value.default.type: com.sg.fitness.aiservice.model.Activity
 
 kafka-topic: ai-fitness
+gemini:
+  api:
+    url: https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent
+    key: AIzaSyCJFxa0hd7u0Fa1-tA5UBIjNW0a_iIyCmM
 
 # Naming Server
 eureka:
