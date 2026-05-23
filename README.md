@@ -57,52 +57,50 @@
 
 ### Application Architecture
 
+![mermaid-diagram-2026-05-23T19-04-32](img/mermaid-diagram-2026-05-23T19-04-32.svg)
+
+
+
 ```mermaid
 flowchart LR
-    A[POSTMAN OR FRONTEND] --> B[Gateway]
-    B --> C[KEYCLOAK<br/>Auth]
-    B --> D[USER<br/>Profile]
-    B --> E[Activity<br/>Fitness Details]
-    B --> F[KAFKA<br/>Messaging]
-    B --> G[AI Service<br/>Recommendation]
-    
-    D --> DDB[(User DB<br/>PostgreSQL)]
-    E --> EDB[(Activity DB<br/>MySQL)]
-    G --> GDB[(AI Service DB<br/>MongoDB)]
-    
-    G --> H[Google's Gemini<br/>LLM]
-    
-    I[CONFIG SERVER<br/>Config Mgmt] --> B
-    J[EUREKA<br/>Service Reg.] --> B
-    
-    subgraph Backend Microservices
-        D
-        E
-        F
-        G
-    end
-    
-    subgraph Infra
-        I
-        J
-    end
-    
-    subgraph External
-        H
-    end
-    
+    A[POSTMAN / Frontend] --> B[Gateway]
+
+    %% Core services
+    B --> C[Keycloak Auth]
+    B --> D[User Service]
+    B --> E[Activity Service]
+    B --> G[AI Recommendation Service]
+
+    %% Kafka as async bridge
+    E --> F[KAFKA Messaging]
+    F --> G
+
+    %% Databases
+    D --> DDB[(User DB: PostgreSQL)]
+    E --> EDB[(Activity DB: MongoDB)]
+    G --> GDB[(AI DB: MongoDB)]
+
+    %% External integration
+    G --> H[Google Gemini LLM]
+
+    %% Infra
+    I[Config Server] --> B
+    J[Eureka Registry] --> B
+
+    %% Styling for clarity
     style B fill:#f9f,stroke:#333,stroke-width:1px
     style C fill:#9cf,stroke:#333,stroke-width:1px
     style D fill:#c9f,stroke:#333,stroke-width:1px
     style E fill:#c9f,stroke:#333,stroke-width:1px
-    style F fill:#c9f,stroke:#333,stroke-width:1px
+    style F fill:#ffd,stroke:#333,stroke-width:1px
     style G fill:#c9f,stroke:#333,stroke-width:1px
     style H fill:#9f9,stroke:#333,stroke-width:1px
     style I fill:#ccc,stroke:#333,stroke-width:1px
     style J fill:#ccc,stroke:#333,stroke-width:1px
+
 ```
 
-![Updated architecture diagram with Kafka as async communication layer between Activity microservice and AI microservice](https://copilot.microsoft.com/th/id/BCO.e718b1c9-32e9-4f6d-a2e1-0630ca6dee86.png)
+
 
 # Microservices
 
@@ -126,7 +124,7 @@ flowchart LR
 
 
 
-
+---
 
 ## 🏃 Activity Service
 
@@ -166,7 +164,7 @@ flowchart LR
 
 
 
-
+---
 
 ## 📡Eureka Naming Server
 
@@ -482,7 +480,7 @@ flowchart LR
 
 
 
-
+---
 
 ## 🤖 AI Service
 
@@ -497,70 +495,74 @@ flowchart LR
 
 
 
-### Google Gemini Integration
+### **Google Gemini** Integration
 
 - Visit [Build with Gemini on Google AI Studio](https://aistudio.google.com/prompts/new_chat) -> Click on [Get API Key](https://aistudio.google.com/api-keys?project=gen-lang-client-0249270144)
+
 - **[Documentation - Gemini API](https://ai.google.dev/gemini-api/docs#java)**
-- API Key Details (Highly Secret)
 
-```sh
-# Gemini API key details
-# API Key: AIzaSyCJFxa0hd7u0Fa1-tA5UBIjNW0a_iIyCmM
-# Name: Default Gemini API Key
-# Project name: projects/589201942080
-# Project number: 589201942080
-
-
-# Gemini cURL Quickstart
-curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent" \
-  -H 'Content-Type: application/json' \
-  -H 'X-goog-api-key: AIzaSyCJFxa0hd7u0Fa1-tA5UBIjNW0a_iIyCmM' \
-  -X POST \
-  -d '{
-    "contents": [
-      {
-        "parts": [
+- <details>
+      <summary>🔽🔼 **Gemini API Key Details (Highly Secret)** </summary>
+    ```sh
+    # Gemini API key details
+    # API Key: AIzaSyCJFxa0hd7u0Fa1-tA5UBIjNW0a_iIyCmM
+    # Name: Default Gemini API Key
+    # Project name: projects/589201942080
+    # Project number: 589201942080
+    
+    
+    # Gemini cURL Quickstart
+    curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent" \
+      -H 'Content-Type: application/json' \
+      -H 'X-goog-api-key: AIzaSyCJFxa0hd7u0Fa1-tA5UBIjNW0a_iIyCmM' \
+      -X POST \
+      -d '{
+        "contents": [
           {
-            "text": "Explain how AI works in a few words"
+            "parts": [
+              {
+                "text": "Explain how AI works in a few words"
+              }
+            ]
           }
         ]
-      }
-    ]
-  }'
-  
-
-Response :  {
-    "candidates": [
-        {
-            "content": {
-                "parts": [
-                    {
-                        "text": "AI analyzes massive amounts of **data** to find **patterns** and make **predictions**."
-                    }
-                ],
-                "role": "model"
-            },
-            "finishReason": "STOP",
-            "index": 0
-        }
-    ],
-    "usageMetadata": {
-        "promptTokenCount": 8,
-        "candidatesTokenCount": 18,
-        "totalTokenCount": 266,
-        "promptTokensDetails": [
+      }'
+      
+    
+    Response :  {
+        "candidates": [
             {
-                "modality": "TEXT",
-                "tokenCount": 8
+                "content": {
+                    "parts": [
+                        {
+                            "text": "AI analyzes massive amounts of **data** to find **patterns** and make **predictions**."
+                        }
+                    ],
+                    "role": "model"
+                },
+                "finishReason": "STOP",
+                "index": 0
             }
         ],
-        "thoughtsTokenCount": 240,
-        "serviceTier": "standard"
-    },
-    "modelVersion": "gemini-3-flash-preview",
-    "responseId": "SPUHarTgH6bNjuMP0O3T-Qk"
-}
-```
+        "usageMetadata": {
+            "promptTokenCount": 8,
+            "candidatesTokenCount": 18,
+            "totalTokenCount": 266,
+            "promptTokensDetails": [
+                {
+                    "modality": "TEXT",
+                    "tokenCount": 8
+                }
+            ],
+            "thoughtsTokenCount": 240,
+            "serviceTier": "standard"
+        },
+        "modelVersion": "gemini-3-flash-preview",
+        "responseId": "SPUHarTgH6bNjuMP0O3T-Qk"
+    }
+    ```
+  
+      </details>
 
 
 
@@ -584,104 +586,109 @@ Response :  {
   </dependency>
   ```
 
-- ***GeminiService.java*** - making api call 
-
-  ```java
-  public class GeminiService {
-      
-      @Value("${gemini.api.url}")
-      private String geminiApiUrl;
-      @Value("${gemini.api.key}")
-      private String geminiApiKey;
+- <details>
+      <summary>🔽🔼 ***GeminiService.java*** - making api call </summary>
   
-      private final WebClient webClient;
-      public GeminiService(WebClient.Builder webClientBuilder) {
-          this.webClient = webClientBuilder.build();
-      }
+    ```java
+    public class GeminiService {
+        
+        @Value("${gemini.api.url}")
+        private String geminiApiUrl;
+        @Value("${gemini.api.key}")
+        private String geminiApiKey;
+    
+        private final WebClient webClient;
+        public GeminiService(WebClient.Builder webClientBuilder) {
+            this.webClient = webClientBuilder.build();
+        }
+    
+        // Mapping with gemini api request body and making external api call
+        public String getAnswer(String question) {
+            Map<String, Object> requestBody = Map.of(
+                    "contents", new Object[]{
+                            Map.of("parts", new Object[]{
+                                    Map.of("text", question)
+                            })
+                    }
+            );
+    
+            String response = webClient.post()
+                    .uri(geminiApiUrl)
+                    .header("Content-Type", "application/json")
+                    .header("X-goog-api-key", geminiApiKey)
+                    .bodyValue(requestBody)
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    .block();
+            return response;
+        }
+    }
+    ```
   
-      // Mapping with gemini api request body and making external api call
-      public String getAnswer(String question) {
-          Map<String, Object> requestBody = Map.of(
-                  "contents", new Object[]{
-                          Map.of("parts", new Object[]{
-                                  Map.of("text", question)
-                          })
-                  }
-          );
+      </details>
   
-          String response = webClient.post()
-                  .uri(geminiApiUrl)
-                  .header("Content-Type", "application/json")
-                  .header("X-goog-api-key", geminiApiKey)
-                  .bodyValue(requestBody)
-                  .retrieve()
-                  .bodyToMono(String.class)
-                  .block();
-          return response;
-      }
-  }
-  ```
-
-- ***ActivityAIService.java*** - Creating Prompt and calling GeminiService from here.
-
-  ```java
-  public class ActivityAIService {
-      private final GeminiService geminiService;
+- <details>
+      <summary>🔽🔼 ***ActivityAIService.java*** - Creating Prompt and calling GeminiService from here.</summary>
+    ```java
+    public class ActivityAIService {
+        private final GeminiService geminiService;
+    
+        public Recommendation generateRecommendation(Activity activity) {
+            String prompt = createPromptForActivity(activity);
+            String aiResponse = geminiService.getAnswer(prompt);
+            log.info("RESPONSE FROM AI: {} ", aiResponse);
+    //        return processAiResponse(activity, aiResponse);
+            return null;
+        }
+    
+        private String createPromptForActivity(Activity activity) {
+            return String.format("""
+                            Analyze this fitness activity and provide detailed recommendations in the following EXACT JSON format:
+                            {
+                              "analysis": {
+                                "overall": "Overall analysis here",
+                                "pace": "Pace analysis here",
+                                "heartRate": "Heart rate analysis here",
+                                "caloriesBurned": "Calories analysis here"
+                              },
+                              "improvements": [
+                                {
+                                  "area": "Area name",
+                                  "recommendation": "Detailed recommendation"
+                                }
+                              ],
+                              "suggestions": [
+                                {
+                                  "workout": "Workout name",
+                                  "description": "Detailed workout description"
+                                }
+                              ],
+                              "safety": [
+                                "Safety point 1",
+                                "Safety point 2"
+                              ]
+                            }
+    
+                            Analyze this activity:
+                            Activity Type: %s
+                            Duration: %d minutes
+                            Calories Burned: %d
+                            Additional Metrics: %s
+                                    
+                            Provide detailed analysis focusing on performance, improvements, next workout suggestions, and safety guidelines.
+                            Ensure the response follows the EXACT JSON format shown above.
+                            """,
+                    activity.getType(),
+                    activity.getDuration(),
+                    activity.getCaloriesBurned(),
+                    activity.getAdditionalMetrics()
+            );
+        }
+    }
+    ```
   
-      public Recommendation generateRecommendation(Activity activity) {
-          String prompt = createPromptForActivity(activity);
-          String aiResponse = geminiService.getAnswer(prompt);
-          log.info("RESPONSE FROM AI: {} ", aiResponse);
-  //        return processAiResponse(activity, aiResponse);
-          return null;
-      }
+      </details>
   
-      private String createPromptForActivity(Activity activity) {
-          return String.format("""
-                          Analyze this fitness activity and provide detailed recommendations in the following EXACT JSON format:
-                          {
-                            "analysis": {
-                              "overall": "Overall analysis here",
-                              "pace": "Pace analysis here",
-                              "heartRate": "Heart rate analysis here",
-                              "caloriesBurned": "Calories analysis here"
-                            },
-                            "improvements": [
-                              {
-                                "area": "Area name",
-                                "recommendation": "Detailed recommendation"
-                              }
-                            ],
-                            "suggestions": [
-                              {
-                                "workout": "Workout name",
-                                "description": "Detailed workout description"
-                              }
-                            ],
-                            "safety": [
-                              "Safety point 1",
-                              "Safety point 2"
-                            ]
-                          }
-  
-                          Analyze this activity:
-                          Activity Type: %s
-                          Duration: %d minutes
-                          Calories Burned: %d
-                          Additional Metrics: %s
-                                  
-                          Provide detailed analysis focusing on performance, improvements, next workout suggestions, and safety guidelines.
-                          Ensure the response follows the EXACT JSON format shown above.
-                          """,
-                  activity.getType(),
-                  activity.getDuration(),
-                  activity.getCaloriesBurned(),
-                  activity.getAdditionalMetrics()
-          );
-      }
-  }
-  ```
-
 - ***WebClientConfig.java***
 
   ```java
@@ -718,11 +725,30 @@ Response :  {
       "strokeType": "Freestyle"
     }
   }'
+  
+  # Activity Service API Response: 
+  {
+      "additionalMetrics": {
+          "laps": 24,
+          "poolLengthMeters": 25,
+          "averageHeartRate": 128,
+          "strokeType": "Freestyle"
+      },
+      "caloriesBurned": 280,
+      "createdAt": "2026-05-24T00:22:17.057752",
+      "duration": 30,
+      "id": "6a11f761c5041d87cdc55323",
+      "startTime": "2026-05-10T06:45:00",
+      "type": "SWIMMING",
+      "updatedAt": "2026-05-24T00:22:17.057752",
+      "userId": "dc9d9946-dd7b-4a4c-a123-0a5b4a7f7f09"
+  }
   ```
-
+  
 - <details>
-      <summary>🔽🔼 **Response From AI :**</summary>
+      <summary>🔽🔼 **Response From Gemini(AI) 3rd Party API :**</summary>
 
+  
     ```json
     {
       "candidates": [
@@ -731,7 +757,7 @@ Response :  {
             "parts": [
               {
                 "text": "{\n  \"analysis\": {\n    \"overall\": \"This 30-minute freestyle session shows a consistent effort covering a total distance of 600 meters. With an average heart rate of 128 bpm, the intensity remained in a steady-state aerobic zone, making it an excellent workout for cardiovascular health and building a foundational fitness base without overtaxing the central nervous system.\",\n    \"pace\": \"The pace averaged approximately 5:00 per 100 meters. This is a relaxed, controlled pace often associated with recovery swims or a focus on stroke mechanics. Given the total laps, there is significant potential to increase speed by incorporating structured intervals.\",\n    \"heartRate\": \"An average heart rate of 128 bpm suggests the user was working at roughly 60-70% of their maximum heart rate (Zone 2). This is the 'fat-burning' zone and is ideal for long-term endurance, though it lacks the anaerobic stimulus required for significant speed gains.\",\n    \"caloriesBurned\": \"Burning 280 calories in 30 minutes is consistent with moderate-intensity swimming. This energy expenditure is effective for weight maintenance and reflects a steady, non-stop effort throughout the duration of the activity.\"\n  },\n  \"improvements\": [\n    {\n      \"area\": \"Stroke Efficiency\",\n      \"recommendation\": \"Focus on your 'SWOLF' score by counting strokes per length. Aim to reduce the number of strokes required to cover 25 meters by emphasizing a stronger pull and a longer glide phase.\"\n    },\n    {\n      \"area\": \"Turn Mechanics\",\n      \"recommendation\": \"If currently doing 'open turns', consider learning or refining flip turns. This maintains momentum and keeps the heart rate more consistent by eliminating the brief pause at the wall.\"\n    },\n    {\n      \"area\": \"Kick Power\",\n      \"recommendation\": \"Incorporate specific kickboard sets to strengthen the lower body. A stronger kick helps maintain a high body position in the water, reducing drag and increasing overall pace.\"\n    }\n  ],\n  \"suggestions\": [\n    {\n      \"workout\": \"Freestyle Interval Training\",\n      \"description\": \"After a 100m warm-up, perform 8 x 50m sprints with 20 seconds of rest between each. Focus on maintaining a higher heart rate (145-155 bpm) during the sprints, followed by a 100m easy cool-down.\"\n    },\n    {\n      \"workout\": \"The Pyramid Set\",\n      \"description\": \"Swim 1 lap (rest 15s), 2 laps (rest 20s), 3 laps (rest 30s), then 2 laps (rest 20s), and 1 lap (rest 15s). This variation in distance helps build both speed and stamina.\"\n    }\n  ],\n  \"safety\": [\n    \"Perform dynamic shoulder stretches (arm circles, wall slides) before entering the water to prevent rotator cuff strain.\",\n    \"Maintain hydration by drinking water before and after the session; despite being in a pool, the body still loses significant fluids through sweat.\",\n    \"Ensure proper lane etiquette and be mindful of other swimmers' speeds to avoid mid-lane collisions.\",\n    \"If you experience any sharp pain in the shoulder or impingement sensations, stop immediately and switch to a kick-only drill.\"\n  ]\n}",
-                "thoughtSignature": "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"
+                "thoughtSignature": "EtEbCs4bAQw51sf2DaGmkZbWi5b"
               }
             ],
             "role": "model"
@@ -757,11 +783,67 @@ Response :  {
       "responseId": "AhwIarqmLs3Qg8UP3ffwwQk"
     }
     ```
-
-      
-      
-      </details>
-
+  
+  
+  ​    </details>
+  
+- <details>
+      <summary>🔽🔼 **Text node of Gemini AI Response** (Which is of predefined structure we defined in Prompt)</summary>
+  
+  
+  
+    ```json
+  {
+    "analysis": {
+      "overall": "This 30-minute freestyle session shows a consistent effort covering a total distance of 600 meters. With an average heart rate of 128 bpm, the intensity remained in a steady-state aerobic zone, making it an excellent workout for cardiovascular health and building a foundational fitness base without overtaxing the central nervous system.",
+      "pace": "The pace averaged approximately 5:00 per 100 meters. This is a relaxed, controlled pace often associated with recovery swims or a focus on stroke mechanics. Given the total laps, there is significant potential to increase speed by incorporating structured intervals.",
+      "heartRate": "An average heart rate of 128 bpm suggests the user was working at roughly 60-70% of their maximum heart rate (Zone 2). This is the 'fat-burning' zone and is ideal for long-term endurance, though it lacks the anaerobic stimulus required for significant speed gains.",
+      "caloriesBurned": "Burning 280 calories in 30 minutes is consistent with moderate-intensity swimming. This energy expenditure is effective for weight maintenance and reflects a steady, non-stop effort throughout the duration of the activity."
+    },
+    "improvements": [
+      {
+        "area": "Stroke Efficiency",
+        "recommendation": "Focus on your 'SWOLF' score by counting strokes per length. Aim to reduce the number of strokes required to cover 25 meters by emphasizing a stronger pull and a longer glide phase."
+      },
+      {
+        "area": "Turn Mechanics",
+        "recommendation": "If currently doing 'open turns', consider learning or refining flip turns. This maintains momentum and keeps the heart rate more consistent by eliminating the brief pause at the wall."
+      },
+      {
+        "area": "Kick Power",
+        "recommendation": "Incorporate specific kickboard sets to strengthen the lower body. A stronger kick helps maintain a high body position in the water, reducing drag and increasing overall pace."
+      }
+    ],
+    "suggestions": [
+      {
+        "workout": "Freestyle Interval Training",
+        "description": "After a 100m warm-up, perform 8 x 50m sprints with 20 seconds of rest between each. Focus on maintaining a higher heart rate (145-155 bpm) during the sprints, followed by a 100m easy cool-down."
+      },
+      {
+        "workout": "The Pyramid Set",
+        "description": "Swim 1 lap (rest 15s), 2 laps (rest 20s), 3 laps (rest 30s), then 2 laps (rest 20s), and 1 lap (rest 15s). This variation in distance helps build both speed and stamina."
+      }
+    ],
+    "safety": [
+      "Perform dynamic shoulder stretches (arm circles, wall slides) before entering the water to prevent rotator cuff strain.",
+      "Maintain hydration by drinking water before and after the session; despite being in a pool, the body still loses significant fluids through sweat.",
+      "Ensure proper lane etiquette and be mindful of other swimmers' speeds to avoid mid-lane collisions.",
+      "If you experience any sharp pain in the shoulder or impingement sensations, stop immediately and switch to a kick-only drill."
+    ]
+  }
+    ```
+  
+  
+  ​    </details>
+  
   
 
-  
+Flow Diagram until this point: 
+
+<img src="img/diagram1.png" alt="diagram1.png" style="zoom: 50%;" />
+
+
+
+---
+
+## Config Server
