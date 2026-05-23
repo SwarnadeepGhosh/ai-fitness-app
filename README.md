@@ -504,13 +504,16 @@ flowchart LR
 - <details>
       <summary>🔽🔼 **Gemini API Key Details (Highly Secret)** </summary>
     ```sh
+    
+  
+  ```sh
     # Gemini API key details
     # API Key: AIzaSyCJFxa0hd7u0Fa1-tA5UBIjNW0a_iIyCmM
     # Name: Default Gemini API Key
     # Project name: projects/589201942080
     # Project number: 589201942080
-    
-    
+  
+  
     # Gemini cURL Quickstart
     curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent" \
       -H 'Content-Type: application/json' \
@@ -527,8 +530,8 @@ flowchart LR
           }
         ]
       }'
-      
-    
+  
+  
     Response :  {
         "candidates": [
             {
@@ -560,8 +563,11 @@ flowchart LR
         "modelVersion": "gemini-3-flash-preview",
         "responseId": "SPUHarTgH6bNjuMP0O3T-Qk"
     }
-    ```
+  ```
   
+  
+  
+    ```
       </details>
 
 
@@ -629,6 +635,7 @@ flowchart LR
   
 - <details>
       <summary>🔽🔼 ***ActivityAIService.java*** - Creating Prompt and calling GeminiService from here.</summary>
+  
     ```java
     public class ActivityAIService {
         private final GeminiService geminiService;
@@ -747,7 +754,7 @@ flowchart LR
   
 - <details>
       <summary>🔽🔼 **Response From Gemini(AI) 3rd Party API :**</summary>
-
+  
   
     ```json
     {

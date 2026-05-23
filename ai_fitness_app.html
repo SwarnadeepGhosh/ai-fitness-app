@@ -741,62 +741,66 @@ API</a></strong></p></li>
 <p>🔽🔼 <strong>Gemini API Key Details (Highly Secret)</strong></p>
 </summary>
 <div class="sourceCode" id="cb14"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a aria-hidden="true" href="#cb14-1" tabindex="-1"></a>  <span class="co"># Gemini API key details</span></span>
-<span id="cb14-2"><a aria-hidden="true" href="#cb14-2" tabindex="-1"></a>  <span class="co"># API Key: AIzaSyCJFxa0hd7u0Fa1-tA5UBIjNW0a_iIyCmM</span></span>
-<span id="cb14-3"><a aria-hidden="true" href="#cb14-3" tabindex="-1"></a>  <span class="co"># Name: Default Gemini API Key</span></span>
-<span id="cb14-4"><a aria-hidden="true" href="#cb14-4" tabindex="-1"></a>  <span class="co"># Project name: projects/589201942080</span></span>
-<span id="cb14-5"><a aria-hidden="true" href="#cb14-5" tabindex="-1"></a>  <span class="co"># Project number: 589201942080</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-8"><a aria-hidden="true" href="#cb14-8" tabindex="-1"></a>  <span class="co"># Gemini cURL Quickstart</span></span>
-<span id="cb14-9"><a aria-hidden="true" href="#cb14-9" tabindex="-1"></a>  <span class="ex">curl</span> <span class="st">&quot;https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent&quot;</span> <span class="dt">\</span></span>
-<span id="cb14-10"><a aria-hidden="true" href="#cb14-10" tabindex="-1"></a>    <span class="at">-H</span> <span class="st">&#39;Content-Type: application/json&#39;</span> <span class="dt">\</span></span>
-<span id="cb14-11"><a aria-hidden="true" href="#cb14-11" tabindex="-1"></a>    <span class="at">-H</span> <span class="st">&#39;X-goog-api-key: AIzaSyCJFxa0hd7u0Fa1-tA5UBIjNW0a_iIyCmM&#39;</span> <span class="dt">\</span></span>
-<span id="cb14-12"><a aria-hidden="true" href="#cb14-12" tabindex="-1"></a>    <span class="at">-X</span> POST <span class="dt">\</span></span>
-<span id="cb14-13"><a aria-hidden="true" href="#cb14-13" tabindex="-1"></a>    <span class="at">-d</span> <span class="st">&#39;{</span></span>
-<span id="cb14-14"><a aria-hidden="true" href="#cb14-14" tabindex="-1"></a><span class="st">      &quot;contents&quot;: [</span></span>
-<span id="cb14-15"><a aria-hidden="true" href="#cb14-15" tabindex="-1"></a><span class="st">        {</span></span>
-<span id="cb14-16"><a aria-hidden="true" href="#cb14-16" tabindex="-1"></a><span class="st">          &quot;parts&quot;: [</span></span>
-<span id="cb14-17"><a aria-hidden="true" href="#cb14-17" tabindex="-1"></a><span class="st">            {</span></span>
-<span id="cb14-18"><a aria-hidden="true" href="#cb14-18" tabindex="-1"></a><span class="st">              &quot;text&quot;: &quot;Explain how AI works in a few words&quot;</span></span>
-<span id="cb14-19"><a aria-hidden="true" href="#cb14-19" tabindex="-1"></a><span class="st">            }</span></span>
-<span id="cb14-20"><a aria-hidden="true" href="#cb14-20" tabindex="-1"></a><span class="st">          ]</span></span>
-<span id="cb14-21"><a aria-hidden="true" href="#cb14-21" tabindex="-1"></a><span class="st">        }</span></span>
-<span id="cb14-22"><a aria-hidden="true" href="#cb14-22" tabindex="-1"></a><span class="st">      ]</span></span>
-<span id="cb14-23"><a aria-hidden="true" href="#cb14-23" tabindex="-1"></a><span class="st">    }&#39;</span></span>
-<span id="cb14-24"><a aria-hidden="true" href="#cb14-24" tabindex="-1"></a></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-26"><a aria-hidden="true" href="#cb14-26" tabindex="-1"></a>  <span class="ex">Response</span> :  {</span>
-<span id="cb14-27"><a aria-hidden="true" href="#cb14-27" tabindex="-1"></a>      <span class="st">&quot;candidates&quot;</span><span class="ex">:</span> [</span>
-<span id="cb14-28"><a aria-hidden="true" href="#cb14-28" tabindex="-1"></a>          <span class="kw">{</span></span>
-<span id="cb14-29"><a aria-hidden="true" href="#cb14-29" tabindex="-1"></a>              <span class="st">&quot;content&quot;</span><span class="ex">:</span> {</span>
-<span id="cb14-30"><a aria-hidden="true" href="#cb14-30" tabindex="-1"></a>                  <span class="st">&quot;parts&quot;</span><span class="ex">:</span> [</span>
-<span id="cb14-31"><a aria-hidden="true" href="#cb14-31" tabindex="-1"></a>                      <span class="kw">{</span></span>
-<span id="cb14-32"><a aria-hidden="true" href="#cb14-32" tabindex="-1"></a>                          <span class="st">&quot;text&quot;</span><span class="ex">:</span> <span class="st">&quot;AI analyzes massive amounts of **data** to find **patterns** and make **predictions**.&quot;</span></span>
-<span id="cb14-33"><a aria-hidden="true" href="#cb14-33" tabindex="-1"></a>                      <span class="kw">}</span></span>
-<span id="cb14-34"><a aria-hidden="true" href="#cb14-34" tabindex="-1"></a>                  <span class="ex">],</span></span>
-<span id="cb14-35"><a aria-hidden="true" href="#cb14-35" tabindex="-1"></a>                  <span class="st">&quot;role&quot;</span><span class="ex">:</span> <span class="st">&quot;model&quot;</span></span>
-<span id="cb14-36"><a aria-hidden="true" href="#cb14-36" tabindex="-1"></a>              <span class="ex">},</span></span>
-<span id="cb14-37"><a aria-hidden="true" href="#cb14-37" tabindex="-1"></a>              <span class="st">&quot;finishReason&quot;</span><span class="ex">:</span> <span class="st">&quot;STOP&quot;</span>,</span>
-<span id="cb14-38"><a aria-hidden="true" href="#cb14-38" tabindex="-1"></a>              <span class="st">&quot;index&quot;</span><span class="ex">:</span> 0</span>
-<span id="cb14-39"><a aria-hidden="true" href="#cb14-39" tabindex="-1"></a>          <span class="kw">}</span></span>
-<span id="cb14-40"><a aria-hidden="true" href="#cb14-40" tabindex="-1"></a>      <span class="ex">],</span></span>
-<span id="cb14-41"><a aria-hidden="true" href="#cb14-41" tabindex="-1"></a>      <span class="st">&quot;usageMetadata&quot;</span><span class="ex">:</span> {</span>
-<span id="cb14-42"><a aria-hidden="true" href="#cb14-42" tabindex="-1"></a>          <span class="st">&quot;promptTokenCount&quot;</span><span class="ex">:</span> 8,</span>
-<span id="cb14-43"><a aria-hidden="true" href="#cb14-43" tabindex="-1"></a>          <span class="st">&quot;candidatesTokenCount&quot;</span><span class="ex">:</span> 18,</span>
-<span id="cb14-44"><a aria-hidden="true" href="#cb14-44" tabindex="-1"></a>          <span class="st">&quot;totalTokenCount&quot;</span><span class="ex">:</span> 266,</span>
-<span id="cb14-45"><a aria-hidden="true" href="#cb14-45" tabindex="-1"></a>          <span class="st">&quot;promptTokensDetails&quot;</span><span class="ex">:</span> [</span>
-<span id="cb14-46"><a aria-hidden="true" href="#cb14-46" tabindex="-1"></a>              <span class="kw">{</span></span>
-<span id="cb14-47"><a aria-hidden="true" href="#cb14-47" tabindex="-1"></a>                  <span class="st">&quot;modality&quot;</span><span class="ex">:</span> <span class="st">&quot;TEXT&quot;</span>,</span>
-<span id="cb14-48"><a aria-hidden="true" href="#cb14-48" tabindex="-1"></a>                  <span class="st">&quot;tokenCount&quot;</span><span class="ex">:</span> 8</span>
-<span id="cb14-49"><a aria-hidden="true" href="#cb14-49" tabindex="-1"></a>              <span class="kw">}</span></span>
-<span id="cb14-50"><a aria-hidden="true" href="#cb14-50" tabindex="-1"></a>          <span class="ex">],</span></span>
-<span id="cb14-51"><a aria-hidden="true" href="#cb14-51" tabindex="-1"></a>          <span class="st">&quot;thoughtsTokenCount&quot;</span><span class="ex">:</span> 240,</span>
-<span id="cb14-52"><a aria-hidden="true" href="#cb14-52" tabindex="-1"></a>          <span class="st">&quot;serviceTier&quot;</span><span class="ex">:</span> <span class="st">&quot;standard&quot;</span></span>
-<span id="cb14-53"><a aria-hidden="true" href="#cb14-53" tabindex="-1"></a>      <span class="er">}</span><span class="ex">,</span></span>
-<span id="cb14-54"><a aria-hidden="true" href="#cb14-54" tabindex="-1"></a>      <span class="st">&quot;modelVersion&quot;</span><span class="ex">:</span> <span class="st">&quot;gemini-3-flash-preview&quot;</span>,</span>
-<span id="cb14-55"><a aria-hidden="true" href="#cb14-55" tabindex="-1"></a>      <span class="st">&quot;responseId&quot;</span><span class="ex">:</span> <span class="st">&quot;SPUHarTgH6bNjuMP0O3T-Qk&quot;</span></span>
-<span id="cb14-56"><a aria-hidden="true" href="#cb14-56" tabindex="-1"></a>  <span class="er">}</span></span></code></pre></div>
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a aria-hidden="true" href="#cb14-1" tabindex="-1"></a></span>
+<span id="cb14-2"><a aria-hidden="true" href="#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a aria-hidden="true" href="#cb14-3" tabindex="-1"></a><span class="kw">```</span><span class="fu">sh</span></span>
+<span id="cb14-4"><a aria-hidden="true" href="#cb14-4" tabindex="-1"></a>  <span class="co"># Gemini API key details</span></span>
+<span id="cb14-5"><a aria-hidden="true" href="#cb14-5" tabindex="-1"></a>  <span class="co"># API Key: AIzaSyCJFxa0hd7u0Fa1-tA5UBIjNW0a_iIyCmM</span></span>
+<span id="cb14-6"><a aria-hidden="true" href="#cb14-6" tabindex="-1"></a>  <span class="co"># Name: Default Gemini API Key</span></span>
+<span id="cb14-7"><a aria-hidden="true" href="#cb14-7" tabindex="-1"></a>  <span class="co"># Project name: projects/589201942080</span></span>
+<span id="cb14-8"><a aria-hidden="true" href="#cb14-8" tabindex="-1"></a>  <span class="co"># Project number: 589201942080</span></span>
+<span id="cb14-9"><a aria-hidden="true" href="#cb14-9" tabindex="-1"></a></span>
+<span id="cb14-10"><a aria-hidden="true" href="#cb14-10" tabindex="-1"></a></span>
+<span id="cb14-11"><a aria-hidden="true" href="#cb14-11" tabindex="-1"></a>  <span class="co"># Gemini cURL Quickstart</span></span>
+<span id="cb14-12"><a aria-hidden="true" href="#cb14-12" tabindex="-1"></a>  <span class="ex">curl</span> <span class="st">&quot;https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent&quot;</span> <span class="dt">\</span></span>
+<span id="cb14-13"><a aria-hidden="true" href="#cb14-13" tabindex="-1"></a>    <span class="at">-H</span> <span class="st">&#39;Content-Type: application/json&#39;</span> <span class="dt">\</span></span>
+<span id="cb14-14"><a aria-hidden="true" href="#cb14-14" tabindex="-1"></a>    <span class="at">-H</span> <span class="st">&#39;X-goog-api-key: AIzaSyCJFxa0hd7u0Fa1-tA5UBIjNW0a_iIyCmM&#39;</span> <span class="dt">\</span></span>
+<span id="cb14-15"><a aria-hidden="true" href="#cb14-15" tabindex="-1"></a>    <span class="at">-X</span> POST <span class="dt">\</span></span>
+<span id="cb14-16"><a aria-hidden="true" href="#cb14-16" tabindex="-1"></a>    <span class="at">-d</span> <span class="st">&#39;{</span></span>
+<span id="cb14-17"><a aria-hidden="true" href="#cb14-17" tabindex="-1"></a><span class="st">      &quot;contents&quot;: [</span></span>
+<span id="cb14-18"><a aria-hidden="true" href="#cb14-18" tabindex="-1"></a><span class="st">        {</span></span>
+<span id="cb14-19"><a aria-hidden="true" href="#cb14-19" tabindex="-1"></a><span class="st">          &quot;parts&quot;: [</span></span>
+<span id="cb14-20"><a aria-hidden="true" href="#cb14-20" tabindex="-1"></a><span class="st">            {</span></span>
+<span id="cb14-21"><a aria-hidden="true" href="#cb14-21" tabindex="-1"></a><span class="st">              &quot;text&quot;: &quot;Explain how AI works in a few words&quot;</span></span>
+<span id="cb14-22"><a aria-hidden="true" href="#cb14-22" tabindex="-1"></a><span class="st">            }</span></span>
+<span id="cb14-23"><a aria-hidden="true" href="#cb14-23" tabindex="-1"></a><span class="st">          ]</span></span>
+<span id="cb14-24"><a aria-hidden="true" href="#cb14-24" tabindex="-1"></a><span class="st">        }</span></span>
+<span id="cb14-25"><a aria-hidden="true" href="#cb14-25" tabindex="-1"></a><span class="st">      ]</span></span>
+<span id="cb14-26"><a aria-hidden="true" href="#cb14-26" tabindex="-1"></a><span class="st">    }&#39;</span></span>
+<span id="cb14-27"><a aria-hidden="true" href="#cb14-27" tabindex="-1"></a></span>
+<span id="cb14-28"><a aria-hidden="true" href="#cb14-28" tabindex="-1"></a></span>
+<span id="cb14-29"><a aria-hidden="true" href="#cb14-29" tabindex="-1"></a>  <span class="ex">Response</span> :  {</span>
+<span id="cb14-30"><a aria-hidden="true" href="#cb14-30" tabindex="-1"></a>      <span class="st">&quot;candidates&quot;</span><span class="ex">:</span> [</span>
+<span id="cb14-31"><a aria-hidden="true" href="#cb14-31" tabindex="-1"></a>          <span class="kw">{</span></span>
+<span id="cb14-32"><a aria-hidden="true" href="#cb14-32" tabindex="-1"></a>              <span class="st">&quot;content&quot;</span><span class="ex">:</span> {</span>
+<span id="cb14-33"><a aria-hidden="true" href="#cb14-33" tabindex="-1"></a>                  <span class="st">&quot;parts&quot;</span><span class="ex">:</span> [</span>
+<span id="cb14-34"><a aria-hidden="true" href="#cb14-34" tabindex="-1"></a>                      <span class="kw">{</span></span>
+<span id="cb14-35"><a aria-hidden="true" href="#cb14-35" tabindex="-1"></a>                          <span class="st">&quot;text&quot;</span><span class="ex">:</span> <span class="st">&quot;AI analyzes massive amounts of **data** to find **patterns** and make **predictions**.&quot;</span></span>
+<span id="cb14-36"><a aria-hidden="true" href="#cb14-36" tabindex="-1"></a>                      <span class="kw">}</span></span>
+<span id="cb14-37"><a aria-hidden="true" href="#cb14-37" tabindex="-1"></a>                  <span class="ex">],</span></span>
+<span id="cb14-38"><a aria-hidden="true" href="#cb14-38" tabindex="-1"></a>                  <span class="st">&quot;role&quot;</span><span class="ex">:</span> <span class="st">&quot;model&quot;</span></span>
+<span id="cb14-39"><a aria-hidden="true" href="#cb14-39" tabindex="-1"></a>              <span class="ex">},</span></span>
+<span id="cb14-40"><a aria-hidden="true" href="#cb14-40" tabindex="-1"></a>              <span class="st">&quot;finishReason&quot;</span><span class="ex">:</span> <span class="st">&quot;STOP&quot;</span>,</span>
+<span id="cb14-41"><a aria-hidden="true" href="#cb14-41" tabindex="-1"></a>              <span class="st">&quot;index&quot;</span><span class="ex">:</span> 0</span>
+<span id="cb14-42"><a aria-hidden="true" href="#cb14-42" tabindex="-1"></a>          <span class="kw">}</span></span>
+<span id="cb14-43"><a aria-hidden="true" href="#cb14-43" tabindex="-1"></a>      <span class="ex">],</span></span>
+<span id="cb14-44"><a aria-hidden="true" href="#cb14-44" tabindex="-1"></a>      <span class="st">&quot;usageMetadata&quot;</span><span class="ex">:</span> {</span>
+<span id="cb14-45"><a aria-hidden="true" href="#cb14-45" tabindex="-1"></a>          <span class="st">&quot;promptTokenCount&quot;</span><span class="ex">:</span> 8,</span>
+<span id="cb14-46"><a aria-hidden="true" href="#cb14-46" tabindex="-1"></a>          <span class="st">&quot;candidatesTokenCount&quot;</span><span class="ex">:</span> 18,</span>
+<span id="cb14-47"><a aria-hidden="true" href="#cb14-47" tabindex="-1"></a>          <span class="st">&quot;totalTokenCount&quot;</span><span class="ex">:</span> 266,</span>
+<span id="cb14-48"><a aria-hidden="true" href="#cb14-48" tabindex="-1"></a>          <span class="st">&quot;promptTokensDetails&quot;</span><span class="ex">:</span> [</span>
+<span id="cb14-49"><a aria-hidden="true" href="#cb14-49" tabindex="-1"></a>              <span class="kw">{</span></span>
+<span id="cb14-50"><a aria-hidden="true" href="#cb14-50" tabindex="-1"></a>                  <span class="st">&quot;modality&quot;</span><span class="ex">:</span> <span class="st">&quot;TEXT&quot;</span>,</span>
+<span id="cb14-51"><a aria-hidden="true" href="#cb14-51" tabindex="-1"></a>                  <span class="st">&quot;tokenCount&quot;</span><span class="ex">:</span> 8</span>
+<span id="cb14-52"><a aria-hidden="true" href="#cb14-52" tabindex="-1"></a>              <span class="kw">}</span></span>
+<span id="cb14-53"><a aria-hidden="true" href="#cb14-53" tabindex="-1"></a>          <span class="ex">],</span></span>
+<span id="cb14-54"><a aria-hidden="true" href="#cb14-54" tabindex="-1"></a>          <span class="st">&quot;thoughtsTokenCount&quot;</span><span class="ex">:</span> 240,</span>
+<span id="cb14-55"><a aria-hidden="true" href="#cb14-55" tabindex="-1"></a>          <span class="st">&quot;serviceTier&quot;</span><span class="ex">:</span> <span class="st">&quot;standard&quot;</span></span>
+<span id="cb14-56"><a aria-hidden="true" href="#cb14-56" tabindex="-1"></a>      <span class="er">}</span><span class="ex">,</span></span>
+<span id="cb14-57"><a aria-hidden="true" href="#cb14-57" tabindex="-1"></a>      <span class="st">&quot;modelVersion&quot;</span><span class="ex">:</span> <span class="st">&quot;gemini-3-flash-preview&quot;</span>,</span>
+<span id="cb14-58"><a aria-hidden="true" href="#cb14-58" tabindex="-1"></a>      <span class="st">&quot;responseId&quot;</span><span class="ex">:</span> <span class="st">&quot;SPUHarTgH6bNjuMP0O3T-Qk&quot;</span></span>
+<span id="cb14-59"><a aria-hidden="true" href="#cb14-59" tabindex="-1"></a>  <span class="er">}</span></span></code></pre></div>
+<p>```</p>
 </details></li>
 </ul>
 <p><strong>Code Snapshot:</strong></p>
