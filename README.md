@@ -502,72 +502,68 @@ flowchart LR
 - **[Documentation - Gemini API](https://ai.google.dev/gemini-api/docs#java)**
 
 - <details>
-      <summary>🔽🔼 **Gemini API Key Details (Highly Secret)** </summary>
+      <summary>🔽🔼 **Gemini API Key Details (Highly Secret) </summary>
+  
+  
     ```sh
+      # Gemini API key details
+      # API Key: AIzaSyCJFxa0hd7u0Fa1-tA5UBIjNW0a_iIyCmM
+      # Name: Default Gemini API Key
+      # Project name: projects/589201942080
+      # Project number: 589201942080
     
-  
-  ```sh
-    # Gemini API key details
-    # API Key: AIzaSyCJFxa0hd7u0Fa1-tA5UBIjNW0a_iIyCmM
-    # Name: Default Gemini API Key
-    # Project name: projects/589201942080
-    # Project number: 589201942080
-  
-  
-    # Gemini cURL Quickstart
-    curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent" \
-      -H 'Content-Type: application/json' \
-      -H 'X-goog-api-key: AIzaSyCJFxa0hd7u0Fa1-tA5UBIjNW0a_iIyCmM' \
-      -X POST \
-      -d '{
-        "contents": [
-          {
-            "parts": [
-              {
-                "text": "Explain how AI works in a few words"
-              }
-            ]
-          }
-        ]
-      }'
-  
-  
-    Response :  {
-        "candidates": [
+    
+      # Gemini cURL Quickstart
+      curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent" \
+        -H 'Content-Type: application/json' \
+        -H 'X-goog-api-key: AIzaSyCJFxa0hd7u0Fa1-tA5UBIjNW0a_iIyCmM' \
+        -X POST \
+        -d '{
+          "contents": [
             {
-                "content": {
-                    "parts": [
-                        {
-                            "text": "AI analyzes massive amounts of **data** to find **patterns** and make **predictions**."
-                        }
-                    ],
-                    "role": "model"
-                },
-                "finishReason": "STOP",
-                "index": 0
-            }
-        ],
-        "usageMetadata": {
-            "promptTokenCount": 8,
-            "candidatesTokenCount": 18,
-            "totalTokenCount": 266,
-            "promptTokensDetails": [
+              "parts": [
                 {
-                    "modality": "TEXT",
-                    "tokenCount": 8
+                  "text": "Explain how AI works in a few words"
                 }
-            ],
-            "thoughtsTokenCount": 240,
-            "serviceTier": "standard"
-        },
-        "modelVersion": "gemini-3-flash-preview",
-        "responseId": "SPUHarTgH6bNjuMP0O3T-Qk"
-    }
-  ```
-  
-  
-  
+              ]
+            }
+          ]
+        }'
+    
+    
+      Response :  {
+          "candidates": [
+              {
+                  "content": {
+                      "parts": [
+                          {
+                              "text": "AI analyzes massive amounts of **data** to find **patterns** and make **predictions**."
+                          }
+                      ],
+                      "role": "model"
+                  },
+                  "finishReason": "STOP",
+                  "index": 0
+              }
+          ],
+          "usageMetadata": {
+              "promptTokenCount": 8,
+              "candidatesTokenCount": 18,
+              "totalTokenCount": 266,
+              "promptTokensDetails": [
+                  {
+                      "modality": "TEXT",
+                      "tokenCount": 8
+                  }
+              ],
+              "thoughtsTokenCount": 240,
+              "serviceTier": "standard"
+          },
+          "modelVersion": "gemini-3-flash-preview",
+          "responseId": "SPUHarTgH6bNjuMP0O3T-Qk"
+      }
     ```
+  
       </details>
 
 
@@ -854,3 +850,239 @@ Flow Diagram until this point:
 ---
 
 ## Config Server
+
+- Fetch Config URLS: 
+  
+  | Microservice     | Config Fetch URL (LOCAL)                                     | Config Fetch URL (REMOTE) |
+  | ---------------- | ------------------------------------------------------------ | ------------------------- |
+  | User Service     | [http://localhost:8888/userservice/default](http://localhost:8888/userservice/default) |                           |
+  | Activity Service | [http://localhost:8888/activityservice/default](http://localhost:8888/activityservice/default) |                           |
+  | AI Service       | [http://localhost:8888/aiservice/default](http://localhost:8888/aiservice/default) |                           |
+  | API Gateway      | [http://localhost:8888/apigateway/default](http://localhost:8888/apigateway/default) |                           |
+
+
+
+<u>**Setup Config Server:**</u> 
+
+- **pom.xml** - It should have config server dependency.
+
+- ***application.yaml*** - Here I have mentioned `spring.profiles.active=native` means config should be fetched from local directory. As I created `config/` folder within`src/main/resources/` and kept other application yml files there.
+
+  ```yaml
+  server:
+    port: 8888
+  
+  spring:
+    application:
+      name: configserver
+    profiles:
+      active: native
+    cloud:
+      config:
+        server:
+          native:
+            search-locations: classpath:/config
+  ```
+
+- On Main class, `@EnableConfigServer` annotation needs to be added.
+
+
+
+<u>**Setup Config Client:**</u> 
+
+- Common point : **pom.xml** - It should have config client (`spring-cloud-starter-config`) dependency.
+
+- **User Service:** 
+
+  - ***application.yaml*** - This is spring boot service local yaml files. All configuration removed from here except application name. 
+
+    ```yaml
+    spring:
+      application:
+        name: userservice
+      config:
+        import: optional:configserver:http://localhost:8888
+    ```
+
+  - ***configserver/src/main/resources/config/userservice.yml*** - Here I have mentioned `spring.profiles.active=native` means config should be fetched from local directory. As I created `config/` folder within`src/main/resources/` and kept other application yml files there.
+
+    ```yaml
+    server:
+      port: 8081
+    
+    spring:
+      datasource:
+        url: jdbc:postgresql://free-tier12.aws-ap-south-1.cockroachlabs.cloud:26257/swarna-db-200.testdb
+        username: swarnadeep
+        password: uLYrds69nT_WNO5vEQn9rQ
+    
+      jpa:
+        show-sql: true
+        hibernate:
+          ddl-auto: update
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+    #    properties:
+    #      hibernate:
+    #        dialect: org.hibernate.dialect.PostgreSQLDialect
+    
+    # Naming Server
+    eureka:
+      instance:
+        prefer-ip-address: true
+      client:
+        serviceUrl:
+          defaultZone: http://localhost:8761/eureka
+    
+    ############### Swagger - openapi ###############
+    springdoc:
+      api-docs:
+        path: /api-docs
+      swagger-ui:
+        path: /docs.html
+    #    operationsSorter: method
+    # Swagger path: http://localhost:8080/docs.html or http://localhost:8080/swagger-ui/index.html
+    ```
+
+- **Activity Service:** 
+
+  - ***application.yaml*** - This is spring boot service local yaml files. All configuration removed from here except application name. 
+
+    ```yaml
+    spring:
+      application:
+        name: activityservice
+      config:
+        import: optional:configserver:http://localhost:8888
+    ```
+
+  - ***configserver/src/main/resources/config/activityservice.yml*** - Here I have mentioned `spring.profiles.active=native` means config should be fetched from local directory. As I created `config/` folder within`src/main/resources/` and kept other application yml files there.
+
+    ```yaml
+    server:
+      port: 8083
+    
+    spring:
+      mongodb:
+        uri: "mongodb+srv://swarnadeep:swarna%40123@swarnadeep.lx7vex8.mongodb.net/aifitness?retryWrites=true&w=majority"
+        database: aifitness
+        auto-index-creation: true
+    
+      kafka:
+        # bootstrap-servers: localhost:9092
+        bootstrap-servers: pkc-l7pr2.ap-south-1.aws.confluent.cloud:9092
+        properties:
+          security.protocol: SASL_SSL
+          sasl.mechanism: PLAIN
+          sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username='CUUOKL3RGKJVNKOV' password='cfltTxZBE4MgNNnav4jo2SDiABuLjtVGLguZuGmulYZPIUdosp0XAIQB9Q9Dl1GA';
+          session.timeout.ms: 45000
+          client.id: ccloud-springboot-client-1912bc0e-dc67-49f8-812c-786705966c96
+        producer:
+          key-serializer: org.apache.kafka.common.serialization.StringSerializer
+          value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    #    consumer:
+    #      group-id: aifitness-group
+    #      auto-offset-reset: earliest
+    #      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    #      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+    #      properties:
+    #        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+    #        spring.json.trusted.packages: com.sg.fitness
+    
+    kafka-topic: ai-fitness
+    
+    # Naming Server
+    eureka:
+      instance:
+        prefer-ip-address: true
+      client:
+        serviceUrl:
+          defaultZone: http://localhost:8761/eureka
+    
+    # Swagger
+    springdoc:
+      api-docs:
+        path: /api-docs
+      swagger-ui:
+        path: /docs.html
+    #    operationsSorter: method
+    # Swagger path: http://localhost:8080/docs.html or http://localhost:8080/swagger-ui/index.html
+    ```
+
+- **AI Service:** 
+
+  - ***application.yaml*** - This is spring boot service local yaml files. All configuration removed from here except application name. 
+
+    ```yaml
+    spring:
+      application:
+        name: aiservice
+      config:
+        import: optional:configserver:http://localhost:8888
+    ```
+
+  - ***configserver/src/main/resources/config/aiservice.yml*** - Here I have mentioned `spring.profiles.active=native` means config should be fetched from local directory. As I created `config/` folder within`src/main/resources/` and kept other application yml files there.
+
+    ```yaml
+    server:
+      port: 8084
+    
+    spring:
+      mongodb:
+        uri: "mongodb+srv://swarnadeep:swarna%40123@swarnadeep.lx7vex8.mongodb.net/aifitnessrecommendation?retryWrites=true&w=majority"
+        database: aifitnessrecommendation
+        auto-index-creation: true
+    
+      kafka:
+        # bootstrap-servers: localhost:9092
+        bootstrap-servers: pkc-l7pr2.ap-south-1.aws.confluent.cloud:9092
+        properties:
+          security.protocol: SASL_SSL
+          sasl.mechanism: PLAIN
+          sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username='CUUOKL3RGKJVNKOV' password='cfltTxZBE4MgNNnav4jo2SDiABuLjtVGLguZuGmulYZPIUdosp0XAIQB9Q9Dl1GA';
+          session.timeout.ms: 45000
+          client.id: ccloud-springboot-client-1912bc0e-dc67-49f8-812c-786705966c96
+        #    producer:
+        #      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        #      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+        consumer:
+          group-id: aifitness-group
+          auto-offset-reset: earliest
+          key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+          value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+          #      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+          properties:
+            spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+            spring.json.trusted.packages: "*"
+            spring.json.use.type.headers: false
+            spring.json.value.default.type: com.sg.fitness.aiservice.model.Activity
+    
+    kafka-topic: ai-fitness
+    gemini:
+      api:
+        url: https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent
+        key: AIzaSyCJFxa0hd7u0Fa1-tA5UBIjNW0a_iIyCmM
+    
+    # Naming Server
+    eureka:
+      instance:
+        prefer-ip-address: true
+      client:
+        serviceUrl:
+          defaultZone: http://localhost:8761/eureka
+    
+    # Swagger
+    springdoc:
+      api-docs:
+        path: /api-docs
+      swagger-ui:
+        path: /docs.html
+    #    operationsSorter: method
+    # Swagger path: http://localhost:8080/docs.html or http://localhost:8080/swagger-ui/index.html
+    ```
+
+
+
+
+
+
+
