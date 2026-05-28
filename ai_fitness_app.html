@@ -141,6 +141,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </ul></li>
           <li><a href="#config-server" id="toc-config-server">Config
           Server</a></li>
+          <li><a href="#api-gateway" id="toc-api-gateway">API
+          Gateway</a></li>
           </ul></li>
           </ul>
         </div>
@@ -1319,6 +1321,152 @@ class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb29-1"><a href=
 <span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">path</span><span class="kw">:</span><span class="at"> /docs.html</span></span>
 <span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a><span class="co">#    operationsSorter: method</span></span>
 <span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Swagger path: http://localhost:8080/docs.html or http://localhost:8080/swagger-ui/index.html</span></span></code></pre></div></li>
+</ul></li>
+</ul>
+<h2 id="api-gateway">API Gateway</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 56%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Microservice</th>
+<th>Config Fetch URL (LOCAL)</th>
+<th>Config Fetch URL (REMOTE)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gateway Service Routes</td>
+<td><a
+href="http://localhost:8080/actuator/gateway/routes">http://localhost:8080/actuator/gateway/routes</a></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>User Service</td>
+<td><a
+href="http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f">http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f</a></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Activity Service</td>
+<td>curl –location ‘http://localhost:8080/api/activities’
+&lt;br/&gt;–header ‘accept: <em>/</em>’ &lt;br/&gt;–header
+‘Content-Type: application/json’ &lt;br/&gt;–data ‘{<br/> “userId”:
+“fa4c9bc0-ccaa-475f-beba-f12c45ab577f”,<br/> “type”: “SWIMMING”,<br/>
+“duration”: 30,<br/> “caloriesBurned”: 280,<br/> “startTime”:
+“2026-05-10T06:45:00”,<br/> “additionalMetrics”: {<br/> “laps”: 24,<br/>
+“poolLengthMeters”: 25,<br/> “averageHeartRate”: 128,<br/> “strokeType”:
+“Freestyle”<br/> }<br/>}’</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>AI Service</td>
+<td><a
+href="http://localhost:8080/api/recommendations/activity/6a17cb70cdf583bcf7e5de76">http://localhost:8080/api/recommendations/activity/6a17cb70cdf583bcf7e5de76</a></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>API Gateway</td>
+<td><a
+href="http://localhost:8080/actuator/health">http://localhost:8080/actuator/health</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><strong>Configuration</strong>:</p>
+<ul>
+<li><p><strong><em>pom.xml</em></strong> -
+<code>spring-cloud-starter-gateway-server-webflux</code> dependency
+needs to be added. Also
+<code>spring-cloud-starter-netflix-eureka-client</code> and
+<code>spring-cloud-starter-config</code> are required</p></li>
+<li><p><strong><em>application.yaml</em></strong> - This is spring boot
+service local yaml files. All configuration removed from here except
+application name.</p>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spring</span><span class="kw">:</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">application</span><span class="kw">:</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">name</span><span class="kw">:</span><span class="at"> gateway</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">config</span><span class="kw">:</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">import</span><span class="kw">:</span><span class="at"> optional:configserver:http://localhost:8888</span></span></code></pre></div></li>
+<li><p><strong><em>configserver/src/main/resources/config/gateway.yml</em></strong>
+- Here I have mentioned <code>spring.profiles.active=native</code> means
+config should be fetched from local directory. As I created
+<code>config/</code> folder within<code>src/main/resources/</code> and
+kept other application yml files there.</p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">server</span><span class="kw">:</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">port</span><span class="kw">:</span><span class="at"> </span><span class="dv">8080</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">spring</span><span class="kw">:</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cloud</span><span class="kw">:</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">gateway</span><span class="kw">:</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">server</span><span class="kw">:</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">webflux</span><span class="kw">:</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">routes</span><span class="kw">:</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> userservice</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="at">              </span><span class="fu">uri</span><span class="kw">:</span><span class="at"> lb://USERSERVICE</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="at">              </span><span class="fu">predicates</span><span class="kw">:</span></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="kw">-</span><span class="at"> Path=/api/users/**</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> activityservice</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="at">              </span><span class="fu">uri</span><span class="kw">:</span><span class="at"> lb://ACTIVITYSERVICE</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="at">              </span><span class="fu">predicates</span><span class="kw">:</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="kw">-</span><span class="at"> Path=/api/activities/**</span></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> aiservice</span></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="at">              </span><span class="fu">uri</span><span class="kw">:</span><span class="at"> lb://AISERVICE</span></span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a><span class="at">              </span><span class="fu">predicates</span><span class="kw">:</span></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="kw">-</span><span class="at"> Path=/api/recommendations/**</span></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Naming Server</span></span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a><span class="fu">eureka</span><span class="kw">:</span></span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">instance</span><span class="kw">:</span></span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a><span class="co">#    prefer-ip-address: true</span></span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">client</span><span class="kw">:</span></span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">serviceUrl</span><span class="kw">:</span></span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">defaultZone</span><span class="kw">:</span><span class="at"> http://localhost:8761/eureka</span></span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Actuator</span></span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a><span class="fu">management</span><span class="kw">:</span></span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">endpoints</span><span class="kw">:</span></span>
+<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">web</span><span class="kw">:</span></span>
+<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">exposure</span><span class="kw">:</span></span>
+<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">include</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;*&quot;</span></span>
+<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">endpoint</span><span class="kw">:</span></span>
+<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">gateway</span><span class="kw">:</span></span>
+<span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">enabled</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div></li>
+<li><p><strong><em>LoggingFilter.java</em></strong> - Added to log the
+hits received.</p>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">slf4j</span><span class="op">.</span><span class="im">Logger</span><span class="op">;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">slf4j</span><span class="op">.</span><span class="im">LoggerFactory</span><span class="op">;</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">cloud</span><span class="op">.</span><span class="im">gateway</span><span class="op">.</span><span class="im">filter</span><span class="op">.</span><span class="im">GatewayFilterChain</span><span class="op">;</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">cloud</span><span class="op">.</span><span class="im">gateway</span><span class="op">.</span><span class="im">filter</span><span class="op">.</span><span class="im">GlobalFilter</span><span class="op">;</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">stereotype</span><span class="op">.</span><span class="im">Component</span><span class="op">;</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">web</span><span class="op">.</span><span class="im">server</span><span class="op">.</span><span class="im">ServerWebExchange</span><span class="op">;</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">reactor</span><span class="op">.</span><span class="im">core</span><span class="op">.</span><span class="im">publisher</span><span class="op">.</span><span class="im">Mono</span><span class="op">;</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="at">@Component</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> LoggingFilter <span class="kw">implements</span> GlobalFilter <span class="op">{</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">final</span> <span class="bu">Logger</span> logger <span class="op">=</span> LoggerFactory<span class="op">.</span><span class="fu">getLogger</span><span class="op">(</span>LoggingFilter<span class="op">.</span><span class="fu">class</span><span class="op">);</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> Mono<span class="op">&lt;</span><span class="bu">Void</span><span class="op">&gt;</span> <span class="fu">filter</span><span class="op">(</span>ServerWebExchange exchange<span class="op">,</span> GatewayFilterChain chain<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>        logger<span class="op">.</span><span class="fu">info</span><span class="op">(</span><span class="st">&quot;Path of the request received -&gt; {}&quot;</span><span class="op">,</span> exchange<span class="op">.</span><span class="fu">getRequest</span><span class="op">().</span><span class="fu">getPath</span><span class="op">());</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> chain<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>exchange<span class="op">);</span></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a><span class="co">/* LOGS output: </span></span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a><span class="co">Path of the request received -&gt; /api/recommendations/activity/6a17cb70cdf583bcf7e5de76</span></span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a><span class="co">Path of the request received -&gt; /api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f</span></span></code></pre></div></li>
 </ul></li>
 </ul>
         </div>

@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: userservice
+              uri: lb://USERSERVICE
+              predicates:
+                - Path=/api/users/**
+
+            - id: activityservice
+              uri: lb://ACTIVITYSERVICE
+              predicates:
+                - Path=/api/activities/**
+
+            - id: aiservice
+              uri: lb://AISERVICE
+              predicates:
+                - Path=/api/recommendations/**
+
+# Naming Server
+eureka:
+  instance:
+#    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    gateway:
+      enabled: true

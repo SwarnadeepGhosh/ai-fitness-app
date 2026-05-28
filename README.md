@@ -1084,5 +1084,105 @@ Flow Diagram until this point:
 
 
 
+## API Gateway
+
+| Microservice           | Config Fetch URL (LOCAL)                                     | Config Fetch URL (REMOTE) |
+| ---------------------- | ------------------------------------------------------------ | ------------------------- |
+| Gateway Service Routes | [http://localhost:8080/actuator/gateway/routes](http://localhost:8080/actuator/gateway/routes) |                           |
+| User Service           | [http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f](http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f) |                           |
+| Activity Service       | curl --location 'http://localhost:8080/api/activities' \<br/>--header 'accept: */*' \<br/>--header 'Content-Type: application/json' \<br/>--data '{<br/>  "userId": "fa4c9bc0-ccaa-475f-beba-f12c45ab577f",<br/>  "type": "SWIMMING",<br/>  "duration": 30,<br/>  "caloriesBurned": 280,<br/>  "startTime": "2026-05-10T06:45:00",<br/>  "additionalMetrics": {<br/>    "laps": 24,<br/>    "poolLengthMeters": 25,<br/>    "averageHeartRate": 128,<br/>    "strokeType": "Freestyle"<br/>  }<br/>}' |                           |
+| AI Service             | [http://localhost:8080/api/recommendations/activity/6a17cb70cdf583bcf7e5de76](http://localhost:8080/api/recommendations/activity/6a17cb70cdf583bcf7e5de76) |                           |
+| API Gateway            | [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health) |                           |
 
 
+
+- **Configuration**: 
+
+  - ***pom.xml*** - `spring-cloud-starter-gateway-server-webflux` dependency needs to be added. Also `spring-cloud-starter-netflix-eureka-client` and `spring-cloud-starter-config` are required
+
+  - ***application.yaml*** - This is spring boot service local yaml files. All configuration removed from here except application name. 
+
+    ```yaml
+    spring:
+      application:
+        name: gateway
+      config:
+        import: optional:configserver:http://localhost:8888
+    ```
+
+  - ***configserver/src/main/resources/config/gateway.yml*** - Here I have mentioned `spring.profiles.active=native` means config should be fetched from local directory. As I created `config/` folder within`src/main/resources/` and kept other application yml files there.
+
+    ```yaml
+    server:
+      port: 8080
+    
+    spring:
+      cloud:
+        gateway:
+          server:
+            webflux:
+              routes:
+                - id: userservice
+                  uri: lb://USERSERVICE
+                  predicates:
+                    - Path=/api/users/**
+    
+                - id: activityservice
+                  uri: lb://ACTIVITYSERVICE
+                  predicates:
+                    - Path=/api/activities/**
+    
+                - id: aiservice
+                  uri: lb://AISERVICE
+                  predicates:
+                    - Path=/api/recommendations/**
+    
+    # Naming Server
+    eureka:
+      instance:
+    #    prefer-ip-address: true
+      client:
+        serviceUrl:
+          defaultZone: http://localhost:8761/eureka
+    
+    # Actuator
+    management:
+      endpoints:
+        web:
+          exposure:
+            include: "*"
+      endpoint:
+        gateway:
+          enabled: true
+    ```
+
+  - ***LoggingFilter.java*** - Added to log the hits received.
+
+    ```java
+    import org.slf4j.Logger;
+    import org.slf4j.LoggerFactory;
+    import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+    import org.springframework.cloud.gateway.filter.GlobalFilter;
+    import org.springframework.stereotype.Component;
+    import org.springframework.web.server.ServerWebExchange;
+    import reactor.core.publisher.Mono;
+    
+    @Component
+    public class LoggingFilter implements GlobalFilter {
+    
+        private final Logger logger = LoggerFactory.getLogger(LoggingFilter.class);
+    
+        @Override
+        public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+            logger.info("Path of the request received -> {}", exchange.getRequest().getPath());
+            return chain.filter(exchange);
+        }
+    
+    }
+    
+    /* LOGS output: 
+    Path of the request received -> /api/recommendations/activity/6a17cb70cdf583bcf7e5de76
+    Path of the request received -> /api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f
+    ```
+
+    
