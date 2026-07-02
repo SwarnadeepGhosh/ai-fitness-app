@@ -3,3 +3,15 @@ spring:
     name: gateway
   config:
     import: optional:configserver:http://localhost:8888
+
+#  zipkin:
+##    baseUrl: http://localhost:9410/
+#management:
+#  zipkin:
+#    tracing:
+#      endpoint: http://localhost:9410/api/v2/spans
+#  tracing:
+#    enabled: true
+#    sampling:
+#      probability: 1.0
+

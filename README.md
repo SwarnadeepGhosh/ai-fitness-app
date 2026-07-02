@@ -1084,6 +1084,8 @@ Flow Diagram until this point:
 
 
 
+---
+
 ## API Gateway
 
 | Microservice           | Config Fetch URL (LOCAL)                                     | Config Fetch URL (REMOTE) |
