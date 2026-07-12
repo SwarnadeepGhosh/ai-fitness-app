@@ -149,12 +149,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <ul>
           <li><a href="#keycloak"
           id="toc-keycloak">🔒<strong>Keycloak</strong></a></li>
-          <li><a href="#integrating-in-api-gateway"
-          id="toc-integrating-in-api-gateway">Integrating in
-          API-Gateway</a></li>
-          <li><a href="#integrating-in-user-service"
-          id="toc-integrating-in-user-service">Integrating in
-          User-Service</a></li>
+          <li><a href="#integrating-keycloak-in-api-gateway"
+          id="toc-integrating-keycloak-in-api-gateway">Integrating
+          KeyCloak in API Gateway</a></li>
           </ul></li>
           </ul></li>
           </ul>
@@ -1648,7 +1645,10 @@ Endpoint Configuration</a></li>
 username=<code>user1</code> and password=<code>user1</code></p>
 <p>Now token is received and saved until expiry time.</p>
 <p><img src="img/oauth-generate-token.png" alt="oauth-generate-token" style="zoom:67%;" /></p>
-<h3 id="integrating-in-api-gateway">Integrating in API-Gateway</h3>
+<h3 id="integrating-keycloak-in-api-gateway">Integrating KeyCloak in API
+Gateway</h3>
+<h4 id="level-1---basic-testing"><strong>Level 1 - Basic
+Testing</strong></h4>
 <p>We will include security in Gateway only.</p>
 <ul>
 <li><p>Add <strong><em>pom.xml</em></strong> dependency</p>
@@ -1697,9 +1697,252 @@ class="sourceCode sh"><code class="sourceCode bash"><span id="cb38-1"><a href="#
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--header</span> <span class="st">&#39;accept: */*&#39;</span> <span class="dt">\</span></span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--header</span> <span class="st">&#39;authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ1U1lTamhHV3Z4Ym14N0h4NjhRYUNlR0ZVSDV2dlBNZE5ERWN2VElYSmdvIn0.eyJleHAiOjE3ODM3Mzk4OTksImlhdCI6MTc4MzczOTU5OSwiYXV0aF90aW1lIjoxNzgzNzM3OTkwLCJqdGkiOiJvbnJ0YWM6ZjQxMTE4YzMtMzk3MC02ZTY4LWMwOTktYzU3NThjZjlmYWRlIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9maXRuZXNzLWFwcCIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiIyYmQ0OTFhYS0zNjRhLTQ4MzMtOGYzZC0wNzA5OTczZmRlNjciLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJvYXV0aDItcGtjZS1jbGllbnQiLCJzaWQiOiJxeE0xSVJuVDRHQzZxcmJkM0ZFRjd3T24iLCJhY3IiOiIwIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6NTE3MyJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsImRlZmF1bHQtcm9sZXMtZml0bmVzcy1hcHAiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoidXNlcjEgRmlyc3QgdXNlcjEgTGFzdCIsInByZWZlcnJlZF91c2VybmFtZSI6InVzZXIxIiwiZ2l2ZW5fbmFtZSI6InVzZXIxIEZpcnN0IiwiZmFtaWx5X25hbWUiOiJ1c2VyMSBMYXN0IiwiZW1haWwiOiJ1c2VyMUBnbWFpbC5jb20ifQ.cPOs7087eflMML5neEL5dQqjH0wdO5tRLcNo_1jeupHCWBEdzlwslGyK8Lirg0KK9_vytbtaAomacAk2cKsbx9KeqiNehwbTlSCmb18v-E41ZdJI2L3Ad156BUoxK7EZ4c62OuwLsVUnaVcFmPozgz2upjQUf_JeSIdcmDIiGn0aASnHSJIh1qd9vxSmfqDJ91fu_6ZSS4loPMtirgTwPtaNKSi6cexDKpfy2NGC6MgHYg6Lx9C6Rg3H8p8ZZnfubYyHEP0pL1Rix8SoOQBJj2IUX4eskGI_LxMZCd7XIS0Hj11BGOIlQdG4X_0tkOJNSr4SQ19v_UBTMsxVcXzVoQ&#39;</span></span></code></pre></div></li>
 </ul>
-<h3 id="integrating-in-user-service">Integrating in User-Service</h3>
-<p><strong><u>User Synchronization from Keycloak to our User
-Details(Postgres)</u></strong></p>
+<h4
+id="level-2---user-details-sync-from-keycloak-to-postgres"><strong>Level
+2 - User Details Sync from Keycloak to Postgres</strong></h4>
+<ul>
+<li><p>We need to copy below files in gateway.</p>
+<ol type="1">
+<li><strong>WebClientConfig.java</strong> from Activity Service – As we
+need to call User Service from gateway for user validation and
+syncing.</li>
+<li><strong>RegisterRequest</strong> DTO from User Service</li>
+<li><strong>UserResponse</strong> DTO from User Service</li>
+</ol></li>
+<li><p>To achieve User Details Sync from Keycloak to Postgres, we need 2
+files -</p></li>
+<li><details>
+<summary>
+<p>🔽🔼 <strong>KeycloakUserSyncFilter.java</strong> - A filter that
+intercept every requests and synchronizes incoming user identity
+information with the downstream user service before the request
+continues through the gateway.</p>
+</summary>
+<div class="sourceCode" id="cb39"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">import</span> <span class="im">com</span><span class="op">.</span><span class="im">nimbusds</span><span class="op">.</span><span class="im">jwt</span><span class="op">.</span><span class="im">JWTClaimsSet</span><span class="op">;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">import</span> <span class="im">com</span><span class="op">.</span><span class="im">nimbusds</span><span class="op">.</span><span class="im">jwt</span><span class="op">.</span><span class="im">SignedJWT</span><span class="op">;</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">import</span> <span class="im">com</span><span class="op">.</span><span class="im">sg</span><span class="op">.</span><span class="im">fitness</span><span class="op">.</span><span class="im">gateway</span><span class="op">.</span><span class="im">dto</span><span class="op">.</span><span class="im">RegisterRequest</span><span class="op">;</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">import</span> <span class="im">com</span><span class="op">.</span><span class="im">sg</span><span class="op">.</span><span class="im">fitness</span><span class="op">.</span><span class="im">gateway</span><span class="op">.</span><span class="im">service</span><span class="op">.</span><span class="im">UserService</span><span class="op">;</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">slf4j</span><span class="op">.</span><span class="im">Logger</span><span class="op">;</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">slf4j</span><span class="op">.</span><span class="im">LoggerFactory</span><span class="op">;</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">beans</span><span class="op">.</span><span class="im">factory</span><span class="op">.</span><span class="im">annotation</span><span class="op">.</span><span class="im">Autowired</span><span class="op">;</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">http</span><span class="op">.</span><span class="im">server</span><span class="op">.</span><span class="im">reactive</span><span class="op">.</span><span class="im">ServerHttpRequest</span><span class="op">;</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">stereotype</span><span class="op">.</span><span class="im">Component</span><span class="op">;</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">web</span><span class="op">.</span><span class="im">server</span><span class="op">.</span><span class="im">ServerWebExchange</span><span class="op">;</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">web</span><span class="op">.</span><span class="im">server</span><span class="op">.</span><span class="im">WebFilter</span><span class="op">;</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">web</span><span class="op">.</span><span class="im">server</span><span class="op">.</span><span class="im">WebFilterChain</span><span class="op">;</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">import</span> <span class="im">reactor</span><span class="op">.</span><span class="im">core</span><span class="op">.</span><span class="im">publisher</span><span class="op">.</span><span class="im">Mono</span><span class="op">;</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">/**</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>   <span class="co">*</span> A global web filter that synchronizes incoming user identity information with</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>   <span class="co">*</span> the downstream user service before the request continues through the gateway<span class="co">.</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>   <span class="co">*</span></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>   <span class="co">*</span> <span class="kw">&lt;p&gt;</span>This filter reads the request headers and Keycloak JWT claims<span class="co">,</span> checks</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>   <span class="co">*</span> whether the user already exists in the user service<span class="co">,</span> and registers the user</span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>   <span class="co">*</span> when needed<span class="co">.</span> In simple terms<span class="co">,</span> it makes sure the gateway and the user service</span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>   <span class="co">*</span> stay in sync before forwarding the request to the rest of the system<span class="co">.</span><span class="kw">&lt;/p&gt;</span></span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>   <span class="co">*/</span></span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">@Component</span></span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">public</span> <span class="kw">class</span> KeycloakUserSyncFilter <span class="kw">implements</span> WebFilter <span class="op">{</span></span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>      <span class="kw">private</span> <span class="dt">final</span> <span class="bu">Logger</span> logger <span class="op">=</span> LoggerFactory<span class="op">.</span><span class="fu">getLogger</span><span class="op">(</span>KeycloakUserSyncFilter<span class="op">.</span><span class="fu">class</span><span class="op">);</span></span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">@Autowired</span></span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a>      UserService userService<span class="op">;</span></span>
+<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a>  <span class="co">//    Taken by implementing org.springframework.cloud.gateway.filter.GlobalFilter</span></span>
+<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a>  <span class="co">//    @Override</span></span>
+<span id="cb39-33"><a href="#cb39-33" aria-hidden="true" tabindex="-1"></a>  <span class="co">//    public Mono&lt;Void&gt; filter(ServerWebExchange exchange, GatewayFilterChain chain) {</span></span>
+<span id="cb39-34"><a href="#cb39-34" aria-hidden="true" tabindex="-1"></a>  <span class="co">//        logger.info(&quot;Path of the request received -&gt; {}&quot;, exchange.getRequest().getPath());</span></span>
+<span id="cb39-35"><a href="#cb39-35" aria-hidden="true" tabindex="-1"></a>  <span class="co">//        return chain.filter(exchange);</span></span>
+<span id="cb39-36"><a href="#cb39-36" aria-hidden="true" tabindex="-1"></a>  <span class="co">//    }</span></span>
+<span id="cb39-37"><a href="#cb39-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-38"><a href="#cb39-38" aria-hidden="true" tabindex="-1"></a>      <span class="co">/**</span></span>
+<span id="cb39-39"><a href="#cb39-39" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> Runs for every incoming request that reaches the gateway and ensures the</span>
+<span id="cb39-40"><a href="#cb39-40" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> user represented by the JWT and request headers is synchronized with the</span>
+<span id="cb39-41"><a href="#cb39-41" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> downstream user service<span class="co">.</span></span>
+<span id="cb39-42"><a href="#cb39-42" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span></span>
+<span id="cb39-43"><a href="#cb39-43" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> <span class="kw">&lt;p&gt;</span>In simple terms<span class="co">,</span> this filter first checks whether the request already</span>
+<span id="cb39-44"><a href="#cb39-44" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> contains a user identifier<span class="co">.</span> If not<span class="co">,</span> it tries to derive the user identity</span>
+<span id="cb39-45"><a href="#cb39-45" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> from the Keycloak JWT claims<span class="co">.</span> Then it asks the user service if the user</span>
+<span id="cb39-46"><a href="#cb39-46" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> already exists<span class="co">.</span> If the user is missing<span class="co">,</span> the filter registers the user and</span>
+<span id="cb39-47"><a href="#cb39-47" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> only after that continues the original request with the user ID attached to</span>
+<span id="cb39-48"><a href="#cb39-48" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> the request headers so downstream services can identify the caller<span class="co">.</span><span class="kw">&lt;/p&gt;</span></span>
+<span id="cb39-49"><a href="#cb39-49" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span></span>
+<span id="cb39-50"><a href="#cb39-50" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> <span class="co">@</span>param exchange the current server web exchange containing request and response</span>
+<span id="cb39-51"><a href="#cb39-51" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> <span class="co">@</span>param chain    the filter chain that continues the request flow</span>
+<span id="cb39-52"><a href="#cb39-52" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> <span class="co">@</span>return a reactive completion signal after the sync logic and the original</span>
+<span id="cb39-53"><a href="#cb39-53" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> request are handled</span>
+<span id="cb39-54"><a href="#cb39-54" aria-hidden="true" tabindex="-1"></a>       <span class="co">*/</span></span>
+<span id="cb39-55"><a href="#cb39-55" aria-hidden="true" tabindex="-1"></a>      <span class="at">@Override</span></span>
+<span id="cb39-56"><a href="#cb39-56" aria-hidden="true" tabindex="-1"></a>      <span class="kw">public</span> Mono<span class="op">&lt;</span><span class="bu">Void</span><span class="op">&gt;</span> <span class="fu">filter</span><span class="op">(</span>ServerWebExchange exchange<span class="op">,</span> WebFilterChain chain<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb39-57"><a href="#cb39-57" aria-hidden="true" tabindex="-1"></a>          <span class="bu">String</span> userId <span class="op">=</span> exchange<span class="op">.</span><span class="fu">getRequest</span><span class="op">().</span><span class="fu">getHeaders</span><span class="op">().</span><span class="fu">getFirst</span><span class="op">(</span><span class="st">&quot;X-User-ID&quot;</span><span class="op">);</span></span>
+<span id="cb39-58"><a href="#cb39-58" aria-hidden="true" tabindex="-1"></a>          <span class="bu">String</span> token <span class="op">=</span> exchange<span class="op">.</span><span class="fu">getRequest</span><span class="op">().</span><span class="fu">getHeaders</span><span class="op">().</span><span class="fu">getFirst</span><span class="op">(</span><span class="st">&quot;Authorization&quot;</span><span class="op">);</span></span>
+<span id="cb39-59"><a href="#cb39-59" aria-hidden="true" tabindex="-1"></a>          RegisterRequest registerRequest <span class="op">=</span> <span class="fu">getUserDetails</span><span class="op">(</span>token<span class="op">);</span></span>
+<span id="cb39-60"><a href="#cb39-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-61"><a href="#cb39-61" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="op">(</span>userId <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb39-62"><a href="#cb39-62" aria-hidden="true" tabindex="-1"></a>              userId <span class="op">=</span> registerRequest<span class="op">.</span><span class="fu">getKeycloakId</span><span class="op">();</span></span>
+<span id="cb39-63"><a href="#cb39-63" aria-hidden="true" tabindex="-1"></a>          <span class="op">}</span></span>
+<span id="cb39-64"><a href="#cb39-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-65"><a href="#cb39-65" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> <span class="op">(</span>userId <span class="op">!=</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> token <span class="op">!=</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb39-66"><a href="#cb39-66" aria-hidden="true" tabindex="-1"></a>              <span class="bu">String</span> finalUserId <span class="op">=</span> userId<span class="op">;</span></span>
+<span id="cb39-67"><a href="#cb39-67" aria-hidden="true" tabindex="-1"></a>              <span class="cf">return</span> userService<span class="op">.</span><span class="fu">validateUser</span><span class="op">(</span>userId<span class="op">)</span></span>
+<span id="cb39-68"><a href="#cb39-68" aria-hidden="true" tabindex="-1"></a>                      <span class="op">.</span><span class="fu">flatMap</span><span class="op">(</span>exist <span class="op">-&gt;</span> <span class="op">{</span></span>
+<span id="cb39-69"><a href="#cb39-69" aria-hidden="true" tabindex="-1"></a>                          <span class="cf">if</span> <span class="op">(!</span>exist<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb39-70"><a href="#cb39-70" aria-hidden="true" tabindex="-1"></a>                              <span class="co">// The user is not present in the downstream system, so create it first.</span></span>
+<span id="cb39-71"><a href="#cb39-71" aria-hidden="true" tabindex="-1"></a>                              <span class="cf">if</span> <span class="op">(</span>registerRequest <span class="op">!=</span> <span class="kw">null</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb39-72"><a href="#cb39-72" aria-hidden="true" tabindex="-1"></a>                                  <span class="cf">return</span> userService<span class="op">.</span><span class="fu">registerUser</span><span class="op">(</span>registerRequest<span class="op">)</span></span>
+<span id="cb39-73"><a href="#cb39-73" aria-hidden="true" tabindex="-1"></a>                                          <span class="op">.</span><span class="fu">then</span><span class="op">(</span>Mono<span class="op">.</span><span class="fu">empty</span><span class="op">());</span></span>
+<span id="cb39-74"><a href="#cb39-74" aria-hidden="true" tabindex="-1"></a>                              <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb39-75"><a href="#cb39-75" aria-hidden="true" tabindex="-1"></a>                                  <span class="cf">return</span> Mono<span class="op">.</span><span class="fu">empty</span><span class="op">();</span></span>
+<span id="cb39-76"><a href="#cb39-76" aria-hidden="true" tabindex="-1"></a>                              <span class="op">}</span></span>
+<span id="cb39-77"><a href="#cb39-77" aria-hidden="true" tabindex="-1"></a>                          <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb39-78"><a href="#cb39-78" aria-hidden="true" tabindex="-1"></a>                              logger<span class="op">.</span><span class="fu">info</span><span class="op">(</span><span class="st">&quot;User already exist, Skipping sync.&quot;</span><span class="op">);</span></span>
+<span id="cb39-79"><a href="#cb39-79" aria-hidden="true" tabindex="-1"></a>                              <span class="cf">return</span> Mono<span class="op">.</span><span class="fu">empty</span><span class="op">();</span></span>
+<span id="cb39-80"><a href="#cb39-80" aria-hidden="true" tabindex="-1"></a>                          <span class="op">}</span></span>
+<span id="cb39-81"><a href="#cb39-81" aria-hidden="true" tabindex="-1"></a>                      <span class="op">})</span></span>
+<span id="cb39-82"><a href="#cb39-82" aria-hidden="true" tabindex="-1"></a>                      <span class="co">// defer = it will only execute when above portion execution is completed. It won&#39;t start otherwise</span></span>
+<span id="cb39-83"><a href="#cb39-83" aria-hidden="true" tabindex="-1"></a>                      <span class="op">.</span><span class="fu">then</span><span class="op">(</span>Mono<span class="op">.</span><span class="fu">defer</span><span class="op">(()</span> <span class="op">-&gt;</span> <span class="op">{</span></span>
+<span id="cb39-84"><a href="#cb39-84" aria-hidden="true" tabindex="-1"></a>                          ServerHttpRequest mutatedRequest <span class="op">=</span> exchange<span class="op">.</span><span class="fu">getRequest</span><span class="op">().</span><span class="fu">mutate</span><span class="op">()</span></span>
+<span id="cb39-85"><a href="#cb39-85" aria-hidden="true" tabindex="-1"></a>                                  <span class="op">.</span><span class="fu">header</span><span class="op">(</span><span class="st">&quot;X-User-ID&quot;</span><span class="op">,</span> finalUserId<span class="op">)</span></span>
+<span id="cb39-86"><a href="#cb39-86" aria-hidden="true" tabindex="-1"></a>                                  <span class="op">.</span><span class="fu">build</span><span class="op">();</span></span>
+<span id="cb39-87"><a href="#cb39-87" aria-hidden="true" tabindex="-1"></a>                          <span class="cf">return</span> chain<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>exchange<span class="op">.</span><span class="fu">mutate</span><span class="op">().</span><span class="fu">request</span><span class="op">(</span>mutatedRequest<span class="op">).</span><span class="fu">build</span><span class="op">());</span></span>
+<span id="cb39-88"><a href="#cb39-88" aria-hidden="true" tabindex="-1"></a>                      <span class="op">}));</span></span>
+<span id="cb39-89"><a href="#cb39-89" aria-hidden="true" tabindex="-1"></a>          <span class="op">}</span></span>
+<span id="cb39-90"><a href="#cb39-90" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> chain<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>exchange<span class="op">);</span></span>
+<span id="cb39-91"><a href="#cb39-91" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb39-92"><a href="#cb39-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-93"><a href="#cb39-93" aria-hidden="true" tabindex="-1"></a>      <span class="co">/**</span></span>
+<span id="cb39-94"><a href="#cb39-94" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> Extracts the user information from the incoming bearer token<span class="co">.</span></span>
+<span id="cb39-95"><a href="#cb39-95" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span></span>
+<span id="cb39-96"><a href="#cb39-96" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> <span class="kw">&lt;p&gt;</span>The method removes the <span class="co">&quot;</span>Bearer <span class="co">&quot;</span> prefix<span class="co">,</span> parses the JWT<span class="co">,</span> and reads the</span>
+<span id="cb39-97"><a href="#cb39-97" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> claims from the token<span class="co">.</span> These claims are then used to build a registration</span>
+<span id="cb39-98"><a href="#cb39-98" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> payload that can be forwarded to the user service<span class="co">.</span> In short<span class="co">,</span> this is the</span>
+<span id="cb39-99"><a href="#cb39-99" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> place where the gateway turns an incoming access token into a user object</span>
+<span id="cb39-100"><a href="#cb39-100" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> that can be saved in the downstream service<span class="co">.</span><span class="kw">&lt;/p&gt;</span></span>
+<span id="cb39-101"><a href="#cb39-101" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span></span>
+<span id="cb39-102"><a href="#cb39-102" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> <span class="co">@</span>param token the authorization header value<span class="co">,</span> usually in the form</span>
+<span id="cb39-103"><a href="#cb39-103" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span>              <span class="co">&quot;</span>Bearer <span class="kw">&lt;jwt&gt;</span><span class="co">&quot;</span></span>
+<span id="cb39-104"><a href="#cb39-104" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> <span class="co">@</span>return a registration request generated from the JWT claims<span class="co">,</span> or null when</span>
+<span id="cb39-105"><a href="#cb39-105" aria-hidden="true" tabindex="-1"></a>       <span class="co">*</span> the token cannot be parsed</span>
+<span id="cb39-106"><a href="#cb39-106" aria-hidden="true" tabindex="-1"></a>       <span class="co">*/</span></span>
+<span id="cb39-107"><a href="#cb39-107" aria-hidden="true" tabindex="-1"></a>      <span class="kw">private</span> RegisterRequest <span class="fu">getUserDetails</span><span class="op">(</span><span class="bu">String</span> token<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb39-108"><a href="#cb39-108" aria-hidden="true" tabindex="-1"></a>          <span class="cf">try</span> <span class="op">{</span></span>
+<span id="cb39-109"><a href="#cb39-109" aria-hidden="true" tabindex="-1"></a>              <span class="bu">String</span> tokenWithoutBearer <span class="op">=</span> token<span class="op">.</span><span class="fu">replace</span><span class="op">(</span><span class="st">&quot;Bearer &quot;</span><span class="op">,</span> <span class="st">&quot;&quot;</span><span class="op">).</span><span class="fu">trim</span><span class="op">();</span></span>
+<span id="cb39-110"><a href="#cb39-110" aria-hidden="true" tabindex="-1"></a>              SignedJWT signedJWT <span class="op">=</span> SignedJWT<span class="op">.</span><span class="fu">parse</span><span class="op">(</span>tokenWithoutBearer<span class="op">);</span></span>
+<span id="cb39-111"><a href="#cb39-111" aria-hidden="true" tabindex="-1"></a>              JWTClaimsSet claims <span class="op">=</span> signedJWT<span class="op">.</span><span class="fu">getJWTClaimsSet</span><span class="op">();</span></span>
+<span id="cb39-112"><a href="#cb39-112" aria-hidden="true" tabindex="-1"></a>              <span class="co">// The token claims are used as the main identity source; a placeholder email is set for the registration payload.</span></span>
+<span id="cb39-113"><a href="#cb39-113" aria-hidden="true" tabindex="-1"></a>              <span class="cf">return</span> <span class="kw">new</span> <span class="fu">RegisterRequest</span><span class="op">(</span>claims<span class="op">,</span> <span class="st">&quot;dummy@123123&quot;</span><span class="op">);</span></span>
+<span id="cb39-114"><a href="#cb39-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-115"><a href="#cb39-115" aria-hidden="true" tabindex="-1"></a>          <span class="op">}</span> <span class="cf">catch</span> <span class="op">(</span><span class="bu">Exception</span> exception<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb39-116"><a href="#cb39-116" aria-hidden="true" tabindex="-1"></a>              <span class="bu">String</span> message <span class="op">=</span> <span class="st">&quot;GATEWAY-SERVICE:: &quot;</span> <span class="op">+</span> exception<span class="op">.</span><span class="fu">getClass</span><span class="op">().</span><span class="fu">getSimpleName</span><span class="op">()</span> <span class="op">+</span> <span class="st">&quot;: &quot;</span> <span class="op">+</span> exception<span class="op">.</span><span class="fu">getMessage</span><span class="op">();</span></span>
+<span id="cb39-117"><a href="#cb39-117" aria-hidden="true" tabindex="-1"></a>              logger<span class="op">.</span><span class="fu">error</span><span class="op">(</span><span class="st">&quot;getUserDetails Exception occurred: {}&quot;</span><span class="op">,</span> message<span class="op">);</span></span>
+<span id="cb39-118"><a href="#cb39-118" aria-hidden="true" tabindex="-1"></a>              <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb39-119"><a href="#cb39-119" aria-hidden="true" tabindex="-1"></a>          <span class="op">}</span></span>
+<span id="cb39-120"><a href="#cb39-120" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb39-121"><a href="#cb39-121" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span></code></pre></div>
+</details></li>
+<li><details>
+<summary>
+<p>🔽🔼 <strong>UserService.java</strong> - Gateway-side helper service
+for communicating with the downstream user service</p>
+</summary>
+<div class="sourceCode" id="cb40"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">com</span><span class="op">.</span><span class="im">sg</span><span class="op">.</span><span class="im">fitness</span><span class="op">.</span><span class="im">gateway</span><span class="op">.</span><span class="im">dto</span><span class="op">.</span><span class="im">RegisterRequest</span><span class="op">;</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">com</span><span class="op">.</span><span class="im">sg</span><span class="op">.</span><span class="im">fitness</span><span class="op">.</span><span class="im">gateway</span><span class="op">.</span><span class="im">dto</span><span class="op">.</span><span class="im">UserResponse</span><span class="op">;</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">lombok</span><span class="op">.</span><span class="im">extern</span><span class="op">.</span><span class="im">slf4j</span><span class="op">.</span><span class="im">Slf4j</span><span class="op">;</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">beans</span><span class="op">.</span><span class="im">factory</span><span class="op">.</span><span class="im">annotation</span><span class="op">.</span><span class="im">Autowired</span><span class="op">;</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">http</span><span class="op">.</span><span class="im">HttpStatus</span><span class="op">;</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">stereotype</span><span class="op">.</span><span class="im">Service</span><span class="op">;</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">web</span><span class="op">.</span><span class="im">reactive</span><span class="op">.</span><span class="im">function</span><span class="op">.</span><span class="im">client</span><span class="op">.</span><span class="im">WebClient</span><span class="op">;</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">web</span><span class="op">.</span><span class="im">reactive</span><span class="op">.</span><span class="im">function</span><span class="op">.</span><span class="im">client</span><span class="op">.</span><span class="im">WebClientResponseException</span><span class="op">;</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">reactor</span><span class="op">.</span><span class="im">core</span><span class="op">.</span><span class="im">publisher</span><span class="op">.</span><span class="im">Mono</span><span class="op">;</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="co">/**</span></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> Gateway<span class="co">-</span>side helper service for communicating with the downstream user service<span class="co">.</span></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> <span class="kw">&lt;p&gt;</span>This class wraps the HTTP calls used by the gateway to validate whether a</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> user already exists and to register a new user when the JWT identity is not</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> yet known to the user service<span class="co">.</span> In simple terms<span class="co">,</span> it acts as the gateway<span class="co">&#39;</span>s</span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a> <span class="co">*</span> bridge to the user<span class="co">-</span>management backend<span class="co">.</span><span class="kw">&lt;/p&gt;</span></span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a> <span class="co">*/</span></span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a><span class="at">@Service</span></span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a><span class="at">@Slf4j</span></span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> UserService <span class="op">{</span></span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Autowired</span></span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> WebClient userServiceWebClient<span class="op">;</span></span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Checks whether a user already exists in the downstream user service<span class="co">.</span></span>
+<span id="cb40-28"><a href="#cb40-28" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span></span>
+<span id="cb40-29"><a href="#cb40-29" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="kw">&lt;p&gt;</span>This method sends a request to the user service validation endpoint and</span>
+<span id="cb40-30"><a href="#cb40-30" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> expects a boolean result<span class="co">.</span> In simple terms<span class="co">,</span> it answers the question<span class="co">:</span> <span class="co">&quot;</span>Does</span>
+<span id="cb40-31"><a href="#cb40-31" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> this user already exist in the system<span class="co">?&quot;</span> If the user does not exist<span class="co">,</span> the</span>
+<span id="cb40-32"><a href="#cb40-32" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> downstream service returns <span class="co">404,</span> which is converted into a readable runtime</span>
+<span id="cb40-33"><a href="#cb40-33" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> exception so the gateway can handle the situation clearly<span class="co">.</span><span class="kw">&lt;/p&gt;</span></span>
+<span id="cb40-34"><a href="#cb40-34" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span></span>
+<span id="cb40-35"><a href="#cb40-35" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="co">@</span>param userId the user identifier that must be validated</span>
+<span id="cb40-36"><a href="#cb40-36" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="co">@</span>return a reactive boolean that resolves to true when the user exists and</span>
+<span id="cb40-37"><a href="#cb40-37" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> false when the user is missing</span>
+<span id="cb40-38"><a href="#cb40-38" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb40-39"><a href="#cb40-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> Mono<span class="op">&lt;</span><span class="bu">Boolean</span><span class="op">&gt;</span> <span class="fu">validateUser</span><span class="op">(</span><span class="bu">String</span> userId<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb40-40"><a href="#cb40-40" aria-hidden="true" tabindex="-1"></a>        log<span class="op">.</span><span class="fu">info</span><span class="op">(</span><span class="st">&quot;Calling User Validation API for userId: {}&quot;</span><span class="op">,</span> userId<span class="op">);</span></span>
+<span id="cb40-41"><a href="#cb40-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> userServiceWebClient<span class="op">.</span><span class="fu">get</span><span class="op">()</span></span>
+<span id="cb40-42"><a href="#cb40-42" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">uri</span><span class="op">(</span><span class="st">&quot;/api/users/{userId}/validate&quot;</span><span class="op">,</span> userId<span class="op">)</span></span>
+<span id="cb40-43"><a href="#cb40-43" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">retrieve</span><span class="op">()</span></span>
+<span id="cb40-44"><a href="#cb40-44" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">bodyToMono</span><span class="op">(</span><span class="bu">Boolean</span><span class="op">.</span><span class="fu">class</span><span class="op">)</span></span>
+<span id="cb40-45"><a href="#cb40-45" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">onErrorResume</span><span class="op">(</span>WebClientResponseException<span class="op">.</span><span class="fu">class</span><span class="op">,</span> e <span class="op">-&gt;</span> <span class="op">{</span></span>
+<span id="cb40-46"><a href="#cb40-46" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> <span class="op">(</span>e<span class="op">.</span><span class="fu">getStatusCode</span><span class="op">()</span> <span class="op">==</span> HttpStatus<span class="op">.</span><span class="fu">NOT_FOUND</span><span class="op">)</span></span>
+<span id="cb40-47"><a href="#cb40-47" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">return</span> Mono<span class="op">.</span><span class="fu">error</span><span class="op">(</span><span class="kw">new</span> <span class="bu">RuntimeException</span><span class="op">(</span><span class="st">&quot;User Not Found: &quot;</span> <span class="op">+</span> userId<span class="op">));</span></span>
+<span id="cb40-48"><a href="#cb40-48" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>e<span class="op">.</span><span class="fu">getStatusCode</span><span class="op">()</span> <span class="op">==</span> HttpStatus<span class="op">.</span><span class="fu">BAD_REQUEST</span><span class="op">)</span></span>
+<span id="cb40-49"><a href="#cb40-49" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">return</span> Mono<span class="op">.</span><span class="fu">error</span><span class="op">(</span><span class="kw">new</span> <span class="bu">RuntimeException</span><span class="op">(</span><span class="st">&quot;Invalid Request: &quot;</span> <span class="op">+</span> userId<span class="op">));</span></span>
+<span id="cb40-50"><a href="#cb40-50" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">return</span> Mono<span class="op">.</span><span class="fu">error</span><span class="op">(</span><span class="kw">new</span> <span class="bu">RuntimeException</span><span class="op">(</span><span class="st">&quot;Unexpected error: &quot;</span> <span class="op">+</span> e<span class="op">.</span><span class="fu">getMessage</span><span class="op">()));</span></span>
+<span id="cb40-51"><a href="#cb40-51" aria-hidden="true" tabindex="-1"></a>                <span class="op">});</span></span>
+<span id="cb40-52"><a href="#cb40-52" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb40-53"><a href="#cb40-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-54"><a href="#cb40-54" aria-hidden="true" tabindex="-1"></a>    <span class="co">/**</span></span>
+<span id="cb40-55"><a href="#cb40-55" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> Registers a new user with the downstream user service<span class="co">.</span></span>
+<span id="cb40-56"><a href="#cb40-56" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span></span>
+<span id="cb40-57"><a href="#cb40-57" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="kw">&lt;p&gt;</span>This method posts the incoming registration payload to the user service</span>
+<span id="cb40-58"><a href="#cb40-58" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> registration endpoint and waits for the created user details in return<span class="co">.</span></span>
+<span id="cb40-59"><a href="#cb40-59" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> In simple terms<span class="co">,</span> it is the gateway<span class="co">-</span>side <span class="co">&quot;</span>create user<span class="co">&quot;</span> call that forwards</span>
+<span id="cb40-60"><a href="#cb40-60" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> the registration request to the correct service and then maps the response</span>
+<span id="cb40-61"><a href="#cb40-61" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> or error into a meaningful runtime error when something goes wrong<span class="co">.</span><span class="kw">&lt;/p&gt;</span></span>
+<span id="cb40-62"><a href="#cb40-62" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span></span>
+<span id="cb40-63"><a href="#cb40-63" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="co">@</span>param registerRequest the user registration payload that should be sent to</span>
+<span id="cb40-64"><a href="#cb40-64" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span>                        the user service</span>
+<span id="cb40-65"><a href="#cb40-65" aria-hidden="true" tabindex="-1"></a>     <span class="co">*</span> <span class="co">@</span>return a reactive user response returned by the downstream registration API</span>
+<span id="cb40-66"><a href="#cb40-66" aria-hidden="true" tabindex="-1"></a>     <span class="co">*/</span></span>
+<span id="cb40-67"><a href="#cb40-67" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> Mono<span class="op">&lt;</span>UserResponse<span class="op">&gt;</span> <span class="fu">registerUser</span><span class="op">(</span>RegisterRequest registerRequest<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb40-68"><a href="#cb40-68" aria-hidden="true" tabindex="-1"></a>        log<span class="op">.</span><span class="fu">info</span><span class="op">(</span><span class="st">&quot;Calling User Registration API for email: {}&quot;</span><span class="op">,</span> registerRequest<span class="op">.</span><span class="fu">getEmail</span><span class="op">());</span></span>
+<span id="cb40-69"><a href="#cb40-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> userServiceWebClient<span class="op">.</span><span class="fu">post</span><span class="op">()</span></span>
+<span id="cb40-70"><a href="#cb40-70" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">uri</span><span class="op">(</span><span class="st">&quot;/api/users/register&quot;</span><span class="op">)</span></span>
+<span id="cb40-71"><a href="#cb40-71" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">bodyValue</span><span class="op">(</span>registerRequest<span class="op">)</span></span>
+<span id="cb40-72"><a href="#cb40-72" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">retrieve</span><span class="op">()</span></span>
+<span id="cb40-73"><a href="#cb40-73" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">bodyToMono</span><span class="op">(</span>UserResponse<span class="op">.</span><span class="fu">class</span><span class="op">)</span></span>
+<span id="cb40-74"><a href="#cb40-74" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">onErrorResume</span><span class="op">(</span>WebClientResponseException<span class="op">.</span><span class="fu">class</span><span class="op">,</span> e <span class="op">-&gt;</span> <span class="op">{</span></span>
+<span id="cb40-75"><a href="#cb40-75" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> <span class="op">(</span>e<span class="op">.</span><span class="fu">getStatusCode</span><span class="op">()</span> <span class="op">==</span> HttpStatus<span class="op">.</span><span class="fu">BAD_REQUEST</span><span class="op">)</span></span>
+<span id="cb40-76"><a href="#cb40-76" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">return</span> Mono<span class="op">.</span><span class="fu">error</span><span class="op">(</span><span class="kw">new</span> <span class="bu">RuntimeException</span><span class="op">(</span><span class="st">&quot;Bad Request: &quot;</span> <span class="op">+</span> e<span class="op">.</span><span class="fu">getMessage</span><span class="op">()));</span></span>
+<span id="cb40-77"><a href="#cb40-77" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>e<span class="op">.</span><span class="fu">getStatusCode</span><span class="op">()</span> <span class="op">==</span> HttpStatus<span class="op">.</span><span class="fu">INTERNAL_SERVER_ERROR</span><span class="op">)</span></span>
+<span id="cb40-78"><a href="#cb40-78" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">return</span> Mono<span class="op">.</span><span class="fu">error</span><span class="op">(</span><span class="kw">new</span> <span class="bu">RuntimeException</span><span class="op">(</span><span class="st">&quot;Internal Server Error: &quot;</span> <span class="op">+</span> e<span class="op">.</span><span class="fu">getMessage</span><span class="op">()));</span></span>
+<span id="cb40-79"><a href="#cb40-79" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">return</span> Mono<span class="op">.</span><span class="fu">error</span><span class="op">(</span><span class="kw">new</span> <span class="bu">RuntimeException</span><span class="op">(</span><span class="st">&quot;Unexpected error: &quot;</span> <span class="op">+</span> e<span class="op">.</span><span class="fu">getMessage</span><span class="op">()));</span></span>
+<span id="cb40-80"><a href="#cb40-80" aria-hidden="true" tabindex="-1"></a>                <span class="op">});</span></span>
+<span id="cb40-81"><a href="#cb40-81" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb40-82"><a href="#cb40-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-83"><a href="#cb40-83" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</details></li>
+</ul>
+<p><strong>Integrating in User-Service</strong></p>
+<p>In User <strong>validate</strong> api
+(<code>/api/users/{{userId}}/validate</code>), we need to check
+<strong>if the keycloak id is present</strong> (that means keycloak
+server and our postgres db is in sync)</p>
+<div class="sourceCode" id="cb41"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="bu">Boolean</span> <span class="fu">existByUserId</span><span class="op">(</span><span class="bu">String</span> userId<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    log<span class="op">.</span><span class="fu">info</span><span class="op">(</span><span class="st">&quot;Calling User Validation API for userId: {}&quot;</span><span class="op">,</span> userId<span class="op">);</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// return userRepo.existsById(userId);</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> userRepo<span class="op">.</span><span class="fu">existsByKeycloakId</span><span class="op">(</span>userId<span class="op">);</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
         </div>
       </div>
     </div>
