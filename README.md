@@ -1637,5 +1637,26 @@ public Boolean existByUserId(String userId) {
 
 
 
+# Frontend Development
 
+<p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Vitejs-logo.svg" alt="springboot" width="100" height="100"/>
+  &nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="react" width="100" height="100"/>
+  &nbsp;&nbsp;
+</p>
+
+- We will use [Vite](https://vite.dev/guide/) with [React](https://react.dev/)
+
+- Vite Install command : `npm create vite@latest`
+  ```sh
+  PS D:\My-Projects\ai-fitness-app> cd fitness-ui\
+  PS D:\My-Projects\ai-fitness-app\fitness-ui> npm install
+  PS D:\My-Projects\ai-fitness-app\fitness-ui> npm run dev
+    ➜  Local:   http://localhost:5173/
+  ```
+
+- Install [React-redux](https://react-redux.js.org/introduction/getting-started) by command - `npm install react-redux`
+
+- Install [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started) by command -   `npm install @reduxjs/toolkit`
 
