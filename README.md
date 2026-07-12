@@ -1187,4 +1187,207 @@ Flow Diagram until this point:
     Path of the request received -> /api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f
     ```
 
-    
+
+
+
+
+
+---
+
+##  🔐 **Oauth2 Integration**
+
+- **Problems without Oauth2:**
+
+  - You had to **share** your credentials all the time. 
+
+  - Security Risk for credential leaking, Limited control.
+- **What is Oauth?**
+- OAuth (Open Authorization) is a security standard that lets applications access your data on other websites (e.g., Google, Facebook) without giving them your password. Instead of sharing credentials, the app gets a temporary, secure digital "key" (an access token) to perform specific actions on your behalf.
+- **Key Terms**
+
+  - **Resource Owner (User)**: Person who owns the account
+  - **Third Party application**: Application that wants to access your account.
+  - **Resource Server** : Server that holds data that the application wants to access
+  - **Authorization Server:** This server handles the authentication and authorization.
+  - **Client**: This is the application that requests access to the resource server on behalf of user.
+- **<u>Oauth Flow Diagram (Example):</u>**
+- <img src="img/oauth.png" alt="oauth flow diagram" style="zoom: 50%;" />
+- **authorization-code-flow** Documentation : [Authorization Code Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow)
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/auth0/docs/images/cdy7uua7fh8z/7mWk9No612EefC8uBidCqr/821eb60b0aa953b0d8e4afe897228844/Auth-code-flow-diagram.png" alt="Auth - Auth code flow- Authorization sequence diagram" style="zoom:67%;" />
+- (For **Frontend** applications)  [Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-pkce)
+  <img src="https://mintlify.s3.us-west-1.amazonaws.com/auth0/docs/images/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png" alt="Flows - Authorization Code with PKCE - Authorization sequence diagram" style="zoom: 67%;" />
+- (For **Machine-to-Machine / Backend-Backend Communication**)  [Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow)
+
+
+
+### 🔒**Keycloak**
+
+<img src="https://www.keycloak.org/resources/images/logo.svg" alt="Keycloak" style="zoom: 33%;" />
+
+- [Keycloak](https://www.keycloak.org/) = Open Source Identity and Access Management
+- Add authentication to applications and secure services with minimum effort.
+- No need to deal with storing users or authenticating users.
+
+
+
+**Installation**
+
+- Guide to Setup Keycloak using OpenJDK, download from here : [https://www.keycloak.org/getting-started/getting-started-zip](https://www.keycloak.org/getting-started/getting-started-zip)
+
+- Start Keycloak Command
+  ```sh
+  # On Linux, run:
+  bin/kc.sh start-dev
+  
+  # On Windows, run:
+  D:/Softwares/keycloak-26.6.4/bin/kc.bat start-dev
+  ```
+
+- To change port, add below line in ***conf/keycloak.conf***
+  ```properties
+  http-port=8181
+  ```
+
+- URL to access : [http://localhost:8181/](http://localhost:8181/)
+
+  - Created admin username = `swarnadeep`
+  - admin password = `admin`
+
+
+
+
+**<u>Setup Keycloak</u>**
+
+- **Create Realm**
+
+  - A realm in Keycloak is equivalent to a tenant. Each realm allows an administrator to create isolated groups of applications and users. Initially, Keycloak includes a single realm, called `master`. Use this realm only for managing Keycloak and not for managing any applications.
+
+  - Created and enabled realm = `fitness-app`
+- **Create Client**
+
+  - Created client with below details, use default for other fields
+    - *Client type*: `OpenID Connect`
+    - *Client ID*: `oauth2-pkce-client` 
+    - *Check* `Standard flow` & `Direct access grants`
+    - *Require PKCE* : `On`
+    - *PKCE Method* : `S256`
+    - Enter Frontend url as `http://localhost:5173` in both *Valid redirect URIs* and *Web origins*
+    - Click **Save**
+- **Get all Endpoints**
+
+  - Manage Realms -> Realms Settings -> Scroll down, under endpoints, you might get all important endpoints for oauth: 
+    - [OpenID Endpoint Configuration ](http://localhost:8181/realms/fitness-app/.well-known/openid-configuration)
+    - [SAML 2.0 Identity Provider Metadata ](http://localhost:8181/realms/fitness-app/protocol/saml/descriptor)
+- Create a User for *realm* `fitness-app`
+  1. Username: `user1`
+  2. Email: user1@gmail.com
+  3. First name: user1 First
+  4. Last name: user1 Last
+
+- Click **Create** -> Credentials -> Set Password
+  1. Password: `user1`
+  2. Temporary: Off
+
+
+
+
+**<u>Generate AUTH Token using Bruno/Postman</u>**
+
+1. **Grant Type:** `Authorization Code`
+2. **Callback URL:** `http://localhost:5173`
+3. **Use system browser for OAuth:** `Disabled`
+4. **Authorization URL:** `http://localhost:8181/realms/fitness-app/protocol/openid-connect/auth` , Keycloak URL fetch endpoint : [OpenID Endpoint Configuration ](http://localhost:8181/realms/fitness-app/.well-known/openid-configuration)
+5. **Access Token URL:** `http://localhost:8181/realms/fitness-app/protocol/openid-connect/token`, Keycloak URL fetch endpoint : [OpenID Endpoint Configuration ](http://localhost:8181/realms/fitness-app/.well-known/openid-configuration)
+6. **Client ID:** `oauth2-pkce-client`
+7. **Client Secret:** *(Leave blank)*
+8. **Scope:** `openid profile roles email`
+9. **State:** *(Leave blank)*
+10. **Add Credentials to:** `Basic Auth Header`
+11. **Use PKCE:** Enabled
+12. **Token Source:** `oauth2-fitness-app`
+13. **Token ID:** `oauth2-fitness-app`
+14. **Add Token To:** Header
+15. **Header Prefix:** `Bearer ` 
+16. **Refresh Token URL:** *(Leave blank)*
+17. **Automatically fetch token if not found:** `Disabled`
+18. **Auto refresh token (with refresh URL):** `Disabled`
+19. **Additional Parameters:** None
+
+Click **Get Access Token** -> Login with username=`user1` and password=`user1`
+
+Now token is received and saved until expiry time.
+
+<img src="img/oauth-generate-token.png" alt="oauth-generate-token" style="zoom:67%;" />
+
+
+
+
+
+
+
+### Integrating in API-Gateway
+
+We will include security in Gateway only.
+
+- Add ***pom.xml*** dependency
+  ```xml
+  <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+  </dependency>
+  ```
+
+- Create ***SecurityConfig.java*** in API gateway, where we are going to add authorization:
+  ```java
+  @Configuration
+  @EnableWebFluxSecurity
+  public class SecurityConfig {
+  
+      @Bean
+      public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
+          return http
+                  .csrf(ServerHttpSecurity.CsrfSpec::disable)
+                  .authorizeExchange(exchange -> exchange
+                                  .anyExchange().authenticated()
+  //                        .pathMatchers("/actuator/*").permitAll()
+                  )
+                  .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
+                  .build();
+      }
+  
+  }
+  ```
+
+- Add authorization server details in ***gateway.yml*** in config-server
+  ```yaml
+  spring:
+    security:
+      oauth2:
+        resourceserver:
+          jwt:
+            jwk-set-uri: http://localhost:8181/realms/fitness-app/protocol/openid-connect/certs
+            # Path to get all the URLS -> http://localhost:8181/realms/fitness-app/.well-known/openid-configuration
+  ```
+
+- Now restart config-server and api-gateway and hit the GET api, it will throw error: [http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f](http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f)
+
+- Authenticated CURL: 
+  ```sh
+  curl --request GET \
+    --url http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f \
+    --header 'accept: */*' \
+    --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ1U1lTamhHV3Z4Ym14N0h4NjhRYUNlR0ZVSDV2dlBNZE5ERWN2VElYSmdvIn0.eyJleHAiOjE3ODM3Mzk4OTksImlhdCI6MTc4MzczOTU5OSwiYXV0aF90aW1lIjoxNzgzNzM3OTkwLCJqdGkiOiJvbnJ0YWM6ZjQxMTE4YzMtMzk3MC02ZTY4LWMwOTktYzU3NThjZjlmYWRlIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9maXRuZXNzLWFwcCIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiIyYmQ0OTFhYS0zNjRhLTQ4MzMtOGYzZC0wNzA5OTczZmRlNjciLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJvYXV0aDItcGtjZS1jbGllbnQiLCJzaWQiOiJxeE0xSVJuVDRHQzZxcmJkM0ZFRjd3T24iLCJhY3IiOiIwIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6NTE3MyJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsImRlZmF1bHQtcm9sZXMtZml0bmVzcy1hcHAiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoidXNlcjEgRmlyc3QgdXNlcjEgTGFzdCIsInByZWZlcnJlZF91c2VybmFtZSI6InVzZXIxIiwiZ2l2ZW5fbmFtZSI6InVzZXIxIEZpcnN0IiwiZmFtaWx5X25hbWUiOiJ1c2VyMSBMYXN0IiwiZW1haWwiOiJ1c2VyMUBnbWFpbC5jb20ifQ.cPOs7087eflMML5neEL5dQqjH0wdO5tRLcNo_1jeupHCWBEdzlwslGyK8Lirg0KK9_vytbtaAomacAk2cKsbx9KeqiNehwbTlSCmb18v-E41ZdJI2L3Ad156BUoxK7EZ4c62OuwLsVUnaVcFmPozgz2upjQUf_JeSIdcmDIiGn0aASnHSJIh1qd9vxSmfqDJ91fu_6ZSS4loPMtirgTwPtaNKSi6cexDKpfy2NGC6MgHYg6Lx9C6Rg3H8p8ZZnfubYyHEP0pL1Rix8SoOQBJj2IUX4eskGI_LxMZCd7XIS0Hj11BGOIlQdG4X_0tkOJNSr4SQ19v_UBTMsxVcXzVoQ'
+  ```
+
+
+
+### Integrating in User-Service
+
+ 
+
+
+
+**<u>User Synchronization from Keycloak to our User Details(Postgres)</u>**
+
+
+

@@ -143,6 +143,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           Server</a></li>
           <li><a href="#api-gateway" id="toc-api-gateway">API
           Gateway</a></li>
+          <li><a href="#oauth2-integration"
+          id="toc-oauth2-integration">🔐 <strong>Oauth2
+          Integration</strong></a>
+          <ul>
+          <li><a href="#keycloak"
+          id="toc-keycloak">🔒<strong>Keycloak</strong></a></li>
+          <li><a href="#integrating-in-api-gateway"
+          id="toc-integrating-in-api-gateway">Integrating in
+          API-Gateway</a></li>
+          <li><a href="#integrating-in-user-service"
+          id="toc-integrating-in-user-service">Integrating in
+          User-Service</a></li>
+          </ul></li>
           </ul></li>
           </ul>
         </div>
@@ -1323,6 +1336,7 @@ class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb29-1"><a href=
 <span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Swagger path: http://localhost:8080/docs.html or http://localhost:8080/swagger-ui/index.html</span></span></code></pre></div></li>
 </ul></li>
 </ul>
+<hr />
 <h2 id="api-gateway">API Gateway</h2>
 <table>
 <colgroup>
@@ -1469,6 +1483,223 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb32-1"><a href=
 <span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a><span class="co">Path of the request received -&gt; /api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f</span></span></code></pre></div></li>
 </ul></li>
 </ul>
+<hr />
+<h2 id="oauth2-integration">🔐 <strong>Oauth2 Integration</strong></h2>
+<ul>
+<li><p><strong>Problems without Oauth2:</strong></p>
+<ul>
+<li><p>You had to <strong>share</strong> your credentials all the
+time.</p></li>
+<li><p>Security Risk for credential leaking, Limited control.</p></li>
+</ul></li>
+<li><p><strong>What is Oauth?</strong></p></li>
+<li><p>OAuth (Open Authorization) is a security standard that lets
+applications access your data on other websites (e.g., Google, Facebook)
+without giving them your password. Instead of sharing credentials, the
+app gets a temporary, secure digital “key” (an access token) to perform
+specific actions on your behalf.</p></li>
+<li><p><strong>Key Terms</strong></p>
+<ul>
+<li><strong>Resource Owner (User)</strong>: Person who owns the
+account</li>
+<li><strong>Third Party application</strong>: Application that wants to
+access your account.</li>
+<li><strong>Resource Server</strong> : Server that holds data that the
+application wants to access</li>
+<li><strong>Authorization Server:</strong> This server handles the
+authentication and authorization.</li>
+<li><strong>Client</strong>: This is the application that requests
+access to the resource server on behalf of user.</li>
+</ul></li>
+<li><p><strong><u>Oauth Flow Diagram (Example):</u></strong></p></li>
+<li><p><img src="img/oauth.png" alt="oauth flow diagram" style="zoom: 50%;" /></p></li>
+<li><p><strong>authorization-code-flow</strong> Documentation : <a
+href="https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow">Authorization
+Code Flow</a>
+<img src="https://mintlify.s3.us-west-1.amazonaws.com/auth0/docs/images/cdy7uua7fh8z/7mWk9No612EefC8uBidCqr/821eb60b0aa953b0d8e4afe897228844/Auth-code-flow-diagram.png" alt="Auth - Auth code flow- Authorization sequence diagram" style="zoom:67%;" /></p></li>
+<li><p>(For <strong>Frontend</strong> applications) <a
+href="https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-pkce">Authorization
+Code Flow with Proof Key for Code Exchange (PKCE)</a>
+<img src="https://mintlify.s3.us-west-1.amazonaws.com/auth0/docs/images/cdy7uua7fh8z/3pstjSYx3YNSiJQnwKZvm5/33c941faf2e0c434a9ab1f0f3a06e13a/auth-sequence-auth-code-pkce.png" alt="Flows - Authorization Code with PKCE - Authorization sequence diagram" style="zoom: 67%;" /></p></li>
+<li><p>(For <strong>Machine-to-Machine / Backend-Backend
+Communication</strong>) <a
+href="https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow">Client
+Credentials Flow</a></p></li>
+</ul>
+<h3 id="keycloak">🔒<strong>Keycloak</strong></h3>
+<p><img src="https://www.keycloak.org/resources/images/logo.svg" alt="Keycloak" style="zoom: 33%;" /></p>
+<ul>
+<li><a href="https://www.keycloak.org/">Keycloak</a> = Open Source
+Identity and Access Management</li>
+<li>Add authentication to applications and secure services with minimum
+effort.</li>
+<li>No need to deal with storing users or authenticating users.</li>
+</ul>
+<p><strong>Installation</strong></p>
+<ul>
+<li><p>Guide to Setup Keycloak using OpenJDK, download from here : <a
+href="https://www.keycloak.org/getting-started/getting-started-zip">https://www.keycloak.org/getting-started/getting-started-zip</a></p></li>
+<li><p>Start Keycloak Command</p>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On Linux, run:</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bin/kc.sh</span> start-dev</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># On Windows, run:</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="ex">D:/Softwares/keycloak-26.6.4/bin/kc.bat</span> start-dev</span></code></pre></div></li>
+<li><p>To change port, add below line in
+<strong><em>conf/keycloak.conf</em></strong></p>
+<pre class="properties"><code>http-port=8181</code></pre></li>
+<li><p>URL to access : <a
+href="http://localhost:8181/">http://localhost:8181/</a></p>
+<ul>
+<li>Created admin username = <code>swarnadeep</code></li>
+<li>admin password = <code>admin</code></li>
+</ul></li>
+</ul>
+<p><strong><u>Setup Keycloak</u></strong></p>
+<ul>
+<li><p><strong>Create Realm</strong></p>
+<ul>
+<li><p>A realm in Keycloak is equivalent to a tenant. Each realm allows
+an administrator to create isolated groups of applications and users.
+Initially, Keycloak includes a single realm, called <code>master</code>.
+Use this realm only for managing Keycloak and not for managing any
+applications.</p></li>
+<li><p>Created and enabled realm = <code>fitness-app</code></p></li>
+</ul></li>
+<li><p><strong>Create Client</strong></p>
+<ul>
+<li>Created client with below details, use default for other fields
+<ul>
+<li><em>Client type</em>: <code>OpenID Connect</code></li>
+<li><em>Client ID</em>: <code>oauth2-pkce-client</code></li>
+<li><em>Check</em> <code>Standard flow</code> &amp;
+<code>Direct access grants</code></li>
+<li><em>Require PKCE</em> : <code>On</code></li>
+<li><em>PKCE Method</em> : <code>S256</code></li>
+<li>Enter Frontend url as <code>http://localhost:5173</code> in both
+<em>Valid redirect URIs</em> and <em>Web origins</em></li>
+<li>Click <strong>Save</strong></li>
+</ul></li>
+</ul></li>
+<li><p><strong>Get all Endpoints</strong></p>
+<ul>
+<li>Manage Realms -&gt; Realms Settings -&gt; Scroll down, under
+endpoints, you might get all important endpoints for oauth:
+<ul>
+<li><a
+href="http://localhost:8181/realms/fitness-app/.well-known/openid-configuration">OpenID
+Endpoint Configuration</a></li>
+<li><a
+href="http://localhost:8181/realms/fitness-app/protocol/saml/descriptor">SAML
+2.0 Identity Provider Metadata</a></li>
+</ul></li>
+</ul></li>
+<li><p>Create a User for <em>realm</em> <code>fitness-app</code></p>
+<ol type="1">
+<li>Username: <code>user1</code></li>
+<li>Email: user1@gmail.com</li>
+<li>First name: user1 First</li>
+<li>Last name: user1 Last</li>
+</ol></li>
+<li><p>Click <strong>Create</strong> -&gt; Credentials -&gt; Set
+Password</p>
+<ol type="1">
+<li>Password: <code>user1</code></li>
+<li>Temporary: Off</li>
+</ol></li>
+</ul>
+<p><strong><u>Generate AUTH Token using Bruno/Postman</u></strong></p>
+<ol type="1">
+<li><strong>Grant Type:</strong> <code>Authorization Code</code></li>
+<li><strong>Callback URL:</strong>
+<code>http://localhost:5173</code></li>
+<li><strong>Use system browser for OAuth:</strong>
+<code>Disabled</code></li>
+<li><strong>Authorization URL:</strong>
+<code>http://localhost:8181/realms/fitness-app/protocol/openid-connect/auth</code>
+, Keycloak URL fetch endpoint : <a
+href="http://localhost:8181/realms/fitness-app/.well-known/openid-configuration">OpenID
+Endpoint Configuration</a></li>
+<li><strong>Access Token URL:</strong>
+<code>http://localhost:8181/realms/fitness-app/protocol/openid-connect/token</code>,
+Keycloak URL fetch endpoint : <a
+href="http://localhost:8181/realms/fitness-app/.well-known/openid-configuration">OpenID
+Endpoint Configuration</a></li>
+<li><strong>Client ID:</strong> <code>oauth2-pkce-client</code></li>
+<li><strong>Client Secret:</strong> <em>(Leave blank)</em></li>
+<li><strong>Scope:</strong> <code>openid profile roles email</code></li>
+<li><strong>State:</strong> <em>(Leave blank)</em></li>
+<li><strong>Add Credentials to:</strong>
+<code>Basic Auth Header</code></li>
+<li><strong>Use PKCE:</strong> Enabled</li>
+<li><strong>Token Source:</strong> <code>oauth2-fitness-app</code></li>
+<li><strong>Token ID:</strong> <code>oauth2-fitness-app</code></li>
+<li><strong>Add Token To:</strong> Header</li>
+<li><strong>Header Prefix:</strong> <code>Bearer</code></li>
+<li><strong>Refresh Token URL:</strong> <em>(Leave blank)</em></li>
+<li><strong>Automatically fetch token if not found:</strong>
+<code>Disabled</code></li>
+<li><strong>Auto refresh token (with refresh URL):</strong>
+<code>Disabled</code></li>
+<li><strong>Additional Parameters:</strong> None</li>
+</ol>
+<p>Click <strong>Get Access Token</strong> -&gt; Login with
+username=<code>user1</code> and password=<code>user1</code></p>
+<p>Now token is received and saved until expiry time.</p>
+<p><img src="img/oauth-generate-token.png" alt="oauth-generate-token" style="zoom:67%;" /></p>
+<h3 id="integrating-in-api-gateway">Integrating in API-Gateway</h3>
+<p>We will include security in Gateway only.</p>
+<ul>
+<li><p>Add <strong><em>pom.xml</em></strong> dependency</p>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">dependency</span>&gt;</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">groupId</span>&gt;org.springframework.boot&lt;/<span class="kw">groupId</span>&gt;</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">artifactId</span>&gt;spring-boot-starter-oauth2-resource-server&lt;/<span class="kw">artifactId</span>&gt;</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">dependency</span>&gt;</span></code></pre></div></li>
+<li><p>Create <strong><em>SecurityConfig.java</em></strong> in API
+gateway, where we are going to add authorization:</p>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="at">@Configuration</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="at">@EnableWebFluxSecurity</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> SecurityConfig <span class="op">{</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Bean</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> SecurityWebFilterChain <span class="fu">springSecurityFilterChain</span><span class="op">(</span>ServerHttpSecurity http<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> http</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">csrf</span><span class="op">(</span>ServerHttpSecurity<span class="op">.</span><span class="fu">CsrfSpec</span><span class="op">::</span>disable<span class="op">)</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">authorizeExchange</span><span class="op">(</span>exchange <span class="op">-&gt;</span> exchange</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>                                <span class="op">.</span><span class="fu">anyExchange</span><span class="op">().</span><span class="fu">authenticated</span><span class="op">()</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="co">//                        .pathMatchers(&quot;/actuator/*&quot;).permitAll()</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>                <span class="op">)</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">oauth2ResourceServer</span><span class="op">(</span>oauth2 <span class="op">-&gt;</span> oauth2<span class="op">.</span><span class="fu">jwt</span><span class="op">(</span><span class="bu">Customizer</span><span class="op">.</span><span class="fu">withDefaults</span><span class="op">()))</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span><span class="fu">build</span><span class="op">();</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
+<li><p>Add authorization server details in
+<strong><em>gateway.yml</em></strong> in config-server</p>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spring</span><span class="kw">:</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">security</span><span class="kw">:</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">oauth2</span><span class="kw">:</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">resourceserver</span><span class="kw">:</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">jwt</span><span class="kw">:</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">jwk-set-uri</span><span class="kw">:</span><span class="at"> http://localhost:8181/realms/fitness-app/protocol/openid-connect/certs</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co">          # Path to get all the URLS -&gt; http://localhost:8181/realms/fitness-app/.well-known/openid-configuration</span></span></code></pre></div></li>
+<li><p>Now restart config-server and api-gateway and hit the GET api, it
+will throw error: <a
+href="http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f">http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f</a></p></li>
+<li><p>Authenticated CURL:</p>
+<div class="sourceCode" id="cb38"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--request</span> GET <span class="dt">\</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--url</span> http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f <span class="dt">\</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--header</span> <span class="st">&#39;accept: */*&#39;</span> <span class="dt">\</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--header</span> <span class="st">&#39;authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ1U1lTamhHV3Z4Ym14N0h4NjhRYUNlR0ZVSDV2dlBNZE5ERWN2VElYSmdvIn0.eyJleHAiOjE3ODM3Mzk4OTksImlhdCI6MTc4MzczOTU5OSwiYXV0aF90aW1lIjoxNzgzNzM3OTkwLCJqdGkiOiJvbnJ0YWM6ZjQxMTE4YzMtMzk3MC02ZTY4LWMwOTktYzU3NThjZjlmYWRlIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgxL3JlYWxtcy9maXRuZXNzLWFwcCIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiIyYmQ0OTFhYS0zNjRhLTQ4MzMtOGYzZC0wNzA5OTczZmRlNjciLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJvYXV0aDItcGtjZS1jbGllbnQiLCJzaWQiOiJxeE0xSVJuVDRHQzZxcmJkM0ZFRjd3T24iLCJhY3IiOiIwIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6NTE3MyJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsImRlZmF1bHQtcm9sZXMtZml0bmVzcy1hcHAiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoidXNlcjEgRmlyc3QgdXNlcjEgTGFzdCIsInByZWZlcnJlZF91c2VybmFtZSI6InVzZXIxIiwiZ2l2ZW5fbmFtZSI6InVzZXIxIEZpcnN0IiwiZmFtaWx5X25hbWUiOiJ1c2VyMSBMYXN0IiwiZW1haWwiOiJ1c2VyMUBnbWFpbC5jb20ifQ.cPOs7087eflMML5neEL5dQqjH0wdO5tRLcNo_1jeupHCWBEdzlwslGyK8Lirg0KK9_vytbtaAomacAk2cKsbx9KeqiNehwbTlSCmb18v-E41ZdJI2L3Ad156BUoxK7EZ4c62OuwLsVUnaVcFmPozgz2upjQUf_JeSIdcmDIiGn0aASnHSJIh1qd9vxSmfqDJ91fu_6ZSS4loPMtirgTwPtaNKSi6cexDKpfy2NGC6MgHYg6Lx9C6Rg3H8p8ZZnfubYyHEP0pL1Rix8SoOQBJj2IUX4eskGI_LxMZCd7XIS0Hj11BGOIlQdG4X_0tkOJNSr4SQ19v_UBTMsxVcXzVoQ&#39;</span></span></code></pre></div></li>
+</ul>
+<h3 id="integrating-in-user-service">Integrating in User-Service</h3>
+<p><strong><u>User Synchronization from Keycloak to our User
+Details(Postgres)</u></strong></p>
         </div>
       </div>
     </div>
