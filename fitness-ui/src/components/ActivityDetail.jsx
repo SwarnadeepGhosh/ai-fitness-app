@@ -48,7 +48,7 @@ const ActivityDetail = () => {
                         
                         <Typography variant="h6">Improvements</Typography>
                         {activity?.improvements?.map((improvement, index) => (
-                            <Typography key={index} paragraph>• {activity.improvements}</Typography>
+                            <Typography key={index} paragraph>• {improvement}</Typography>
                         ))}
                         
                         <Divider sx={{ my: 2 }} />

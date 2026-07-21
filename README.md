@@ -1,9 +1,5 @@
 # AI-Powered Fitness Application
 
-[Live Frontend Link]()
-
-[Live Backend Swagger Link]()
-
 
 
 <p>
@@ -28,32 +24,50 @@
   <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Google_Gemini_logo_2025.svg" alt="gemini" width="150" height="100"/>
   &nbsp;&nbsp;
   <img src="https://uxwing.com/wp-content/themes/uxwing/download/tools-equipment-construction/configuration-icon.svg" alt="configserver" width="100" height="100"/>
+  &nbsp;&nbsp;
+  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure" width="100" height="100"/>
 </p>
 
 
 
 
+## URL List
+
+### Deployed Services
+
+| Application          | Local URL                                                    | Remote URL                                                   | Credentials (If Required) |
+| -------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------- |
+| Frontend             | [http://localhost:5173/](http://localhost:5173/)             |                                                              | u=`user1`, p=`user1`      |
+| Supervisor           | [http://localhost:9100/monitor](http://localhost:9100/monitor) | [http://sg-devops.centralindia.cloudapp.azure.com/monitor](http://sg-devops.centralindia.cloudapp.azure.com/monitor) | u=`admin`, p=`admin`      |
+| Keycloak             | [http://localhost:8181](http://localhost:8181)               | [http://sg-devops.centralindia.cloudapp.azure.com/auth](http://sg-devops.centralindia.cloudapp.azure.com/auth) | u=`swarnadeep`, p=`admin` |
+| Eureka Naming Server | [http://localhost:8761/registry/](http://localhost:8761/registry/) | [http://sg-devops.centralindia.cloudapp.azure.com/registry/](http://sg-devops.centralindia.cloudapp.azure.com/registry/) | -                         |
+| API Gateway          | [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health) | [http://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health](http://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health) | u=`user1`, p=`user1`      |
+| Config Server        | [http://localhost:8888/config](http://localhost:8888/config) | [http://sg-devops.centralindia.cloudapp.azure.com/config](http://sg-devops.centralindia.cloudapp.azure.com/config) | -                         |
+| User Service         | [http://localhost:8081/users/docs.html](http://localhost:8081/users/docs.html) | [http://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html](http://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html) | -                         |
+| Activity Service     | [http://localhost:8083/activities/docs.html](http://localhost:8083/activities/docs.html) | [http://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html](http://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html) | -                         |
+| AI Service           | [http://localhost:8084/recommendations/docs.html](http://localhost:8084/recommendations/docs.html) | [http://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html](http://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html) | -                         |
+
+### Config Fetch URLS: 
+
+| Microservice     | Config Fetch URL (LOCAL)                                     | Config Fetch URL (REMOTE) |
+| ---------------- | ------------------------------------------------------------ | ------------------------- |
+| User Service     | [http://localhost:8888/config/userservice/default](http://localhost:8888/config/userservice/default) |                           |
+| Activity Service | [http://localhost:8888/config/activityservice/default](http://localhost:8888/config/activityservice/default) |                           |
+| AI Service       | [http://localhost:8888/config/aiservice/default](http://localhost:8888/config/aiservice/default) |                           |
+| API Gateway      | [http://localhost:8888/config/gateway/default](http://localhost:8888/config/gateway/default) |                           |
+
+### SaaS Hosted External Dependencies
+
+| Application       | Remote Hostname |
+| ----------------- | --------------- |
+| Kafka             |                 |
+| Mongo DB          |                 |
+| Google Gemini API |                 |
+| Postgres DB       |                 |
+
+
+
 ## System
-
-**Tech Stack**
-
-- Spring Boot + React Frontend
-- Eureka Server (Spring Cloud Netflix)
-- Spring Cloud Gateway
-- Keycloak - Authentication and Authorization
-- Apache Kafka - Async inter-service communication
-- PostgreSQL + MySQL + MongoDB
-- Google Gemini API - AI model
-- Spring Cloud Config Server
-
-
-
-**Key Highlights**
-
-- Fully Featured Fitness app on microservice architecture.
-- AI Integration on microservices
-
-
 
 ### Application Architecture
 
@@ -100,6 +114,24 @@ flowchart LR
 
 ```
 
+**Tech Stack**
+
+- Spring Boot + React Frontend
+- Eureka Server (Spring Cloud Netflix)
+- Spring Cloud Gateway
+- Keycloak - Authentication and Authorization
+- Apache Kafka - Async inter-service communication
+- PostgreSQL + MySQL + MongoDB
+- Google Gemini API - AI model
+- Spring Cloud Config Server
+
+
+
+**Key Highlights**
+
+- Fully Featured Fitness app on microservice architecture.
+- AI Integration on microservices
+
 
 
 # Microservices
@@ -114,7 +146,7 @@ flowchart LR
 | ---- | ---------------- | ------ | ---------------------------- | ---------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1    | Register User    | POST   | /api/users/register          | Create a new user      | Body (RegisterRequest):`email*`, `password* (min 6)`, `keycloakId`, `firstName`, `lastName` | UserResponse: `{"id":"string","keycloakId":"string","email":"string","password":"string","firstName":"string","lastName":"string","createdAt":"date-time","updatedAt":"date-time"}` |
 | 2    | Get User Profile | GET    | /api/users/{userId}          | Get user details       | Path:`userId* (string)`                                      | UserResponse : `{"id":"string","keycloakId":"string","email":"string","password":"string","firstName":"string","lastName":"string","createdAt":"date-time","updatedAt":"date-time"}` |
-| 3    | Validate User    | GET    | /api/users/{userId}/validate | Check if user is valid | Path:`userId* (string)`                                      | `true`                                                       |
+| 3    | Validate User    | GET    | /api/users/{userId}/validateByKeycloakId | Check if user is valid | Path:`userId* (string)`                                      | `true`                                                       |
 
 
 
@@ -168,8 +200,8 @@ flowchart LR
 
 ## 📡Eureka Naming Server
 
-- Remote URL: 
-- Local URL : [http://localhost:8761/](http://localhost:8761/)
+- Remote URL: [http://sg-devops.centralindia.cloudapp.azure.com/registry/](http://sg-devops.centralindia.cloudapp.azure.com/registry/)
+- Local URL : [http://localhost:8761/registry/](http://localhost:8761/registry/)
 
 
 ---
@@ -278,7 +310,7 @@ flowchart LR
           log.info("Calling User Validation API for userId: {}", userId);
           try {
               return Boolean.TRUE.equals(userServiceWebClient.get()
-                      .uri("/api/users/{userId}/validate", userId)
+                      .uri("/api/users/{userId}/validateByKeycloakId", userId)
                       .retrieve()
                       .bodyToMono(Boolean.class)
                       .block());
@@ -296,7 +328,7 @@ flowchart LR
 - API Call Example (`cURL`): 
   ```sh
   # Validate api
-  curl --location 'http://localhost:8081/api/users/dc9d9946-dd7b-4a4c-a123-0a5b4a7f7f09/validate' \
+  curl --location 'http://localhost:8081/api/users/dc9d9946-dd7b-4a4c-a123-0a5b4a7f7f09/validateByKeycloakId' \
   --header 'accept: */*'
   # Response : true
   
@@ -507,7 +539,7 @@ flowchart LR
   
     ```sh
       # Gemini API key details
-      # API Key: AIzaSyCJFxa0hd7u0Fa1-tA5UBIjNW0a_iIyCmM
+      # API Key: AQ.Ab8RN6I22o0WHOFDNctPvZXDYo5XRjSDoYY1cdssGXwiJq3zIg
       # Name: Default Gemini API Key
       # Project name: projects/589201942080
       # Project number: 589201942080
@@ -851,17 +883,6 @@ Flow Diagram until this point:
 
 ## Config Server
 
-- Fetch Config URLS: 
-  
-  | Microservice     | Config Fetch URL (LOCAL)                                     | Config Fetch URL (REMOTE) |
-  | ---------------- | ------------------------------------------------------------ | ------------------------- |
-  | User Service     | [http://localhost:8888/userservice/default](http://localhost:8888/userservice/default) |                           |
-  | Activity Service | [http://localhost:8888/activityservice/default](http://localhost:8888/activityservice/default) |                           |
-  | AI Service       | [http://localhost:8888/aiservice/default](http://localhost:8888/aiservice/default) |                           |
-  | API Gateway      | [http://localhost:8888/apigateway/default](http://localhost:8888/apigateway/default) |                           |
-
-
-
 <u>**Setup Config Server:**</u> 
 
 - **pom.xml** - It should have config server dependency.
@@ -931,7 +952,7 @@ Flow Diagram until this point:
         prefer-ip-address: true
       client:
         serviceUrl:
-          defaultZone: http://localhost:8761/eureka
+          defaultZone: http://localhost:8761/registry/eureka
     
     ############### Swagger - openapi ###############
     springdoc:
@@ -996,7 +1017,7 @@ Flow Diagram until this point:
         prefer-ip-address: true
       client:
         serviceUrl:
-          defaultZone: http://localhost:8761/eureka
+          defaultZone: http://localhost:8761/registry/eureka
     
     # Swagger
     springdoc:
@@ -1068,7 +1089,7 @@ Flow Diagram until this point:
         prefer-ip-address: true
       client:
         serviceUrl:
-          defaultZone: http://localhost:8761/eureka
+          defaultZone: http://localhost:8761/registry/eureka
     
     # Swagger
     springdoc:
@@ -1088,13 +1109,13 @@ Flow Diagram until this point:
 
 ## API Gateway
 
-| Microservice           | Config Fetch URL (LOCAL)                                     | Config Fetch URL (REMOTE) |
-| ---------------------- | ------------------------------------------------------------ | ------------------------- |
-| Gateway Service Routes | [http://localhost:8080/actuator/gateway/routes](http://localhost:8080/actuator/gateway/routes) |                           |
-| User Service           | [http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f](http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f) |                           |
-| Activity Service       | curl --location 'http://localhost:8080/api/activities' \<br/>--header 'accept: */*' \<br/>--header 'Content-Type: application/json' \<br/>--data '{<br/>  "userId": "fa4c9bc0-ccaa-475f-beba-f12c45ab577f",<br/>  "type": "SWIMMING",<br/>  "duration": 30,<br/>  "caloriesBurned": 280,<br/>  "startTime": "2026-05-10T06:45:00",<br/>  "additionalMetrics": {<br/>    "laps": 24,<br/>    "poolLengthMeters": 25,<br/>    "averageHeartRate": 128,<br/>    "strokeType": "Freestyle"<br/>  }<br/>}' |                           |
-| AI Service             | [http://localhost:8080/api/recommendations/activity/6a17cb70cdf583bcf7e5de76](http://localhost:8080/api/recommendations/activity/6a17cb70cdf583bcf7e5de76) |                           |
-| API Gateway            | [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health) |                           |
+| Microservice           | Config Fetch URL (LOCAL)                                     | Config Fetch URL (REMOTE)                                    |
+| ---------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Gateway Service Routes | [http://localhost:8080/actuator/gateway/routes](http://localhost:8080/actuator/gateway/routes) |                                                              |
+| User Service           | [http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f](http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f) |                                                              |
+| Activity Service       | curl --location 'http://localhost:8080/api/activities' \<br/>--header 'accept: */*' \<br/>--header 'Content-Type: application/json' \<br/>--data '{<br/>  "userId": "fa4c9bc0-ccaa-475f-beba-f12c45ab577f",<br/>  "type": "SWIMMING",<br/>  "duration": 30,<br/>  "caloriesBurned": 280,<br/>  "startTime": "2026-05-10T06:45:00",<br/>  "additionalMetrics": {<br/>    "laps": 24,<br/>    "poolLengthMeters": 25,<br/>    "averageHeartRate": 128,<br/>    "strokeType": "Freestyle"<br/>  }<br/>}' |                                                              |
+| AI Service             | [http://localhost:8080/api/recommendations/activity/6a17cb70cdf583bcf7e5de76](http://localhost:8080/api/recommendations/activity/6a17cb70cdf583bcf7e5de76) |                                                              |
+| API Gateway            | [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health) | [http://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health](http://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health) |
 
 
 
@@ -1145,7 +1166,7 @@ Flow Diagram until this point:
     #    prefer-ip-address: true
       client:
         serviceUrl:
-          defaultZone: http://localhost:8761/eureka
+          defaultZone: http://localhost:8761/registry/eureka
     
     # Actuator
     management:
@@ -1248,10 +1269,12 @@ Flow Diagram until this point:
   http-port=8181
   ```
 
-- URL to access : [http://localhost:8181/](http://localhost:8181/)
+- Created Admin user: 
 
-  - Created admin username = `swarnadeep`
-  - admin password = `admin`
+- | Service         | URL                                                          | Username   | Password |
+  | --------------- | ------------------------------------------------------------ | ---------- | -------- |
+  | Keycloak Local  | [http://localhost:8181/](http://localhost:8181/)             | swarnadeep | admin    |
+  | Keycloak Remote | [http://sg-devops.centralindia.cloudapp.azure.com/auth/](http://sg-devops.centralindia.cloudapp.azure.com/auth) | admin      | admin    |
 
 
 
@@ -1276,8 +1299,8 @@ Flow Diagram until this point:
 - **Get all Endpoints**
 
   - Manage Realms -> Realms Settings -> Scroll down, under endpoints, you might get all important endpoints for oauth: 
-    - [OpenID Endpoint Configuration ](http://localhost:8181/realms/fitness-app/.well-known/openid-configuration)
-    - [SAML 2.0 Identity Provider Metadata ](http://localhost:8181/realms/fitness-app/protocol/saml/descriptor)
+    - [OpenID Endpoint Configuration ](http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/.well-known/openid-configuration)
+    - [SAML 2.0 Identity Provider Metadata ](http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/saml/descriptor)
 - Create a User for *realm* `fitness-app`
   1. Username: `user1`
   2. Email: user1@gmail.com
@@ -1296,8 +1319,8 @@ Flow Diagram until this point:
 1. **Grant Type:** `Authorization Code`
 2. **Callback URL:** `http://localhost:5173`
 3. **Use system browser for OAuth:** `Disabled`
-4. **Authorization URL:** `http://localhost:8181/realms/fitness-app/protocol/openid-connect/auth` , Keycloak URL fetch endpoint : [OpenID Endpoint Configuration ](http://localhost:8181/realms/fitness-app/.well-known/openid-configuration)
-5. **Access Token URL:** `http://localhost:8181/realms/fitness-app/protocol/openid-connect/token`, Keycloak URL fetch endpoint : [OpenID Endpoint Configuration ](http://localhost:8181/realms/fitness-app/.well-known/openid-configuration)
+4. **Authorization URL:** `http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/openid-connect/auth` , Keycloak URL fetch endpoint : [OpenID Endpoint Configuration ](http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/.well-known/openid-configuration)
+5. **Access Token URL:** `http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/openid-connect/token`, Keycloak URL fetch endpoint : [OpenID Endpoint Configuration ](http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/.well-known/openid-configuration)
 6. **Client ID:** `oauth2-pkce-client`
 7. **Client Secret:** *(Leave blank)*
 8. **Scope:** `openid profile roles email`
@@ -1367,8 +1390,8 @@ We will include security in Gateway only.
       oauth2:
         resourceserver:
           jwt:
-            jwk-set-uri: http://localhost:8181/realms/fitness-app/protocol/openid-connect/certs
-            # Path to get all the URLS -> http://localhost:8181/realms/fitness-app/.well-known/openid-configuration
+            jwk-set-uri: http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/openid-connect/certs
+            # Path to get all the URLS -> http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/.well-known/openid-configuration
   ```
 
 - Now restart config-server and api-gateway and hit the GET api, it will throw error: [http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f](http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f)
@@ -1569,7 +1592,7 @@ We will include security in Gateway only.
       public Mono<Boolean> validateUser(String userId) {
           log.info("Calling User Validation API for userId: {}", userId);
           return userServiceWebClient.get()
-                  .uri("/api/users/{userId}/validate", userId)
+                  .uri("/api/users/{userId}/validateByKeycloakId", userId)
                   .retrieve()
                   .bodyToMono(Boolean.class)
                   .onErrorResume(WebClientResponseException.class, e -> {
@@ -1623,7 +1646,7 @@ We will include security in Gateway only.
 
 **Integrating in User-Service**
 
- In User **validate** api (`/api/users/{{userId}}/validate`), we need to check **if the keycloak id is present** (that means keycloak server and our postgres db is in sync)
+ In User **validate** api (`/api/users/{{userId}}/validateByKeycloakId`), we need to check **if the keycloak id is present** (that means keycloak server and our postgres db is in sync)
 
 ```java
 public Boolean existByUserId(String userId) {
@@ -1635,9 +1658,9 @@ public Boolean existByUserId(String userId) {
 
 
 
+---
 
-
-# Frontend Development
+## Frontend Development
 
 <p>
   <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Vitejs-logo.svg" alt="springboot" width="100" height="100"/>
@@ -1659,4 +1682,125 @@ public Boolean existByUserId(String userId) {
 - Install [React-redux](https://react-redux.js.org/introduction/getting-started) by command - `npm install react-redux`
 
 - Install [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started) by command -   `npm install @reduxjs/toolkit`
+
+
+
+---
+
+# DevOps
+
+---
+
+## **Repsy** - Artifact Storage
+
+![](https://avatars.githubusercontent.com/u/66094040?s=280&v=4)
+
+
+
+- **What is Repsy?**
+
+  - [Repsy.io](https://repsy.io/) is a cloud-based artifact repository and Package-as-a-Service designed for software developers and teams. It allows users to securely host, manage, and distribute software packages and container images across multiple ecosystems from a single account. It supports publishing and hosting packages in the following formats:
+
+    - Maven
+
+    - Npm
+
+    - PyPI
+
+    - Docker
+
+- **Key Features**
+  - **Multi-format support** - Host packages for different ecosystems from one account.
+  - **Token-based authentication** - Secure and flexible access management.
+  - **Unlimited repositories** - Create as many public or private repositories as you need.
+  - **Team collaboration** - Add collaborators and manage permissions per repository.
+  - **Generous free tier** - 20 GB of free storage per user.
+  - **CI/CD ready** - Easily integrate with your existing build pipelines.
+
+- **Supported Use Cases**
+
+  - Private internal package hosting
+
+  - Open-source libraries
+
+  - CI/CD workflows
+
+  - Docker image publishing
+
+
+
+#### **Setup Repsy**
+
+1. Create account at [https://repsy.io/](https://repsy.io/) with username and password.
+
+2. Created maven repository `repojar`
+
+   <img src="img/repsy-1.png" alt="repsy 1" style="zoom: 50%;" />
+
+3. We should configure out ***.m2/settings.xml*** at our home directory.
+   ```xml
+   <settings>
+     <servers>
+       <server>
+         <id>repsy</id>
+         <username>swarnadeepghosh</username>
+         <password>Qwerty123</password>
+       </server>
+     </servers>
+   </settings>
+   ```
+
+4. **To UPLOAD Package**: We need to add below block in individual project ***pom.xml*** file
+
+   ```xml
+   ...
+   	<distributionManagement>
+   		<repository>
+   			<id>repsy</id>
+   			<name>My Private Maven Repository on Repsy</name>
+   			<url>https://repo.repsy.io/swarnadeepghosh/repojar</url>
+   		</repository>
+   	</distributionManagement>
+   </project>
+   ```
+
+5. Run **`mvn deploy`** to upload jar/war or any other artifact into `repsy.io`. 
+
+   - Jar sample url for `wget`: [https://repo.repsy.io/mvn/swarnadeepghosh/repojar/com/sg/fitness/eureka/v1.0/eureka-v1.0.jar](https://repo.repsy.io/mvn/swarnadeepghosh/repojar/com/sg/fitness/eureka/v1.0/eureka-v1.0.jar)
+
+   - Snapshot: 
+
+     <img src="img/repsy-2.png" alt="repsy 2" style="zoom: 50%;" />
+
+6. **To DOWNLOAD Package**: We need to add below block in individual project ***pom.xml*** file.
+
+   ```xml
+   <project ...>
+     ...
+     <repositories>
+       ...
+       <repository>
+         <id>repsy</id>
+         <name>My Private Maven Repository on Repsy</name>
+         <url>https://repo.repsy.io/swarnadeepghosh/repojar</url>
+       </repository>
+       ...
+     </repositories>
+     ...
+   </project>
+   ```
+
+
+
+---
+
+## **Github Actions** - Pipeline
+
+<img src="https://www.winwire.com/wp-content/uploads/2024/10/Github-Actions.webp" style="zoom: 33%;" />
+
+
+
+
+
+
 
