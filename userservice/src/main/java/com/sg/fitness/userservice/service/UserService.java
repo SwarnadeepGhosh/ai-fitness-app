@@ -35,9 +35,9 @@ public class UserService {
         return new UserResponse(existingUser);
     }
 
-    public Boolean existByUserId(String userId) {
-        log.info("Calling User Validation API for userId: {}", userId);
+    public Boolean existsByKeycloakId(String keycloakId) {
+        log.info("Calling User Validation API for keycloakId: {}", keycloakId);
 //        return userRepo.existsById(userId);
-        return userRepo.existsByKeycloakId(userId);
+        return userRepo.existsByKeycloakId(keycloakId);
     }
 }

@@ -1,12 +1,16 @@
 server:
   port: 8080
+  # servlet:
+  #   context-path: /api
+  webflux:
+    base-path: /api
 
 spring:
   security:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://localhost:8181/realms/fitness-app/protocol/openid-connect/certs
+          jwk-set-uri: http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/openid-connect/certs
 
   cloud:
     gateway:
@@ -17,16 +21,25 @@ spring:
               uri: lb://USERSERVICE
               predicates:
                 - Path=/api/users/**
+              filters:
+                # - StripPrefix=1
+                - PreserveHostHeader=true
 
             - id: activityservice
               uri: lb://ACTIVITYSERVICE
               predicates:
                 - Path=/api/activities/**
+              filters:
+                # - StripPrefix=1
+                - PreserveHostHeader=true
 
             - id: aiservice
               uri: lb://AISERVICE
               predicates:
                 - Path=/api/recommendations/**
+              filters:
+                # - StripPrefix=1
+                - PreserveHostHeader=true
 
 # Naming Server
 eureka:
@@ -34,7 +47,7 @@ eureka:
 #    prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://localhost:8761/registry/eureka
 
 # Actuator
 management:
@@ -45,3 +58,9 @@ management:
   endpoint:
     gateway:
       enabled: true
+
+# logging:
+#   level:
+#     org.springframework.cloud.gateway: DEBUG
+#     reactor.netty.http.client: DEBUG
+#     org.springframework.cloud.gateway.handler.RoutePredicateHandlerMapping: TRACE

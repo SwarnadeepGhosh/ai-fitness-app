@@ -22,8 +22,9 @@ public class SecurityConfig {
         return http
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(exchange -> exchange
-                                .anyExchange().authenticated()
-//                        .pathMatchers("/actuator/*").permitAll()
+                        // .pathMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
+                        .pathMatchers("/actuator/**").permitAll()
+                        .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
                 .build();
@@ -34,10 +35,12 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of("http://localhost:5173", "https://tutorials-sg.vercel.app"));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-User-ID"));
+        config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-User-ID", "Accept"));
         config.setAllowCredentials(true);
+        // config.setExposedHeaders(List.of("Authorization"));
+        config.setMaxAge(3600L);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/api/**", config);
+        source.registerCorsConfiguration("/**", config);
         return source;
     }
 

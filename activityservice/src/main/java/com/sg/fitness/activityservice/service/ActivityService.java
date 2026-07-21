@@ -33,10 +33,10 @@ public class ActivityService {
 
     public ActivityResponse saveActivity(ActivityRequest request) {
 
-        boolean isValidUser = userValidationService.validateUser(request.getUserId());
-        if (!isValidUser) {
-            throw new RuntimeException("Invalid User: " + request.getUserId());
-        }
+//        boolean isValidUser = userValidationService.validateUserByKeycloakId(request.getUserId());
+//        if (!isValidUser) {
+//            throw new RuntimeException("Invalid User: " + request.getUserId());
+//        }
 
         ActivityEntity activity = new ActivityEntity(request);
         ActivityEntity savedActivity = activityRepo.save(activity);

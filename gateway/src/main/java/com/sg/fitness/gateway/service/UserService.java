@@ -42,7 +42,7 @@ public class UserService {
     public Mono<Boolean> validateUser(String userId) {
         log.info("Calling User Validation API for userId: {}", userId);
         return userServiceWebClient.get()
-                .uri("/api/users/{userId}/validate", userId)
+                .uri("/users/{userId}/validateByKeycloakId", userId)
                 .retrieve()
                 .bodyToMono(Boolean.class)
                 .onErrorResume(WebClientResponseException.class, e -> {
@@ -70,7 +70,7 @@ public class UserService {
     public Mono<UserResponse> registerUser(RegisterRequest registerRequest) {
         log.info("Calling User Registration API for email: {}", registerRequest.getEmail());
         return userServiceWebClient.post()
-                .uri("/api/users/register")
+                .uri("/users/register")
                 .bodyValue(registerRequest)
                 .retrieve()
                 .bodyToMono(UserResponse.class)

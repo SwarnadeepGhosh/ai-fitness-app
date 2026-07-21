@@ -13,20 +13,20 @@ public class UserValidationService {
     @Autowired
     private WebClient userServiceWebClient;
 
-    public boolean validateUser(String userId) {
-        log.info("Calling User Validation API for userId: {}", userId);
-        try {
-            return Boolean.TRUE.equals(userServiceWebClient.get()
-                    .uri("/api/users/{userId}/validate", userId)
-                    .retrieve()
-                    .bodyToMono(Boolean.class)
-                    .block());
-        } catch (WebClientResponseException e) {
-            if (e.getStatusCode() == HttpStatus.NOT_FOUND)
-                throw new RuntimeException("User Not Found: " + userId);
-            else if (e.getStatusCode() == HttpStatus.BAD_REQUEST)
-                throw new RuntimeException("Invalid Request: " + userId);
-        }
-        return false;
-    }
+//    public boolean validateUserByKeycloakId(String keycloakId) {
+//        log.info("Inside validateUserByKeycloakId method, key{}", keycloakId);
+//        try {
+//            return Boolean.TRUE.equals(userServiceWebClient.get()
+//                    .uri("/api/users/{keycloakId}/validateByKeycloakId", keycloakId)
+//                    .retrieve()
+//                    .bodyToMono(Boolean.class)
+//                    .block());
+//        } catch (WebClientResponseException e) {
+//            if (e.getStatusCode() == HttpStatus.NOT_FOUND)
+//                throw new RuntimeException("User Not Found: " + keycloakId);
+//            else if (e.getStatusCode() == HttpStatus.BAD_REQUEST)
+//                throw new RuntimeException("Invalid Request: " + keycloakId);
+//        }
+//        return false;
+//    }
 }

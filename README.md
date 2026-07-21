@@ -41,7 +41,7 @@
 | Supervisor           | [http://localhost:9100/monitor](http://localhost:9100/monitor) | [http://sg-devops.centralindia.cloudapp.azure.com/monitor](http://sg-devops.centralindia.cloudapp.azure.com/monitor) | u=`admin`, p=`admin`      |
 | Keycloak             | [http://localhost:8181](http://localhost:8181)               | [http://sg-devops.centralindia.cloudapp.azure.com/auth](http://sg-devops.centralindia.cloudapp.azure.com/auth) | u=`swarnadeep`, p=`admin` |
 | Eureka Naming Server | [http://localhost:8761/registry/](http://localhost:8761/registry/) | [http://sg-devops.centralindia.cloudapp.azure.com/registry/](http://sg-devops.centralindia.cloudapp.azure.com/registry/) | -                         |
-| API Gateway          | [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health) | [http://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health](http://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health) | u=`user1`, p=`user1`      |
+| API Gateway          | 1. [http://localhost:8080/actuator/gateway/routes](http://localhost:8080/actuator/gateway/routes), <br/>2. [http://localhost:8080/actuator/mappings](http://localhost:8080/actuator/mappings), <br/>3. [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health) | [http://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health](http://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health) | u=`user1`, p=`user1`      |
 | Config Server        | [http://localhost:8888/config](http://localhost:8888/config) | [http://sg-devops.centralindia.cloudapp.azure.com/config](http://sg-devops.centralindia.cloudapp.azure.com/config) | -                         |
 | User Service         | [http://localhost:8081/users/docs.html](http://localhost:8081/users/docs.html) | [http://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html](http://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html) | -                         |
 | Activity Service     | [http://localhost:8083/activities/docs.html](http://localhost:8083/activities/docs.html) | [http://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html](http://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html) | -                         |
@@ -1116,6 +1116,14 @@ Flow Diagram until this point:
 | Activity Service       | curl --location 'http://localhost:8080/api/activities' \<br/>--header 'accept: */*' \<br/>--header 'Content-Type: application/json' \<br/>--data '{<br/>  "userId": "fa4c9bc0-ccaa-475f-beba-f12c45ab577f",<br/>  "type": "SWIMMING",<br/>  "duration": 30,<br/>  "caloriesBurned": 280,<br/>  "startTime": "2026-05-10T06:45:00",<br/>  "additionalMetrics": {<br/>    "laps": 24,<br/>    "poolLengthMeters": 25,<br/>    "averageHeartRate": 128,<br/>    "strokeType": "Freestyle"<br/>  }<br/>}' |                                                              |
 | AI Service             | [http://localhost:8080/api/recommendations/activity/6a17cb70cdf583bcf7e5de76](http://localhost:8080/api/recommendations/activity/6a17cb70cdf583bcf7e5de76) |                                                              |
 | API Gateway            | [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health) | [http://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health](http://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health) |
+
+
+
+**Gateway Actuator URLs**:
+
+1. [http://localhost:8080/actuator/gateway/routes](http://localhost:8080/actuator/gateway/routes)
+2. [http://localhost:8080/actuator/mappings](http://localhost:8080/actuator/mappings)
+3. [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health)
 
 
 
