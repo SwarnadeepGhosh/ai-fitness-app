@@ -37,24 +37,24 @@
 
 | Application          | Local URL                                                    | Remote URL                                                   | Credentials (If Required) |
 | -------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------- |
-| Frontend             | [http://localhost:5173/](http://localhost:5173/)             |                                                              | u=`user1`, p=`user1`      |
-| Supervisor           | [http://localhost:9100/monitor](http://localhost:9100/monitor) | [http://sg-devops.centralindia.cloudapp.azure.com/monitor](http://sg-devops.centralindia.cloudapp.azure.com/monitor) | u=`admin`, p=`admin`      |
-| Keycloak             | [http://localhost:8181](http://localhost:8181)               | [http://sg-devops.centralindia.cloudapp.azure.com/auth](http://sg-devops.centralindia.cloudapp.azure.com/auth) | u=`swarnadeep`, p=`admin` |
-| Eureka Naming Server | [http://localhost:8761/registry/](http://localhost:8761/registry/) | [http://sg-devops.centralindia.cloudapp.azure.com/registry/](http://sg-devops.centralindia.cloudapp.azure.com/registry/) | -                         |
-| API Gateway          | 1. [http://localhost:8080/actuator/gateway/routes](http://localhost:8080/actuator/gateway/routes), <br/>2. [http://localhost:8080/actuator/mappings](http://localhost:8080/actuator/mappings), <br/>3. [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health) | [http://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health](http://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health) | u=`user1`, p=`user1`      |
-| Config Server        | [http://localhost:8888/config](http://localhost:8888/config) | [http://sg-devops.centralindia.cloudapp.azure.com/config](http://sg-devops.centralindia.cloudapp.azure.com/config) | -                         |
-| User Service         | [http://localhost:8081/users/docs.html](http://localhost:8081/users/docs.html) | [http://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html](http://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html) | -                         |
-| Activity Service     | [http://localhost:8083/activities/docs.html](http://localhost:8083/activities/docs.html) | [http://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html](http://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html) | -                         |
-| AI Service           | [http://localhost:8084/recommendations/docs.html](http://localhost:8084/recommendations/docs.html) | [http://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html](http://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html) | -                         |
+| Frontend             | [http://localhost:5173/](http://localhost:5173/)             | [https://sgfitness.vercel.app](https://sgfitness.vercel.app/) | u=`user1`, p=`user1`      |
+| Supervisor           | [http://localhost:9100/monitor](http://localhost:9100/monitor) | [https://sg-devops.centralindia.cloudapp.azure.com/monitor](https://sg-devops.centralindia.cloudapp.azure.com/monitor) | u=`admin`, p=`admin`      |
+| Keycloak             | [http://localhost:8181](http://localhost:8181)               | [https://sg-devops.centralindia.cloudapp.azure.com/auth](https://sg-devops.centralindia.cloudapp.azure.com/auth) | u=`swarnadeep`, p=`admin` |
+| Eureka Naming Server | [http://localhost:8761/registry/](http://localhost:8761/registry/) | [https://sg-devops.centralindia.cloudapp.azure.com/registry/](https://sg-devops.centralindia.cloudapp.azure.com/registry/) | -                         |
+| API Gateway          | 1. [http://localhost:8080/actuator/gateway/routes](http://localhost:8080/actuator/gateway/routes), <br/>2. [http://localhost:8080/actuator/mappings](http://localhost:8080/actuator/mappings), <br/>3. [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health) | [https://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health](https://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health) | u=`user1`, p=`user1`      |
+| Config Server        | [http://localhost:8888/config](http://localhost:8888/config) | [https://sg-devops.centralindia.cloudapp.azure.com/config](https://sg-devops.centralindia.cloudapp.azure.com/config) | -                         |
+| User Service         | [http://localhost:8081/users/docs.html](http://localhost:8081/users/docs.html) | [https://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html) | -                         |
+| Activity Service     | [http://localhost:8083/activities/docs.html](http://localhost:8083/activities/docs.html) | [https://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html) | -                         |
+| AI Service           | [http://localhost:8084/recommendations/docs.html](http://localhost:8084/recommendations/docs.html) | [https://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html) | -                         |
 
 ### Config Fetch URLS: 
 
-| Microservice     | Config Fetch URL (LOCAL)                                     | Config Fetch URL (REMOTE) |
-| ---------------- | ------------------------------------------------------------ | ------------------------- |
-| User Service     | [http://localhost:8888/config/userservice/default](http://localhost:8888/config/userservice/default) |                           |
-| Activity Service | [http://localhost:8888/config/activityservice/default](http://localhost:8888/config/activityservice/default) |                           |
-| AI Service       | [http://localhost:8888/config/aiservice/default](http://localhost:8888/config/aiservice/default) |                           |
-| API Gateway      | [http://localhost:8888/config/gateway/default](http://localhost:8888/config/gateway/default) |                           |
+| Microservice     | Config Fetch URL (LOCAL)                                     | Config Fetch URL (REMOTE)                                    |
+| ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| User Service     | [http://localhost:8888/config/userservice/default](http://localhost:8888/config/userservice/default) | [https://sg-devops.centralindia.cloudapp.azure.com/config/userservice/default](https://sg-devops.centralindia.cloudapp.azure.com/config/userservice/default) |
+| Activity Service | [http://localhost:8888/config/activityservice/default](http://localhost:8888/config/activityservice/default) | [https://sg-devops.centralindia.cloudapp.azure.com/config/activityservice/default](https://sg-devops.centralindia.cloudapp.azure.com/config/activityservice/default) |
+| AI Service       | [http://localhost:8888/config/aiservice/default](http://localhost:8888/config/aiservice/default) | [https://sg-devops.centralindia.cloudapp.azure.com/config/aiservice/default](https://sg-devops.centralindia.cloudapp.azure.com/config/aiservice/default) |
+| API Gateway      | [http://localhost:8888/config/gateway/default](http://localhost:8888/config/gateway/default) | [https://sg-devops.centralindia.cloudapp.azure.com/config/gateway/default](https://sg-devops.centralindia.cloudapp.azure.com/config/gateway/default) |
 
 ### SaaS Hosted External Dependencies
 
@@ -200,7 +200,7 @@ flowchart LR
 
 ## 📡Eureka Naming Server
 
-- Remote URL: [http://sg-devops.centralindia.cloudapp.azure.com/registry/](http://sg-devops.centralindia.cloudapp.azure.com/registry/)
+- Remote URL: [https://sg-devops.centralindia.cloudapp.azure.com/registry/](https://sg-devops.centralindia.cloudapp.azure.com/registry/)
 - Local URL : [http://localhost:8761/registry/](http://localhost:8761/registry/)
 
 
@@ -1115,7 +1115,7 @@ Flow Diagram until this point:
 | User Service           | [http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f](http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f) |                                                              |
 | Activity Service       | curl --location 'http://localhost:8080/api/activities' \<br/>--header 'accept: */*' \<br/>--header 'Content-Type: application/json' \<br/>--data '{<br/>  "userId": "fa4c9bc0-ccaa-475f-beba-f12c45ab577f",<br/>  "type": "SWIMMING",<br/>  "duration": 30,<br/>  "caloriesBurned": 280,<br/>  "startTime": "2026-05-10T06:45:00",<br/>  "additionalMetrics": {<br/>    "laps": 24,<br/>    "poolLengthMeters": 25,<br/>    "averageHeartRate": 128,<br/>    "strokeType": "Freestyle"<br/>  }<br/>}' |                                                              |
 | AI Service             | [http://localhost:8080/api/recommendations/activity/6a17cb70cdf583bcf7e5de76](http://localhost:8080/api/recommendations/activity/6a17cb70cdf583bcf7e5de76) |                                                              |
-| API Gateway            | [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health) | [http://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health](http://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health) |
+| API Gateway            | [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health) | [https://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health](https://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health) |
 
 
 
@@ -1282,7 +1282,7 @@ Flow Diagram until this point:
 - | Service         | URL                                                          | Username   | Password |
   | --------------- | ------------------------------------------------------------ | ---------- | -------- |
   | Keycloak Local  | [http://localhost:8181/](http://localhost:8181/)             | swarnadeep | admin    |
-  | Keycloak Remote | [http://sg-devops.centralindia.cloudapp.azure.com/auth/](http://sg-devops.centralindia.cloudapp.azure.com/auth) | admin      | admin    |
+  | Keycloak Remote | [https://sg-devops.centralindia.cloudapp.azure.com/auth/](https://sg-devops.centralindia.cloudapp.azure.com/auth) | admin      | admin    |
 
 
 
@@ -1307,8 +1307,8 @@ Flow Diagram until this point:
 - **Get all Endpoints**
 
   - Manage Realms -> Realms Settings -> Scroll down, under endpoints, you might get all important endpoints for oauth: 
-    - [OpenID Endpoint Configuration ](http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/.well-known/openid-configuration)
-    - [SAML 2.0 Identity Provider Metadata ](http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/saml/descriptor)
+    - [OpenID Endpoint Configuration ](https://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/.well-known/openid-configuration)
+    - [SAML 2.0 Identity Provider Metadata ](https://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/saml/descriptor)
 - Create a User for *realm* `fitness-app`
   1. Username: `user1`
   2. Email: user1@gmail.com
@@ -1327,8 +1327,8 @@ Flow Diagram until this point:
 1. **Grant Type:** `Authorization Code`
 2. **Callback URL:** `http://localhost:5173`
 3. **Use system browser for OAuth:** `Disabled`
-4. **Authorization URL:** `http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/openid-connect/auth` , Keycloak URL fetch endpoint : [OpenID Endpoint Configuration ](http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/.well-known/openid-configuration)
-5. **Access Token URL:** `http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/openid-connect/token`, Keycloak URL fetch endpoint : [OpenID Endpoint Configuration ](http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/.well-known/openid-configuration)
+4. **Authorization URL:** `https://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/openid-connect/auth` , Keycloak URL fetch endpoint : [OpenID Endpoint Configuration ](https://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/.well-known/openid-configuration)
+5. **Access Token URL:** `https://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/openid-connect/token`, Keycloak URL fetch endpoint : [OpenID Endpoint Configuration ](https://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/.well-known/openid-configuration)
 6. **Client ID:** `oauth2-pkce-client`
 7. **Client Secret:** *(Leave blank)*
 8. **Scope:** `openid profile roles email`
@@ -1398,8 +1398,8 @@ We will include security in Gateway only.
       oauth2:
         resourceserver:
           jwt:
-            jwk-set-uri: http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/openid-connect/certs
-            # Path to get all the URLS -> http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/.well-known/openid-configuration
+            jwk-set-uri: https://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/openid-connect/certs
+            # Path to get all the URLS -> https://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/.well-known/openid-configuration
   ```
 
 - Now restart config-server and api-gateway and hit the GET api, it will throw error: [http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f](http://localhost:8080/api/users/fa4c9bc0-ccaa-475f-beba-f12c45ab577f)
@@ -1808,6 +1808,46 @@ public Boolean existByUserId(String userId) {
 
 
 
+---
 
+## Externalized Configuration
 
+The frontend and backend services now use environment variables and Spring placeholders instead of hardcoded values. The UI configuration template is available at [fitness-ui/.env.example](fitness-ui/.env.example).
+
+### Frontend
+
+Copy [fitness-ui/.env.example](fitness-ui/.env.example) to [fitness-ui/.env](fitness-ui/.env) and adjust values for your environment.
+
+### Backend
+
+Set the following environment variables before starting the services:
+
+- SPRING_CONFIG_IMPORT
+- GATEWAY_SERVER_PORT
+- GATEWAY_API_BASE_PATH
+- KEYCLOAK_JWK_SET_URI
+- EUREKA_SERVICE_URL
+- USER_SERVICE_SERVER_PORT
+- USER_SERVICE_CONTEXT_PATH
+- DB_URL
+- DB_USERNAME
+- DB_PASSWORD
+- ACTIVITY_SERVICE_SERVER_PORT
+- ACTIVITY_SERVICE_CONTEXT_PATH
+- ACTIVITY_MONGO_URI
+- ACTIVITY_MONGO_DATABASE
+- AI_SERVICE_SERVER_PORT
+- AI_SERVICE_CONTEXT_PATH
+- AI_MONGO_URI
+- AI_MONGO_DATABASE
+- KAFKA_BOOTSTRAP_SERVERS
+- KAFKA_SECURITY_PROTOCOL
+- KAFKA_SASL_MECHANISM
+- KAFKA_SASL_JAAS_CONFIG
+- KAFKA_SESSION_TIMEOUT_MS
+- KAFKA_CLIENT_ID
+- KAFKA_TOPIC
+- GEMINI_API_URL
+- GEMINI_API_KEY
+- GATEWAY_CORS_ALLOWED_ORIGINS
 

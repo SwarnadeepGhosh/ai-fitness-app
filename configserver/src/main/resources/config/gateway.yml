@@ -10,7 +10,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/openid-connect/certs
+          jwk-set-uri: https://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/openid-connect/certs
 
   cloud:
     gateway:

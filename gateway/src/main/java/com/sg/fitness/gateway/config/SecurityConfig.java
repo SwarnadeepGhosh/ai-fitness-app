@@ -33,7 +33,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173", "https://tutorials-sg.vercel.app"));
+        config.setAllowedOrigins(List.of("http://localhost:5173", "https://sgfitness.vercel.app", "https://tutorials-sg.vercel.app"));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-User-ID", "Accept"));
         config.setAllowCredentials(true);
