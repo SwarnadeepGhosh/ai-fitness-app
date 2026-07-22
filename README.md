@@ -1708,15 +1708,14 @@ public Boolean existByUserId(String userId) {
 - **What is Repsy?**
 
   - [Repsy.io](https://repsy.io/) is a cloud-based artifact repository and Package-as-a-Service designed for software developers and teams. It allows users to securely host, manage, and distribute software packages and container images across multiple ecosystems from a single account. It supports publishing and hosting packages in the following formats:
-
-    - Maven
-
-    - Npm
-
-    - PyPI
-
-    - Docker
-
+  - Maven
+    
+  - Npm
+    
+  - PyPI
+    
+  - Docker
+  
 - **Key Features**
   - **Multi-format support** - Host packages for different ecosystems from one account.
   - **Token-based authentication** - Secure and flexible access management.

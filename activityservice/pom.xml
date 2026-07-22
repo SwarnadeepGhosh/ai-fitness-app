@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.sg.fitness</groupId>
 	<artifactId>activityservice</artifactId>
-	<version>v1.0</version>
+	<version>8083</version>
 	<name/>
 	<description/>
 	<url/>
@@ -144,4 +144,11 @@
 		</plugins>
 	</build>
 
+	<distributionManagement>
+		<repository>
+			<id>repsy</id>
+			<name>My Private Maven Repository on Repsy</name>
+			<url>https://repo.repsy.io/swarnadeepghosh/repojar</url>
+		</repository>
+	</distributionManagement>
 </project>
