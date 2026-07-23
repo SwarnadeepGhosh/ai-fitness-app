@@ -1,7 +1,12 @@
+const ensureHttps = (val, fallback = '') => {
+  const raw = val || fallback || '';
+  return (typeof raw === 'string' && raw.startsWith('http://')) ? raw.replace(/^http:\/\//, 'https://') : raw;
+}
+
 export const authConfig = {
     clientId: import.meta.env.VITE_AUTH_CLIENT_ID,
-    authorizationEndpoint: import.meta.env.VITE_AUTH_URL,
-    tokenEndpoint: import.meta.env.VITE_AUTH_TOKEN_URL,
+    authorizationEndpoint: ensureHttps(import.meta.env.VITE_AUTH_URL, 'https://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/openid-connect/auth'),
+    tokenEndpoint: ensureHttps(import.meta.env.VITE_AUTH_TOKEN_URL, 'https://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/openid-connect/token'),
     redirectUri: import.meta.env.VITE_AUTH_REDIRECT_URI,
     scope: import.meta.env.VITE_AUTH_SCOPE,
     autoLogin: false,

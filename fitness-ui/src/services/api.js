@@ -2,8 +2,13 @@ import axios from "axios";
 
 // const API_URL = 'http://localhost:8080/api';
 
+const rawBase = import.meta.env.VITE_API_BASE_URL || 'https://sg-devops.centralindia.cloudapp.azure.com/api';
+const baseURL = (typeof rawBase === 'string' && rawBase.startsWith('http://'))
+    ? rawBase.replace(/^http:\/\//, 'https://')
+    : rawBase;
+
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL,
+        baseURL,
 });
 
 api.interceptors.request.use((config) => {
