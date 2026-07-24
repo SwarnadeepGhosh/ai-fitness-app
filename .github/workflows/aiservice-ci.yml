@@ -61,6 +61,6 @@ jobs:
         run: ./mvnw -B clean package
 
       - name: Push Artifact
-        if: ${{ secrets.REPSY_USERNAME != '' && secrets.REPSY_PASSWORD != '' }}
+        # if: ${{ secrets.REPSY_USERNAME != '' && secrets.REPSY_PASSWORD != '' }}
         working-directory: aiservice
         run: ./mvnw -B deploy
