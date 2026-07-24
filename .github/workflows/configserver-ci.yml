@@ -48,11 +48,11 @@ jobs:
           </settings>
           EOF
 
-      - name: Build
-        working-directory: configserver
-        run: mvn -B clean package
+      # - name: Build
+      #   working-directory: configserver
+      #   run: mvn -B clean package
 
       - name: Build and Push Artifact
         # if: ${{ secrets.REPSY_USERNAME != '' && secrets.REPSY_PASSWORD != '' }}
         working-directory: configserver
-        run: mvn -B deploy
+        run: mvn -B clean deploy
