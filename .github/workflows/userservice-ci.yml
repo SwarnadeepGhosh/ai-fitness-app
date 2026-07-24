@@ -58,9 +58,9 @@ jobs:
 
       # - name: Build
       #   working-directory: userservice
-      #   run: ./mvnw -B clean package
+      #   run: mvn -B clean package
 
       - name: Build and Push Artifact
         # if: ${{ secrets.REPSY_USERNAME != '' && secrets.REPSY_PASSWORD != '' }}
         working-directory: userservice
-        run: ./mvnw -B clean deploy
+        run: mvn -B clean deploy
