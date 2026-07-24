@@ -4,6 +4,7 @@ server:
   #   context-path: /api
   webflux:
     base-path: /api
+  forward-headers-strategy: framework
 
 spring:
   security:

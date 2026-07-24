@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
 @Slf4j
 public class ActivityController {
 
@@ -29,7 +28,7 @@ public class ActivityController {
         return ResponseEntity.ok(activityService.saveActivity(request));
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<ActivityResponse>> getUserActivities(@RequestHeader("X-User-ID") String userId) {
         log.info("Inside getUserActivities method at controller layer, userId={}", userId);
         return ResponseEntity.ok(activityService.getUserActivities(userId));
