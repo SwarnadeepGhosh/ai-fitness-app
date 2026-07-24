@@ -106,7 +106,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           id="toc-ai-powered-fitness-application">AI-Powered Fitness
           Application</a>
           <ul>
-          <li><a href="#url-list" id="toc-url-list">URL List</a>
+          <li><a href="#table-of-contents"
+          id="toc-table-of-contents">Table of Contents</a></li>
+          <li><a href="#master-url-list" id="toc-master-url-list">Master
+          URL List</a>
           <ul>
           <li><a href="#deployed-services"
           id="toc-deployed-services">Deployed Services</a></li>
@@ -186,8 +189,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         
-<h1 id="ai-powered-fitness-application">AI-Powered Fitness
-Application</h1>
+<h1 id="ai-powered-fitness-application"><a
+href="https://sgfitness.vercel.app">AI-Powered Fitness
+Application</a></h1>
 <p>
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/spring/spring-original.svg" alt="springboot" width="100" height="100"/>
   
@@ -212,98 +216,146 @@ Application</h1>
 <img src="https://uxwing.com/wp-content/themes/uxwing/download/tools-equipment-construction/configuration-icon.svg" alt="configserver" width="100" height="100"/>
   
 <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure" width="100" height="100"/>
+  
+<img src="https://avatars.githubusercontent.com/u/66094040?s=280&v=4" width="130" height="130"/>
 </p>
-<h2 id="url-list">URL List</h2>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#master-url-list">Master URL List</a></li>
+<li><a href="#system">System</a>
+<ul>
+<li><a href="#application-architecture">Application
+Architecture</a></li>
+</ul></li>
+<li><a href="#microservices">Microservices</a>
+<ul>
+<li><a href="#user-service">👤 User Service</a></li>
+<li><a href="#activity-service">🏃 Activity Service</a></li>
+<li><a href="#eureka-naming-server">📡Eureka Naming Server</a></li>
+<li><a href="#inter-service-communication">Inter Service
+Communication</a>
+<ul>
+<li><a href="#spring-webclient">Spring WebClient</a></li>
+<li><a href="#kafka---async-communication"><strong>Kafka</strong> -
+Async Communication</a></li>
+</ul></li>
+<li><a href="#ai-service">🤖 AI Service</a>
+<ul>
+<li><a href="#google-gemini-integration"><strong>Google Gemini</strong>
+Integration</a></li>
+</ul></li>
+<li><a href="#config-server">Config Server</a></li>
+<li><a href="#api-gateway">API Gateway</a></li>
+<li><a href="#oauth2-integration">🔐 <strong>Oauth2
+Integration</strong></a>
+<ul>
+<li><a href="#keycloak">🔒<strong>Keycloak</strong></a></li>
+<li><a href="#integrating-keycloak-in-api-gateway">Integrating KeyCloak
+in API Gateway</a></li>
+</ul></li>
+<li><a href="#frontend-development">Frontend Development</a></li>
+</ul></li>
+<li><a href="#devops">DevOps</a>
+<ul>
+<li><a href="#repsy---artifact-storage"><strong>Repsy</strong> -
+Artifact Storage</a></li>
+<li><a href="#github-actions---pipeline"><strong>Github Actions</strong>
+- Pipeline</a></li>
+<li><a href="#externalized-configuration">Externalized
+Configuration</a></li>
+</ul></li>
+</ul>
+<h2 id="master-url-list">Master URL List</h2>
 <h3 id="deployed-services">Deployed Services</h3>
 <table>
 <colgroup>
 <col style="width: 12%" />
 <col style="width: 36%" />
-<col style="width: 36%" />
 <col style="width: 15%" />
+<col style="width: 36%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th>Application</th>
-<th>Local URL</th>
 <th>Remote URL</th>
-<th>Credentials (If Required)</th>
+<th>Credentials</th>
+<th>Local URL</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Frontend</td>
-<td><a href="http://localhost:5173/">http://localhost:5173/</a></td>
 <td><a
-href="https://sgfitness.vercel.app/">https://sgfitness.vercel.app</a></td>
+href="https://sgfitness.vercel.app/">https://sgfitness.vercel.app/</a></td>
 <td>u=<code>user1</code>, p=<code>user1</code></td>
+<td><a href="http://localhost:5173/">http://localhost:5173/</a></td>
 </tr>
 <tr class="even">
 <td>Supervisor</td>
 <td><a
-href="http://localhost:9100/monitor">http://localhost:9100/monitor</a></td>
-<td><a
 href="https://sg-devops.centralindia.cloudapp.azure.com/monitor">https://sg-devops.centralindia.cloudapp.azure.com/monitor</a></td>
 <td>u=<code>admin</code>, p=<code>admin</code></td>
+<td><a
+href="http://localhost:9100/monitor">http://localhost:9100/monitor</a></td>
 </tr>
 <tr class="odd">
 <td>Keycloak</td>
-<td><a href="http://localhost:8181">http://localhost:8181</a></td>
 <td><a
 href="https://sg-devops.centralindia.cloudapp.azure.com/auth">https://sg-devops.centralindia.cloudapp.azure.com/auth</a></td>
 <td>u=<code>swarnadeep</code>, p=<code>admin</code></td>
+<td><a href="http://localhost:8181">http://localhost:8181</a></td>
 </tr>
 <tr class="even">
 <td>Eureka Naming Server</td>
 <td><a
-href="http://localhost:8761/registry/">http://localhost:8761/registry/</a></td>
-<td><a
 href="https://sg-devops.centralindia.cloudapp.azure.com/registry/">https://sg-devops.centralindia.cloudapp.azure.com/registry/</a></td>
 <td>-</td>
+<td><a
+href="http://localhost:8761/registry/">http://localhost:8761/registry/</a></td>
 </tr>
 <tr class="odd">
 <td>API Gateway</td>
+<td><a
+href="https://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health">https://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health</a></td>
+<td>u=<code>user1</code>, p=<code>user1</code></td>
 <td>1. <a
 href="http://localhost:8080/actuator/gateway/routes">http://localhost:8080/actuator/gateway/routes</a>,
 <br/>2. <a
 href="http://localhost:8080/actuator/mappings">http://localhost:8080/actuator/mappings</a>,
 <br/>3. <a
 href="http://localhost:8080/actuator/health">http://localhost:8080/actuator/health</a></td>
-<td><a
-href="https://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health">https://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health</a></td>
-<td>u=<code>user1</code>, p=<code>user1</code></td>
 </tr>
 <tr class="even">
 <td>Config Server</td>
 <td><a
-href="http://localhost:8888/config">http://localhost:8888/config</a></td>
-<td><a
 href="https://sg-devops.centralindia.cloudapp.azure.com/config">https://sg-devops.centralindia.cloudapp.azure.com/config</a></td>
 <td>-</td>
+<td><a
+href="http://localhost:8888/config">http://localhost:8888/config</a></td>
 </tr>
 <tr class="odd">
 <td>User Service</td>
 <td><a
-href="http://localhost:8081/users/docs.html">http://localhost:8081/users/docs.html</a></td>
-<td><a
 href="https://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html">https://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html</a></td>
 <td>-</td>
+<td><a
+href="http://localhost:8081/users/docs.html">http://localhost:8081/users/docs.html</a></td>
 </tr>
 <tr class="even">
 <td>Activity Service</td>
 <td><a
-href="http://localhost:8083/activities/docs.html">http://localhost:8083/activities/docs.html</a></td>
-<td><a
 href="https://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html">https://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html</a></td>
 <td>-</td>
+<td><a
+href="http://localhost:8083/activities/docs.html">http://localhost:8083/activities/docs.html</a></td>
 </tr>
 <tr class="odd">
 <td>AI Service</td>
 <td><a
-href="http://localhost:8084/recommendations/docs.html">http://localhost:8084/recommendations/docs.html</a></td>
-<td><a
 href="https://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html">https://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html</a></td>
 <td>-</td>
+<td><a
+href="http://localhost:8084/recommendations/docs.html">http://localhost:8084/recommendations/docs.html</a></td>
 </tr>
 </tbody>
 </table>
@@ -317,44 +369,48 @@ href="https://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs
 <thead>
 <tr class="header">
 <th>Microservice</th>
-<th>Config Fetch URL (LOCAL)</th>
 <th>Config Fetch URL (REMOTE)</th>
+<th>Config Fetch URL (LOCAL)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>User Service</td>
 <td><a
-href="http://localhost:8888/config/userservice/default">http://localhost:8888/config/userservice/default</a></td>
-<td><a
 href="https://sg-devops.centralindia.cloudapp.azure.com/config/userservice/default">https://sg-devops.centralindia.cloudapp.azure.com/config/userservice/default</a></td>
+<td><a
+href="http://localhost:8888/config/userservice/default">http://localhost:8888/config/userservice/default</a></td>
 </tr>
 <tr class="even">
 <td>Activity Service</td>
 <td><a
-href="http://localhost:8888/config/activityservice/default">http://localhost:8888/config/activityservice/default</a></td>
-<td><a
 href="https://sg-devops.centralindia.cloudapp.azure.com/config/activityservice/default">https://sg-devops.centralindia.cloudapp.azure.com/config/activityservice/default</a></td>
+<td><a
+href="http://localhost:8888/config/activityservice/default">http://localhost:8888/config/activityservice/default</a></td>
 </tr>
 <tr class="odd">
 <td>AI Service</td>
 <td><a
-href="http://localhost:8888/config/aiservice/default">http://localhost:8888/config/aiservice/default</a></td>
-<td><a
 href="https://sg-devops.centralindia.cloudapp.azure.com/config/aiservice/default">https://sg-devops.centralindia.cloudapp.azure.com/config/aiservice/default</a></td>
+<td><a
+href="http://localhost:8888/config/aiservice/default">http://localhost:8888/config/aiservice/default</a></td>
 </tr>
 <tr class="even">
 <td>API Gateway</td>
 <td><a
-href="http://localhost:8888/config/gateway/default">http://localhost:8888/config/gateway/default</a></td>
-<td><a
 href="https://sg-devops.centralindia.cloudapp.azure.com/config/gateway/default">https://sg-devops.centralindia.cloudapp.azure.com/config/gateway/default</a></td>
+<td><a
+href="http://localhost:8888/config/gateway/default">http://localhost:8888/config/gateway/default</a></td>
 </tr>
 </tbody>
 </table>
 <h3 id="saas-hosted-external-dependencies">SaaS Hosted External
 Dependencies</h3>
 <table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 77%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>Application</th>
@@ -364,19 +420,20 @@ Dependencies</h3>
 <tbody>
 <tr class="odd">
 <td>Kafka</td>
-<td></td>
+<td><code>pkc-l7pr2.ap-south-1.aws.confluent.cloud:9092</code></td>
 </tr>
 <tr class="even">
 <td>Mongo DB</td>
-<td></td>
+<td><code>swarnadeep.lx7vex8.mongodb.net/aifitnessrecommendation</code></td>
 </tr>
 <tr class="odd">
 <td>Google Gemini API</td>
-<td></td>
+<td><a
+href="https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent"><code>https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent</code></a></td>
 </tr>
 <tr class="even">
 <td>Postgres DB</td>
-<td></td>
+<td><code>free-tier12.aws-ap-south-1.cockroachlabs.cloud:26257/swarna-db-200.testdb</code></td>
 </tr>
 </tbody>
 </table>

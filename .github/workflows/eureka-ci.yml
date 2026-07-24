@@ -1,0 +1,58 @@
+name: eureka CI
+
+on:
+  # AUTO TRIGGER COMMENTED FOR NOW. UNCOMMENT WHEN READY TO ENABLE CI/CD automatically on push and pull request events.
+  # push:
+  #   branches:
+  #     - main
+  #     - master
+  #   paths:
+  #     - 'eureka/**'
+  #     - '.github/workflows/eureka.yml'
+  # pull_request:
+  #   branches:
+  #     - main
+  #     - master
+  #   paths:
+  #     - 'eureka/**'
+  #     - '.github/workflows/eureka.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SCM Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: eureka/pom.xml
+
+      - name: Create Maven Settings
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<EOF
+          <settings>
+            <servers>
+              <server>
+                <id>repsy</id>
+                <username>${{ secrets.REPSY_USERNAME }}</username>
+                <password>${{ secrets.REPSY_PASSWORD }}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+
+      - name: Build
+        working-directory: eureka
+        run: ./mvnw -B clean package
+
+      - name: Push Artifact
+        if: ${{ secrets.REPSY_USERNAME != '' && secrets.REPSY_PASSWORD != '' }}
+        working-directory: eureka
+        run: ./mvnw -B deploy

@@ -2,3 +2,4 @@
 **/mvnw.cmd
 .idea/
 **/.mvn/
+.env
