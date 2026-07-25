@@ -65,4 +65,11 @@ public class ActivityService {
             throw new RuntimeException("Activity not found with id: " + activityId);
         }
     }
+
+    public String deleteActivityById(String activityId) {
+        activityRepo.deleteById(activityId);
+        String message = "Activity deleted: " + activityId;
+        log.info(message);
+        return message;
+    }
 }

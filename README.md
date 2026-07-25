@@ -1,6 +1,6 @@
-# [AI-Powered Fitness Application](https://sgfitness.vercel.app)
+# [AI-Powered Fitness App](https://sgfitness.vercel.app)
 
-
+[![configserver CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/configserver-ci.yml/badge.svg)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/configserver-ci.yml) [![userservice CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/userservice-ci.yml/badge.svg)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/userservice-ci.yml)  [![activityservice CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/activityservice-ci.yml/badge.svg?branch=master)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/activityservice-ci.yml)  [![aiservice CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/aiservice-ci.yml/badge.svg?branch=master)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/aiservice-ci.yml) [![gateway CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/gateway-ci.yml/badge.svg)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/gateway-ci.yml) [![.github/workflows/eureka-ci.yml](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/eureka-ci.yml/badge.svg?event=check_run)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/eureka-ci.yml)
 
 <p>
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/spring/spring-original.svg" alt="springboot" width="100" height="100"/>
@@ -59,9 +59,9 @@
 
 
 
-## Master URL List
+## **Master URL List**
 
-### Deployed Services
+**Deployed Services**
 
 | Application          | Remote URL                                                   | Credentials               | Local URL                                                    |
 | -------------------- | ------------------------------------------------------------ | ------------------------- | ------------------------------------------------------------ |
@@ -69,13 +69,12 @@
 | Supervisor           | [https://sg-devops.centralindia.cloudapp.azure.com/monitor](https://sg-devops.centralindia.cloudapp.azure.com/monitor) | u=`admin`, p=`admin`      | [http://localhost:9100/monitor](http://localhost:9100/monitor) |
 | Keycloak             | [https://sg-devops.centralindia.cloudapp.azure.com/auth](https://sg-devops.centralindia.cloudapp.azure.com/auth) | u=`swarnadeep`, p=`admin` | [http://localhost:8181](http://localhost:8181)               |
 | Eureka Naming Server | [https://sg-devops.centralindia.cloudapp.azure.com/registry/](https://sg-devops.centralindia.cloudapp.azure.com/registry/) | -                         | [http://localhost:8761/registry/](http://localhost:8761/registry/) |
-| API Gateway          | [https://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health](https://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health) | u=`user1`, p=`user1`      | 1. [http://localhost:8080/actuator/gateway/routes](http://localhost:8080/actuator/gateway/routes), <br/>2. [http://localhost:8080/actuator/mappings](http://localhost:8080/actuator/mappings), <br/>3. [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health) |
-| Config Server        | [https://sg-devops.centralindia.cloudapp.azure.com/config](https://sg-devops.centralindia.cloudapp.azure.com/config) | -                         | [http://localhost:8888/config](http://localhost:8888/config) |
-| User Service         | [https://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html) | -                         | [http://localhost:8081/users/docs.html](http://localhost:8081/users/docs.html) |
-| Activity Service     | [https://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html) | -                         | [http://localhost:8083/activities/docs.html](http://localhost:8083/activities/docs.html) |
-| AI Service           | [https://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html) | -                         | [http://localhost:8084/recommendations/docs.html](http://localhost:8084/recommendations/docs.html) |
+| API Gateway          | [https://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health](https://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health) | u=`user1`, p=`user1`      | 1. [http://localhost:8080/actuator/gateway/routes](http://localhost:8080/actuator/gateway/routes), <br/>2. [http://localhost:8080/actuator/mappings](http://localhost:8080/actuator/mappings), <br/>3. [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health)<br />4. [http://localhost:8080/api/docs.html](http://localhost:8080/api/docs.html) |
+| User Service         | [https://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html) | -                         | [http://localhost:8081/api/users/docs.html](http://localhost:8081/api/users/docs.html)<br />[http://localhost:8080/api/users/docs.html](http://localhost:8080/api/users/docs.html) |
+| Activity Service     | [https://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html) | -                         | [http://localhost:8083/api/activities/docs.html](http://localhost:8083/api/activities/docs.html)<br />[http://localhost:8080/api/activities/docs.html](http://localhost:8080/api/activities/docs.html) |
+| AI Service           | [https://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html) | -                         | [http://localhost:8084/api/recommendations/docs.html](http://localhost:8084/api/recommendations/docs.html)<br />[http://localhost:8080/api/recommendations/docs.html](http://localhost:8080/api/recommendations/docs.html) |
 
-### Config Fetch URLS:  
+**Config Fetch URLS:**  
 
 | Microservice     | Config Fetch URL (REMOTE)                                    | Config Fetch URL (LOCAL)                                     |
 | ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -84,7 +83,7 @@
 | AI Service       | [https://sg-devops.centralindia.cloudapp.azure.com/config/aiservice/default](https://sg-devops.centralindia.cloudapp.azure.com/config/aiservice/default) | [http://localhost:8888/config/aiservice/default](http://localhost:8888/config/aiservice/default) |
 | API Gateway      | [https://sg-devops.centralindia.cloudapp.azure.com/config/gateway/default](https://sg-devops.centralindia.cloudapp.azure.com/config/gateway/default) | [http://localhost:8888/config/gateway/default](http://localhost:8888/config/gateway/default) |
 
-### SaaS Hosted External Dependencies
+**SaaS Hosted External Dependencies**
 
 | Application       | Remote Hostname                                              |
 | ----------------- | ------------------------------------------------------------ |
@@ -95,9 +94,7 @@
 
 
 
-## System
-
-### Application Architecture
+## Application Architecture
 
 ![mermaid-diagram-2026-05-23T19-04-32](img/mermaid-diagram-2026-05-23T19-04-32.svg)
 
@@ -162,7 +159,7 @@ flowchart LR
 
 
 
-# Microservices
+# **<u>Microservices</u>**
 
 ## 👤 User Service
 
@@ -234,7 +231,7 @@ flowchart LR
 
 ---
 
-## Inter Service Communication
+## Inter-Service Comm
 
 [Spring Framework Rest Clients](https://docs.spring.io/spring-framework/reference/integration/rest-clients.html) :
 
@@ -252,7 +249,7 @@ flowchart LR
 
 
 
-### Spring WebClient
+### Spring **WebClient**
 
 -  [**WebClient**](https://docs.spring.io/spring-framework/reference/web/webflux-webclient.html) is a non-blocking, reactive client to perform HTTP requests. It was introduced in 5.0 and offers an alternative to the `RestTemplate`, with support for synchronous, asynchronous, and streaming scenarios.
 
@@ -398,7 +395,7 @@ flowchart LR
   }
   ```
 
-### **Kafka** - Async Communication
+### **Kafka** - Async Comm
 
 - Setup : 
   
@@ -1719,11 +1716,25 @@ public Boolean existByUserId(String userId) {
 
 - Install [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started) by command -   `npm install @reduxjs/toolkit`
 
+- Commands
+  ```sh
+  # To install dependencies
+  npm install
+  
+  # Local Development
+  npm run dev
+  
+  # Production build creation
+  npm run build
+  ```
+
+  
+
 
 
 ---
 
-# DevOps
+# **<u>DevOps</u>**
 
 ---
 
@@ -1829,53 +1840,150 @@ public Boolean existByUserId(String userId) {
 
 ---
 
-## **Github Actions** - Pipeline
+## Externalized Configuration
 
-<img src="https://www.winwire.com/wp-content/uploads/2024/10/Github-Actions.webp" style="zoom: 33%;" />
+The frontend and backend services now use environment variables and Spring placeholders instead of hardcoded values. 
+
+- **Frontend** - **`ai-fitness-app/fitness-ui/.env`**
+
+  - ```sh
+    VITE_API_BASE_URL=https://sg-devops.centralindia.cloudapp.azure.com/api
+    VITE_AUTH_URL=https://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/openid-connect/auth
+    VITE_AUTH_TOKEN_URL=https://sg-devops.centralindia.cloudapp.azure.com/auth/realms/fitness-app/protocol/openid-connect/token
+    VITE_AUTH_CLIENT_ID=oauth2-pkce-client
+    VITE_AUTH_REDIRECT_URI=https://sgfitness.vercel.app
+    VITE_AUTH_SCOPE=openid profile email offline_access
+    ```
+
+- **Backend** - **`ai-fitness-app/.env`**
+
+  - ```sh
+    POSTGRES_HOST=free-tier12.aws-ap-south-1.cockroachlabs.cloud:26257
+    POSTGRES_PASSWORD=
+    MONGODB_PASSWORD=
+    KAFKA_PASSWORD=
+    GEMINI_API_KEY=
+    ```
+
+- **Update backend property file** - **`configserver\src\main\resources\config\userservice.yml`**
+
+  - ```yml
+    spring:
+      datasource:
+        url: jdbc:postgresql://${POSTGRES_HOST}/swarna-db-200.testdb
+        username: swarnadeep
+        password: ${POSTGRES_PASSWORD}
+    ```
+
+- **Runtime Configuration - through Supervisor** (*Check below Supervisor section under Continuous Deployment*)
+
+  - ```properties
+    TODO
+    ```
+
+  - 
+
+  
+
+
+
+---
+
+## CI - **Github Actions**
+
+<img src="https://www.winwire.com/wp-content/uploads/2024/10/Github-Actions.webp" style="zoom: 25%;" />
+
+- I have added Variables and Secrets in Github using this path: 
+
+- **Repository Home -> Settings -> Secrets and Variables -> Actions -> Add Repository secrets and Repository variables here.**
+
+- **Working Pipeline (Creating maven jar and pushing into artifactory)**
+
+  ```yaml
+  name: userservice CI
+  
+  on:
+    # AUTO TRIGGER COMMENTED FOR NOW. UNCOMMENT WHEN READY TO ENABLE CI/CD automatically on push and pull request events.
+    # push:
+    #   branches:
+    #     - main
+    #     - master
+    #   paths:
+    #     - 'userservice/**'
+    #     - '.github/workflows/userservice.yml'
+    # pull_request:
+    #   branches:
+    #     - main
+    #     - master
+    #   paths:
+    #     - 'userservice/**'
+    #     - '.github/workflows/userservice.yml'
+    workflow_dispatch:
+  
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+  
+      env:
+        POSTGRES_HOST: ${{ vars.POSTGRES_HOST }}
+        POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
+        KAFKA_PASSWORD: ${{ secrets.KAFKA_PASSWORD }}
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  
+      steps:
+        - name: SCM Checkout
+          uses: actions/checkout@v5
+  
+        - name: Set up JDK 21
+          uses: actions/setup-java@v5
+          with:
+            distribution: temurin
+            java-version: '21'
+            cache: maven
+            cache-dependency-path: userservice/pom.xml
+  
+        - name: Create Maven Settings
+          run: |
+            mkdir -p ~/.m2
+            cat > ~/.m2/settings.xml <<EOF
+            <settings>
+              <servers>
+                <server>
+                  <id>repsy</id>
+                  <username>${{ secrets.REPSY_USERNAME }}</username>
+                  <password>${{ secrets.REPSY_PASSWORD }}</password>
+                </server>
+              </servers>
+            </settings>
+            EOF
+  
+        # - name: Build
+        #   working-directory: userservice
+        #   run: mvn -B clean package
+  
+        - name: Build and Push Artifact
+          # if: ${{ secrets.REPSY_USERNAME != '' && secrets.REPSY_PASSWORD != '' }}
+          working-directory: userservice
+          run: mvn -B clean deploy
+  ```
+
+  
 
 
 
 
 ---
 
-## Externalized Configuration
+## Continuous Deployment
 
-The frontend and backend services now use environment variables and Spring placeholders instead of hardcoded values. The UI configuration template is available at [fitness-ui/.env.example](fitness-ui/.env.example).
+### Deploy Script
 
-### Frontend
 
-Copy [fitness-ui/.env.example](fitness-ui/.env.example) to [fitness-ui/.env](fitness-ui/.env) and adjust values for your environment.
 
-### Backend
 
-Set the following environment variables before starting the services:
 
-- SPRING_CONFIG_IMPORT
-- GATEWAY_SERVER_PORT
-- GATEWAY_API_BASE_PATH
-- KEYCLOAK_JWK_SET_URI
-- EUREKA_SERVICE_URL
-- USER_SERVICE_SERVER_PORT
-- USER_SERVICE_CONTEXT_PATH
-- DB_URL
-- DB_USERNAME
-- DB_PASSWORD
-- ACTIVITY_SERVICE_SERVER_PORT
-- ACTIVITY_SERVICE_CONTEXT_PATH
-- ACTIVITY_MONGO_URI
-- ACTIVITY_MONGO_DATABASE
-- AI_SERVICE_SERVER_PORT
-- AI_SERVICE_CONTEXT_PATH
-- AI_MONGO_URI
-- AI_MONGO_DATABASE
-- KAFKA_BOOTSTRAP_SERVERS
-- KAFKA_SECURITY_PROTOCOL
-- KAFKA_SASL_MECHANISM
-- KAFKA_SASL_JAAS_CONFIG
-- KAFKA_SESSION_TIMEOUT_MS
-- KAFKA_CLIENT_ID
-- KAFKA_TOPIC
-- GEMINI_API_URL
-- GEMINI_API_KEY
-- GATEWAY_CORS_ALLOWED_ORIGINS
+### **Supervisor** - Process Control
+
+<img src="https://avatars.githubusercontent.com/u/513914?s=280&v=4" alt="Supervisor · GitHub" style="zoom: 67%;" />
 
