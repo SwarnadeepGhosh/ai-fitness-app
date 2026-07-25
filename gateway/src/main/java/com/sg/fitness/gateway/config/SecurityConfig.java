@@ -17,6 +17,32 @@ import java.util.List;
 @EnableWebFluxSecurity
 public class SecurityConfig {
 
+    private static final String[] SWAGGER_WHITELIST = {
+            // User Service
+            "/api/users/docs.html",
+            "/api/users/swagger-ui.html",
+            "/api/users/swagger-ui/**",
+            "/api/users/v3/api-docs/**",
+            "/api/users/api-docs/**",
+            "/api/users/webjars/**",
+
+            // Activity Service
+            "/api/activities/docs.html",
+            "/api/activities/swagger-ui.html",
+            "/api/activities/swagger-ui/**",
+            "/api/activities/v3/api-docs/**",
+            "/api/activities/api-docs/**",
+            "/api/activities/activities/webjars/**",
+
+            // Recommendation Service
+            "/api/recommendations/docs.html",
+            "/api/recommendations/swagger-ui.html",
+            "/api/recommendations/swagger-ui/**",
+            "/api/recommendations/v3/api-docs/**",
+            "/api/recommendations/api-docs/**",
+            "/api/recommendations/activities/webjars/**",
+    };
+
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         return http
@@ -24,6 +50,7 @@ public class SecurityConfig {
                 .authorizeExchange(exchange -> exchange
                         // .pathMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
                         .pathMatchers("/actuator/**").permitAll()
+                        .pathMatchers(SWAGGER_WHITELIST).permitAll()
                         .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
@@ -33,7 +60,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173", "https://sgfitness.vercel.app", "https://tutorials-sg.vercel.app"));
+        config.setAllowedOrigins(List.of("http://localhost:5173", "https://sgfitness.vercel.app"));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-User-ID", "Accept"));
         config.setAllowCredentials(true);
