@@ -73,6 +73,7 @@
 | User Service         | [https://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html) | -                         | [http://localhost:8081/api/users/docs.html](http://localhost:8081/api/users/docs.html)<br />[http://localhost:8080/api/users/docs.html](http://localhost:8080/api/users/docs.html) |
 | Activity Service     | [https://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html) | -                         | [http://localhost:8083/api/activities/docs.html](http://localhost:8083/api/activities/docs.html)<br />[http://localhost:8080/api/activities/docs.html](http://localhost:8080/api/activities/docs.html) |
 | AI Service           | [https://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html) | -                         | [http://localhost:8084/api/recommendations/docs.html](http://localhost:8084/api/recommendations/docs.html)<br />[http://localhost:8080/api/recommendations/docs.html](http://localhost:8080/api/recommendations/docs.html) |
+| Jaeger Tracing       | [https://sg-devops.centralindia.cloudapp.azure.com/jaeger](https://sg-devops.centralindia.cloudapp.azure.com/jaeger) | -                         | [http://localhost:16686/jaeger](http://localhost:16686/jaeger) |
 
 **Config Fetch URLS:**  
 
@@ -1986,4 +1987,85 @@ The frontend and backend services now use environment variables and Spring place
 ### **Supervisor** - Process Control
 
 <img src="https://avatars.githubusercontent.com/u/513914?s=280&v=4" alt="Supervisor · GitHub" style="zoom: 67%;" />
+
+
+
+---
+
+# <u>**Observability**</u>
+
+## **Jaeger** Tracing
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbYJKz5xjCtVNT7OI4hymn19bveI-t3kM0OpFqvhGhQ5AZQSNDvA0uaN8&s=10" alt="jaeger SVG Logos - Logo Search" style="zoom:67%;" />
+
+
+
+**Installation and Setup:** 
+
+
+
+
+
+**Implementation Steps:**
+
+- **Step 1**: ***pom.xml*** dependency - Needed in `gateway`, `userservice`, `activityservice`, `aiservice`
+
+  ```xml
+  <!-- Actuator required for Micrometer Tracing auto-config -->
+  <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+  </dependency>
+  <!-- OLTP Exporter (sends spans to Jaeger) -->
+  <dependency>
+      <groupId>io.opentelemetry</groupId>
+      <artifactId>opentelemetry-exporter-otlp</artifactId>
+  </dependency>
+  <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-opentelemetry</artifactId>
+  </dependency>
+  ```
+
+- **Step 2**: ***application.yaml***  - Updated `configserver` yaml files for `gateway`, `userservice`, `activityservice`, `aiservice`
+
+  ```yaml
+  # OpenTelemetry Configuration
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health,info,loggers
+    endpoint:
+      health:
+        show-details: always
+    tracing:
+      sampling:
+        probability: 1.0  # 100% sampling for demo
+    otlp:
+      # tracing:
+      #   endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/traces
+      metrics:
+        export:
+          enabled: false
+    opentelemetry:
+      tracing:
+        export:
+          otlp:
+            endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/traces
+  
+  # Logging with trace correlation
+  # logging:
+  #   pattern:
+  #     level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+  #   level:
+  #     root: INFO
+  #     com.sg.fitness: DEBUG
+  ```
+
+  
+
+
+
+
 

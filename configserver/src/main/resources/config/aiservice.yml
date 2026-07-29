@@ -55,3 +55,35 @@ springdoc:
     path: /docs.html
 #    operationsSorter: method
 # Swagger path: http://localhost:8080/docs.html or http://localhost:8080/swagger-ui/index.html
+
+# OpenTelemetry Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,loggers
+  endpoint:
+    health:
+      show-details: always
+  tracing:
+    sampling:
+      probability: 1.0  # 100% sampling for demo
+  otlp:
+    # tracing:
+    #   endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/traces
+    metrics:
+      export:
+        enabled: false
+  opentelemetry:
+    tracing:
+      export:
+        otlp:
+          endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/traces
+
+# Logging with trace correlation
+# logging:
+#   pattern:
+#     level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+#   level:
+#     root: INFO
+#     com.sg.fitness: DEBUG
