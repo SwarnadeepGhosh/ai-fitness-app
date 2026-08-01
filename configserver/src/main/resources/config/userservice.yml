@@ -52,12 +52,24 @@ management:
     #   endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/traces
     metrics:
       export:
-        enabled: false
+        enabled: true
+        url: ${API_HOST}/observe/api/default/v1/metrics
+        step: 30s     # export interval
+        headers:
+          Authorization: "Basic ${OTEL_EXPORTER_OTLP_AUTH_TOKEN}"
   opentelemetry:
     tracing:
       export:
         otlp:
-          endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/traces
+          endpoint: ${API_HOST}/observe/api/default/v1/traces
+          headers:
+            Authorization: "Basic ${OTEL_EXPORTER_OTLP_AUTH_TOKEN}"
+    logging:
+      export:
+        otlp:
+          endpoint: ${API_HOST}/observe/api/default/v1/logs
+          headers:
+            Authorization: "Basic ${OTEL_EXPORTER_OTLP_AUTH_TOKEN}"
 
 # Logging with trace correlation
 # logging:

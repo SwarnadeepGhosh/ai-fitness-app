@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <appender name="OTEL" class="io.opentelemetry.instrumentation.logback.appender.v1_0.OpenTelemetryAppender">
+    </appender>
+
+    <!-- Eureka / Netflix discovery (same as your other services) -->
+    <logger name="com.netflix.discovery" level="WARN"/>
+    <logger name="com.netflix.eureka" level="WARN"/>
+    <logger name="org.springframework.cloud.netflix.eureka" level="WARN"/>
+
+    <!-- Gateway route predicate factory listing - 15 lines, one per built-in predicate, every startup -->
+    <logger name="org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator" level="WARN"/>
+
+    <!-- Generic bootstrap noise -->
+    <logger name="org.springframework.cloud.context.scope.GenericScope" level="WARN"/>
+    <logger name="org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver" level="WARN"/>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="OTEL"/>
+    </root>
+</configuration>

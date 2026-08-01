@@ -1,34 +1,29 @@
 # [AI-Powered Fitness App](https://sgfitness.vercel.app)
 
-[![configserver CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/configserver-ci.yml/badge.svg)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/configserver-ci.yml) [![userservice CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/userservice-ci.yml/badge.svg)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/userservice-ci.yml)  [![activityservice CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/activityservice-ci.yml/badge.svg?branch=master)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/activityservice-ci.yml)  [![aiservice CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/aiservice-ci.yml/badge.svg?branch=master)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/aiservice-ci.yml) [![gateway CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/gateway-ci.yml/badge.svg?branch=master)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/gateway-ci.yml)  [![.github/workflows/eureka-ci.yml](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/eureka-ci.yml/badge.svg?event=check_run)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/eureka-ci.yml)
 
-<p>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/spring/spring-original.svg" alt="springboot" width="100" height="100"/>
-  &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="react" width="100" height="100"/>
-  &nbsp;&nbsp;
-  <img src="https://spring.io/img/projects/spring-cloud.svg" alt="eureka" width="100" height="100"/>
-  &nbsp;&nbsp;
-  <img src="https://icon.icepanel.io/GCP/svg/Cloud-API-Gateway.svg" alt="gateway" width="100" height="100"/>
-  &nbsp;&nbsp;
-  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Logo_of_Keycloak.svg" alt="keycloak" width="200" height="100"/>
-  &nbsp;&nbsp;
-  <img src="https://www.svgrepo.com/show/353950/kafka.svg" alt="kafka" width="250" height="100"/>
-  &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="postgresql" width="100" height="100"/>
-  &nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="mysql" width="100" height="100"/>
-  &nbsp;&nbsp;
-  <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/MongoDB_Logo.svg" alt="mongodb" width="200" height="100"/>
-  &nbsp;&nbsp;
-  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Google_Gemini_logo_2025.svg" alt="gemini" width="150" height="100"/>
-  &nbsp;&nbsp;
-  <img src="https://uxwing.com/wp-content/themes/uxwing/download/tools-equipment-construction/configuration-icon.svg" alt="configserver" width="100" height="100"/>
-  &nbsp;&nbsp;
-  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure" width="100" height="100"/>
-  &nbsp;&nbsp;
-  <img src="https://avatars.githubusercontent.com/u/66094040?s=280&v=4" width="130" height="130"/>
-</p>
+
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=fff)
+![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)
+![Eureka](https://img.shields.io/badge/Eureka-6DB33F?logo=springboot&logoColor=fff)
+![API Gateway](https://img.shields.io/badge/API%20Gateway-6DB33F?logo=springboot&logoColor=fff)
+![Config Server](https://img.shields.io/badge/Config%20Server-6DB33F?logo=springboot&logoColor=fff)
+![Keycloak](https://img.shields.io/badge/Keycloak-4D4D4D?logo=keycloak&logoColor=white)
+![Kafka](https://img.shields.io/badge/Kafka-231F20?logo=apachekafka&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/Postgres-%23316192.svg?logo=postgresql&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?logo=mongodb&logoColor=white)
+![Google Gemini](https://img.shields.io/badge/Google%20Gemini-886FBF?logo=googlegemini&logoColor=fff)
+![Microsoft Azure](https://custom-icon-badges.demolab.com/badge/Microsoft%20Azure-0089D6?logo=msazure&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white)
+![nginx](https://img.shields.io/badge/nginx-009639?logo=nginx&logoColor=fff)
+![Jaeger Tracing](https://img.shields.io/badge/Jaeger%20Tracing-000?logo=opentelemetry&logoColor=fff)
+![Supervisor](https://img.shields.io/badge/Supervisor-808080?logo=homeassistant&logoColor=00FF00)
+![Repsy](https://img.shields.io/badge/Repsy-FFC0CB?logo=jfrog&logoColor=000)
+
+
+
+CICD Status: 
+
+[![configserver CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/configserver-ci.yml/badge.svg)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/configserver-ci.yml) [![userservice CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/userservice-ci.yml/badge.svg)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/userservice-ci.yml)  [![activityservice CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/activityservice-ci.yml/badge.svg?branch=master)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/activityservice-ci.yml)  [![aiservice CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/aiservice-ci.yml/badge.svg?branch=master)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/aiservice-ci.yml) [![gateway CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/gateway-ci.yml/badge.svg?branch=master)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/gateway-ci.yml)  [![.github/workflows/eureka-ci.yml](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/eureka-ci.yml/badge.svg?event=check_run)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/eureka-ci.yml)
 
 
 
@@ -63,17 +58,18 @@
 
 **Deployed Services**
 
-| Application          | Remote URL                                                   | Credentials               | Local URL                                                    |
-| -------------------- | ------------------------------------------------------------ | ------------------------- | ------------------------------------------------------------ |
-| Frontend             | [https://sgfitness.vercel.app/](https://sgfitness.vercel.app/) | u=`user1`, p=`user1`      | [http://localhost:5173/](http://localhost:5173/)             |
-| Supervisor           | [https://sg-devops.centralindia.cloudapp.azure.com/monitor](https://sg-devops.centralindia.cloudapp.azure.com/monitor) | u=`admin`, p=`admin`      | [http://localhost:9100/monitor](http://localhost:9100/monitor) |
-| Keycloak             | [https://sg-devops.centralindia.cloudapp.azure.com/auth](https://sg-devops.centralindia.cloudapp.azure.com/auth) | u=`swarnadeep`, p=`admin` | [http://localhost:8181](http://localhost:8181)               |
-| Eureka Naming Server | [https://sg-devops.centralindia.cloudapp.azure.com/registry/](https://sg-devops.centralindia.cloudapp.azure.com/registry/) | -                         | [http://localhost:8761/registry/](http://localhost:8761/registry/) |
-| API Gateway          | [https://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health](https://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health) | u=`user1`, p=`user1`      | 1. [http://localhost:8080/actuator/gateway/routes](http://localhost:8080/actuator/gateway/routes), <br/>2. [http://localhost:8080/actuator/mappings](http://localhost:8080/actuator/mappings), <br/>3. [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health) |
-| User Service         | [https://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html) | -                         | [http://localhost:8081/api/users/docs.html](http://localhost:8081/api/users/docs.html)<br />[http://localhost:8080/api/users/docs.html](http://localhost:8080/api/users/docs.html) |
-| Activity Service     | [https://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html) | -                         | [http://localhost:8083/api/activities/docs.html](http://localhost:8083/api/activities/docs.html)<br />[http://localhost:8080/api/activities/docs.html](http://localhost:8080/api/activities/docs.html) |
-| AI Service           | [https://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html) | -                         | [http://localhost:8084/api/recommendations/docs.html](http://localhost:8084/api/recommendations/docs.html)<br />[http://localhost:8080/api/recommendations/docs.html](http://localhost:8080/api/recommendations/docs.html) |
-| Jaeger Tracing       | [https://sg-devops.centralindia.cloudapp.azure.com/jaeger](https://sg-devops.centralindia.cloudapp.azure.com/jaeger) | -                         | [http://localhost:16686/jaeger](http://localhost:16686/jaeger) |
+| Application          | Remote URL                                                   | Credentials                                                  | Local URL                                                    |
+| -------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Frontend             | [https://sgfitness.vercel.app/](https://sgfitness.vercel.app/) | u=`user1`, p=`user1`                                         | [http://localhost:5173/](http://localhost:5173/)             |
+| Supervisor           | [https://sg-devops.centralindia.cloudapp.azure.com/monitor](https://sg-devops.centralindia.cloudapp.azure.com/monitor) | u=`admin`, p=`admin`                                         | [http://localhost:9100/monitor](http://localhost:9100/monitor) |
+| Keycloak             | [https://sg-devops.centralindia.cloudapp.azure.com/auth](https://sg-devops.centralindia.cloudapp.azure.com/auth) | u=`swarnadeep`, p=`admin`                                    | [http://localhost:8181](http://localhost:8181)               |
+| Eureka Naming Server | [https://sg-devops.centralindia.cloudapp.azure.com/registry/](https://sg-devops.centralindia.cloudapp.azure.com/registry/) | -                                                            | [http://localhost:8761/registry/](http://localhost:8761/registry/) |
+| API Gateway          | [https://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health](https://sg-devops.centralindia.cloudapp.azure.com/api/actuator/health) | u=`user1`, p=`user1`                                         | 1. [http://localhost:8080/actuator/gateway/routes](http://localhost:8080/actuator/gateway/routes), <br/>2. [http://localhost:8080/actuator/mappings](http://localhost:8080/actuator/mappings), <br/>3. [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health) |
+| User Service         | [https://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/users/docs.html) | -                                                            | [http://localhost:8081/api/users/docs.html](http://localhost:8081/api/users/docs.html)<br />[http://localhost:8080/api/users/docs.html](http://localhost:8080/api/users/docs.html) |
+| Activity Service     | [https://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/activities/docs.html) | -                                                            | [http://localhost:8083/api/activities/docs.html](http://localhost:8083/api/activities/docs.html)<br />[http://localhost:8080/api/activities/docs.html](http://localhost:8080/api/activities/docs.html) |
+| AI Service           | [https://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html](https://sg-devops.centralindia.cloudapp.azure.com/api/recommendations/docs.html) | -                                                            | [http://localhost:8084/api/recommendations/docs.html](http://localhost:8084/api/recommendations/docs.html)<br />[http://localhost:8080/api/recommendations/docs.html](http://localhost:8080/api/recommendations/docs.html) |
+| Jaeger Tracing       | [https://sg-devops.centralindia.cloudapp.azure.com/jaeger](https://sg-devops.centralindia.cloudapp.azure.com/jaeger) | -                                                            | [http://localhost:16686/jaeger](http://localhost:16686/jaeger) |
+| Openobserve          | [https://sg-devops.centralindia.cloudapp.azure.com/observe](https://sg-devops.centralindia.cloudapp.azure.com/observe) | ROOT: `admin@test.com`, `Change#123`<br/>ADMIN: `user@test.com`, `Password@123` | [https://sg-devops.centralindia.cloudapp.azure.com/observe](https://sg-devops.centralindia.cloudapp.azure.com/observe) |
 
 **Config Fetch URLS:**  
 
@@ -1996,19 +1992,108 @@ The frontend and backend services now use environment variables and Spring place
 
 ## **Jaeger** Tracing
 
+Jaeger tracing is an open-source, distributed tracing platform used to monitor, troubleshoot, and optimize complex microservices-based software systems. It tracks the full journey of individual requests as they pass across multiple services, networks, and databases. Originally created by Uber Technologies and now a graduated project of the Cloud Native Computing Foundation (CNCF).
+
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbYJKz5xjCtVNT7OI4hymn19bveI-t3kM0OpFqvhGhQ5AZQSNDvA0uaN8&s=10" alt="jaeger SVG Logos - Logo Search" style="zoom:67%;" />
 
 
 
-**Installation and Setup:** 
+**Installation**
 
+[Download | Jaeger](https://www.jaegertracing.io/download/)
 
+```shell
+cd /home/azureuser/
+mkdir jaeger
+cd jaeger/
+wget https://download.jaegertracing.io/v2.20.0/jaeger-2.20.0-linux-amd64.tar.gz
+tar -xzf jaeger-2.20.0-linux-amd64.tar.gz
+JAEGER_VERSION=2.20.0
+sudo cp jaeger-${JAEGER_VERSION}-linux-amd64/jaeger /usr/local/bin/
+sudo chmod +x /usr/local/bin/jaeger
+jaeger version
+sudo mkdir -p /var/lib/jaeger/badger /etc/jaeger
+sudo chown -R azureuser:azureuser /var/lib/jaeger
+sudo chown -R azureuser:azureuser /etc/jaeger
+sudo chown -R azureuser:azureuser /usr/local/bin/jaeger
+```
 
 
 
 **Implementation Steps:**
 
-- **Step 1**: ***pom.xml*** dependency - Needed in `gateway`, `userservice`, `activityservice`, `aiservice`
+- **Step 1** : ***`/etc/jaeger/config.yaml`***
+
+  ```yaml
+  # nano /etc/jaeger/config.yaml
+  service:
+    extensions: [jaeger_storage, jaeger_query, healthcheckv2]
+    pipelines:
+      traces:
+        receivers: [otlp]
+        processors: [filter/eureka, batch]      # 👈 filter first
+        exporters: [jaeger_storage_exporter]
+    telemetry:
+      resource:
+        service.name: jaeger
+      metrics:
+        level: detailed
+        readers:
+          - pull:
+              exporter:
+                prometheus:
+                  host: 0.0.0.0
+                  port: 8890        # 👈 moved off 8888 (your config server)
+      logs:
+        level: info
+  
+  extensions:
+    healthcheckv2:
+      use_v2: true
+      http:
+        endpoint: 0.0.0.0:13133
+    jaeger_query:
+      base_path: /jaeger # 👈 register UI + API routes under /jaeger
+      storage:
+        traces: main_storage
+      http:
+        endpoint: 0.0.0.0:16686        # Web UI
+    jaeger_storage:
+      backends:
+        main_storage:
+          badger:
+            directories:
+              keys:   /var/lib/jaeger/badger/keys
+              values: /var/lib/jaeger/badger/values
+            ephemeral: false
+  
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: 0.0.0.0:4317       # apps export here (gRPC)
+        http:
+          endpoint: 0.0.0.0:4318       # apps export here (HTTP)
+  
+  processors:
+    batch: {}
+    filter/eureka:
+      error_mode: ignore # ignore spans missing the attribute
+      traces:
+        span:
+          - 'IsMatch(attributes["http.url"], ".*/eureka.*")'
+          - 'IsMatch(attributes["http.url"], ".*:8761.*")'
+          - 'IsMatch(attributes["url.full"], ".*/eureka.*")'
+          - 'IsMatch(attributes["url.full"], ".*:8761.*")'
+  
+  exporters:
+    jaeger_storage_exporter:
+      trace_storage: main_storage
+  ```
+
+  
+
+- **Step 2:** ***pom.xml*** dependency - Needed in `gateway`, `userservice`, `activityservice`, `aiservice`
 
   ```xml
   <!-- Actuator required for Micrometer Tracing auto-config -->
@@ -2027,7 +2112,7 @@ The frontend and backend services now use environment variables and Spring place
   </dependency>
   ```
 
-- **Step 2**: ***application.yaml***  - Updated `configserver` yaml files for `gateway`, `userservice`, `activityservice`, `aiservice`
+- **Step 3**: ***application.yaml***  - Updated `configserver` yaml files for `gateway`, `userservice`, `activityservice`, `aiservice`
 
   ```yaml
   # OpenTelemetry Configuration
@@ -2063,9 +2148,335 @@ The frontend and backend services now use environment variables and Spring place
   #     com.sg.fitness: DEBUG
   ```
 
+
+
+
+**Reverse Proxy Setup**
+
+***`/etc/nginx/sites-available/default`***
+
+```properties
+    # Jaeger Tracing UI
+    location /jaeger/ {
+        proxy_pass http://localhost:16686;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # WebSocket support (Jaeger UI live features)
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+
+    # Jaeger OTLP/HTTP trace ingestion
+    location /telemetry/ {
+        # Strip /telemetry, forward the rest (e.g. /v1/traces) to Jaeger's OTLP HTTP port
+        proxy_pass http://localhost:4318/;
+
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # OTLP payloads are batched protobuf — raise the body limit to avoid 413
+        client_max_body_size 16m;
+        proxy_read_timeout 30s;
+    }
+```
+
+**Supervisorctl file - Jaeger**
+
+***`/etc/supervisor/conf.d/jaeger-16686.conf`***
+
+```properties
+[program:jaeger-16686]
+command=/usr/local/bin/jaeger --config /etc/jaeger/config.yaml
+directory=/home/azureuser/jaeger/jaeger-2.20.0-linux-amd64
+autostart=true
+autorestart=true
+priority=1
+stderr_logfile=/home/azureuser/ai-fitness/logs/jaeger-16686.log
+stdout_logfile=/home/azureuser/ai-fitness/logs/jaeger-16686.log
+user=azureuser
+```
+
+
+
+
+
+---
+
+## **Openobserve**
+
+[OpenObserve](https://openobserve.ai/) is an open-source, cloud-native observability platform that unifies **logs, metrics, traces, and real user monitoring (RUM) into a single tool**. It is designed as a low-cost, high-performance alternative to tools like Elasticsearch, Datadog, and Splunk
+
+<img src="https://openobserve.ai/img/logo/o2-logo-readme.svg" title="" alt="GitHub - openobserve/openobserve: Open source observability ..." width="496">
+
+**Installation**
+
+```shell
+mkdir openobserve
+cd openobserve/
+curl -L https://raw.githubusercontent.com/openobserve/openobserve/main/downloadO2.sh | sh -s o2-enterprise v0.91.5
+openobserve --version
+sudo cp openobserve /usr/local/bin/
+sudo mkdir -p /var/lib/openobserve
+sudo chown -R azureuser:azureuser /var/lib/openobserve 
+
+# Update Nginx and Supervisor
+sudo nano /etc/nginx/sites-available/default
+sudo nginx -t
+systemctl restart nginx
+sudo systemctl restart nginx
+nano /etc/supervisor/conf.d/openobserve-5080.conf
+sudo supervisorctl reread
+sudo supervisorctl update
+
+# Testing
+echo -n 'admin@test.com:ChangeMe#123' | base64
+telnet localhost 5080
+curl -i -X POST   -H "Authorization: Basic YWRtaW5AdGVzdC5jb206bzJvaV80QmFUcjZoMG5hUVlMRlFWMkZGYkdJa3V2WnBxbWQ5eg=="   -H "Content-Type: application/json"   --data '{"resourceSpans":[]}'   http://localhost:5080/observe/api/default/v1/traces
+```
+
+
+
+**Implementation  Steps:** 
+
+Below Setup needs to be replicated in `gateway`, `userservice`, `activityservice`, `aiservice`
+
+- **Step 1** : Server side configuration: Nothing needed.
+
+  ```yaml
+  Nothing needed.
+  ```
+
+- **Step 2:** ***pom.xml*** dependency
+
+  ```xml
+  <dependency>
+      <groupId>io.opentelemetry.instrumentation</groupId>
+      <artifactId>opentelemetry-logback-appender-1.0</artifactId>
+      <version>2.21.0-alpha</version>
+  </dependency>
+  ```
+
+- **Step 3**: ***application.yaml***  - Updated `configserver` yaml files for 
+
+  ```yaml
+  # OpenTelemetry Configuration
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health,info,loggers
+    endpoint:
+      health:
+        show-details: always
+    tracing:
+      sampling:
+        probability: 1.0  # 100% sampling for demo
+    otlp:
+      metrics:
+        export:
+          enabled: true
+          url: ${API_HOST}/observe/api/default/v1/metrics
+          step: 30s     # export interval
+          headers:
+            Authorization: "Basic ${OTEL_EXPORTER_OTLP_AUTH_TOKEN}"
+    opentelemetry:
+      tracing:
+        export:
+          otlp:
+            endpoint: ${API_HOST}/observe/api/default/v1/traces
+            headers:
+              Authorization: "Basic ${OTEL_EXPORTER_OTLP_AUTH_TOKEN}"
+      logging:
+        export:
+          otlp:
+            endpoint: ${API_HOST}/observe/api/default/v1/logs
+            headers:
+              Authorization: "Basic ${OTEL_EXPORTER_OTLP_AUTH_TOKEN}"
+  ```
+
+- **Step 4:** ***`src\main\resources\logback-spring.xml`*** - Added new file and also mentioned the package name which logs I dont want to keep in **Openobserve**, basically silence those logs.
+
+  ```xml
+  <?xml version="1.0" encoding="UTF-8"?>
+  <configuration>
+      <include resource="org/springframework/boot/logging/logback/base.xml"/>
+  
+      <appender name="OTEL" class="io.opentelemetry.instrumentation.logback.appender.v1_0.OpenTelemetryAppender">
+      </appender>
+  
+      <!-- Eureka / Netflix discovery -->
+      <logger name="com.netflix.discovery" level="WARN"/>
+      <logger name="com.netflix.eureka" level="WARN"/>
+      <logger name="org.springframework.cloud.netflix.eureka" level="WARN"/>
+  
+      <!-- MongoDB driver - huge settings dump + cluster discovery spam -->
+      <logger name="org.mongodb.driver.client" level="WARN"/>
+  
+      <!-- Kafka client - biggest offender, 80+ line config dump + rebalance chatter -->
+      <logger name="org.apache.kafka" level="WARN"/>
+  
+      <!-- Generic Spring/Boot bootstrap noise -->
+      <logger name="org.springframework.data.repository.config.RepositoryConfigurationDelegate" level="WARN"/>
+      <logger name="org.springframework.cloud.context.scope.GenericScope" level="WARN"/>
+      <logger name="org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver" level="WARN"/>
+      <logger name="org.springdoc.core.events.SpringDocAppInitializer" level="OFF"/>
+  
+      <!-- Postgres and Hibernate / JPA related logs -->
+      <logger name="org.hibernate.orm.connections.pooling" level="WARN"/>
+      <logger name="org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo" level="WARN"/>
+      <logger name="org.springframework.data.jpa.repository.query.QueryEnhancerFactories" level="WARN"/>
+  
+      <root level="INFO">
+          <appender-ref ref="CONSOLE"/>
+          <appender-ref ref="OTEL"/>
+      </root>
+  </configuration>
+  ```
+
+- **Step 5:** ***`src\main\java\com\sg\fitness\activityservice\config\TracingConfig.java`*** - Added new file to ignore eureka traces from **OpenObserve**.
+
+  ```java
+  import io.micrometer.tracing.exporter.SpanExportingPredicate;
+  import org.springframework.context.annotation.Bean;
+  import org.springframework.context.annotation.Configuration;
+  
+  @Configuration
+  public class TracingConfig {
+      
+      @Bean
+      SpanExportingPredicate noEurekaSpans() {
+          return span -> {
+              String url = span.getTags().get("http.url");
+              if (url == null) url = span.getTags().get("url.full");
+              boolean isEureka = url != null && (url.contains("/eureka") || url.contains(":8761"));
+              return !isEureka;   // false = drop
+          };
+      }
+  }
+  ```
+
+- **Step 6:** ***`src\main\java\com\sg\fitness\activityservice\config\OpenTelemetryAppender.java`*** - Added new file to append logs into **OpenObserve**.
+
+  ```java
+  import io.opentelemetry.api.OpenTelemetry;
+  import org.springframework.beans.factory.InitializingBean;
+  import org.springframework.stereotype.Component;
+  
+  @Component
+  public class OpenTelemetryAppender implements InitializingBean {
+  
+      private final OpenTelemetry openTelemetry;
+  
+      public OpenTelemetryAppender(OpenTelemetry openTelemetry) {
+          this.openTelemetry = openTelemetry;
+      }
+  
+      @Override
+      public void afterPropertiesSet() {
+          System.out.println(">>> Installing OTel Logback appender <<<");
+          io.opentelemetry.instrumentation.logback.appender.v1_0.OpenTelemetryAppender.install(this.openTelemetry);
+      }
+  }
+  ```
+
+- **Step 7: ** : **Environment Variable** addition in microservices (Server level)
+
+  ```properties
+  API_HOST=https://sg-devops.centralindia.cloudapp.azure.com
+  OTEL_EXPORTER_OTLP_AUTH_TOKEN="<your token>"
+  ```
+
   
 
+**Reverse Proxy Setup** : ***`/etc/nginx/sites-available/default`***
+
+```properties
+    # OpenObserve UI — redirect bare path so assets resolve
+    location /observe {
+        return 302 /observe/;
+    }
+
+    # OpenObserve UI + API
+    location /observe/ {
+        proxy_pass http://127.0.0.1:5080;      # 👈 NO trailing slash (must match ZO_BASE_URI)
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # WebSocket support (live UI features)
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+
+        # OTLP/ingestion payloads can be large
+        client_max_body_size 16m;
+        proxy_read_timeout 30s;
+    }
+```
+
+**Supervisorctl file - Openobserve**
+
+***`/etc/supervisor/conf.d/openobserve-5080.conf`***
+
+```properties
+[program:openobserve-5080]
+command=/usr/local/bin/openobserve
+directory=/home/azureuser/openobserve
+autostart=true
+autorestart=true
+priority=1
+stderr_logfile=/home/azureuser/ai-fitness/logs/openobserve-5080.log
+stdout_logfile=/home/azureuser/ai-fitness/logs/openobserve-5080.log
+user=azureuser
+environment=ZO_ROOT_USER_EMAIL="admin@test.com",ZO_ROOT_USER_PASSWORD="Change#123",ZO_DATA_DIR="/var/lib/openobserve",ZO_HTTP_PORT="5080",ZO_GRPC_PORT="5081",ZO_BASE_URI="/observe",ZO_META_STORE="sqlite",ZO_LOCAL_MODE="true",ZO_TELEMETRY="false"
+```
 
 
 
 
+
+---
+
+# Annexure
+
+
+
+<p>
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/spring/spring-original.svg" alt="springboot" width="100" height="100"/>
+  &nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="react" width="100" height="100"/>
+  &nbsp;&nbsp;
+  <img src="https://spring.io/img/projects/spring-cloud.svg" alt="eureka" width="100" height="100"/>
+  &nbsp;&nbsp;
+  <img src="https://icon.icepanel.io/GCP/svg/Cloud-API-Gateway.svg" alt="gateway" width="100" height="100"/>
+  &nbsp;&nbsp;
+  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Logo_of_Keycloak.svg" alt="keycloak" width="200" height="100"/>
+  &nbsp;&nbsp;
+  <img src="https://www.svgrepo.com/show/353950/kafka.svg" alt="kafka" width="250" height="100"/>
+  &nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="postgresql" width="100" height="100"/>
+  &nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="mysql" width="100" height="100"/>
+  &nbsp;&nbsp;
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/MongoDB_Logo.svg" alt="mongodb" width="200" height="100"/>
+  &nbsp;&nbsp;
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Google_Gemini_logo_2025.svg" alt="gemini" width="150" height="100"/>
+  &nbsp;&nbsp;
+  <img src="https://uxwing.com/wp-content/themes/uxwing/download/tools-equipment-construction/configuration-icon.svg" alt="configserver" width="100" height="100"/>
+  &nbsp;&nbsp;
+  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure" width="100" height="100"/>
+  &nbsp;&nbsp;
+  <img src="https://avatars.githubusercontent.com/u/66094040?s=280&v=4" width="130" height="130"/>
+  &nbsp;&nbsp;
+  <img src="https://openobserve.ai/img/logo/o2-logo-readme.svg" height="60"/>
+</p>

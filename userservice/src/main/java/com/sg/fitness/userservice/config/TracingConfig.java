@@ -1,19 +1,21 @@
-package com.sg.fitness.gateway.config;
+package com.sg.fitness.userservice.config;
 
 import io.micrometer.tracing.exporter.SpanExportingPredicate;
-import io.opentelemetry.api.common.AttributeKey;
-import io.opentelemetry.exporter.otlp.http.trace.OtlpHttpSpanExporter;
-import io.opentelemetry.sdk.common.CompletableResultCode;
-import io.opentelemetry.sdk.trace.data.SpanData;
-import io.opentelemetry.sdk.trace.export.SpanExporter;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Collection;
-
 @Configuration
 public class TracingConfig {
+
+    @Bean
+    SpanExportingPredicate noEurekaSpans() {
+        return span -> {
+            String url = span.getTags().get("http.url");
+            if (url == null) url = span.getTags().get("url.full");
+            boolean isEureka = url != null && (url.contains("/eureka") || url.contains(":8761"));
+            return !isEureka;   // false = drop
+        };
+    }
 
 //    @Value("${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}")
 //    String tracingEndpoint;
@@ -53,16 +55,6 @@ public class TracingConfig {
 //    void setupHook() {
 //        reactor.core.publisher.Hooks.enableAutomaticContextPropagation();
 //    }
-
-    @Bean
-    SpanExportingPredicate noEurekaSpans() {
-        return span -> {
-            String url = span.getTags().get("http.url");
-            if (url == null) url = span.getTags().get("url.full");
-            boolean isEureka = url != null && (url.contains("/eureka") || url.contains(":8761"));
-            return !isEureka;   // false = drop
-        };
-    }
 
 //    private boolean isEureka(String url) {
 //        if (url == null) return false;

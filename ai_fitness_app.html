@@ -185,13 +185,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li><a href="#jaeger-tracing"
           id="toc-jaeger-tracing"><strong>Jaeger</strong>
           Tracing</a></li>
+          <li><a href="#openobserve"
+          id="toc-openobserve"><strong>Openobserve</strong></a></li>
           </ul></li>
+          <li><a href="#annexure" id="toc-annexure">Annexure</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         
 <h1 id="ai-powered-fitness-app"><a
 href="https://sgfitness.vercel.app">AI-Powered Fitness App</a></h1>
+<p><img
+src="https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&amp;logoColor=fff"
+alt="Spring Boot" /> <img
+src="https://img.shields.io/badge/React-%2320232a.svg?logo=react&amp;logoColor=%2361DAFB"
+alt="React" /> <img
+src="https://img.shields.io/badge/Eureka-6DB33F?logo=springboot&amp;logoColor=fff"
+alt="Eureka" /> <img
+src="https://img.shields.io/badge/API%20Gateway-6DB33F?logo=springboot&amp;logoColor=fff"
+alt="API Gateway" /> <img
+src="https://img.shields.io/badge/Config%20Server-6DB33F?logo=springboot&amp;logoColor=fff"
+alt="Config Server" /> <img
+src="https://img.shields.io/badge/Keycloak-4D4D4D?logo=keycloak&amp;logoColor=white"
+alt="Keycloak" /> <img
+src="https://img.shields.io/badge/Kafka-231F20?logo=apachekafka&amp;logoColor=white"
+alt="Kafka" /> <img
+src="https://img.shields.io/badge/Postgres-%23316192.svg?logo=postgresql&amp;logoColor=white"
+alt="PostgreSQL" /> <img
+src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?logo=mongodb&amp;logoColor=white"
+alt="MongoDB" /> <img
+src="https://img.shields.io/badge/Google%20Gemini-886FBF?logo=googlegemini&amp;logoColor=fff"
+alt="Google Gemini" /> <img
+src="https://custom-icon-badges.demolab.com/badge/Microsoft%20Azure-0089D6?logo=msazure&amp;logoColor=white"
+alt="Microsoft Azure" /> <img
+src="https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&amp;logoColor=white"
+alt="GitHub Actions" /> <img
+src="https://img.shields.io/badge/nginx-009639?logo=nginx&amp;logoColor=fff"
+alt="nginx" /> <img
+src="https://img.shields.io/badge/Jaeger%20Tracing-000?logo=opentelemetry&amp;logoColor=fff"
+alt="Jaeger Tracing" /> <img
+src="https://img.shields.io/badge/Supervisor-808080?logo=homeassistant&amp;logoColor=00FF00"
+alt="Supervisor" /> <img
+src="https://img.shields.io/badge/Repsy-FFC0CB?logo=jfrog&amp;logoColor=000"
+alt="Repsy" /></p>
+<p>CICD Status:</p>
 <p><a
 href="https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/configserver-ci.yml"><img
 src="https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/configserver-ci.yml/badge.svg"
@@ -211,33 +248,6 @@ alt="gateway CI" /></a> <a
 href="https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/eureka-ci.yml"><img
 src="https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/eureka-ci.yml/badge.svg?event=check_run"
 alt=".github/workflows/eureka-ci.yml" /></a></p>
-<p>
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/spring/spring-original.svg" alt="springboot" width="100" height="100"/>
-  
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="react" width="100" height="100"/>
-  
-<img src="https://spring.io/img/projects/spring-cloud.svg" alt="eureka" width="100" height="100"/>
-  
-<img src="https://icon.icepanel.io/GCP/svg/Cloud-API-Gateway.svg" alt="gateway" width="100" height="100"/>
-  
-<img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Logo_of_Keycloak.svg" alt="keycloak" width="200" height="100"/>
-  
-<img src="https://www.svgrepo.com/show/353950/kafka.svg" alt="kafka" width="250" height="100"/>
-  
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="postgresql" width="100" height="100"/>
-  
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="mysql" width="100" height="100"/>
-  
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/93/MongoDB_Logo.svg" alt="mongodb" width="200" height="100"/>
-  
-<img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Google_Gemini_logo_2025.svg" alt="gemini" width="150" height="100"/>
-  
-<img src="https://uxwing.com/wp-content/themes/uxwing/download/tools-equipment-construction/configuration-icon.svg" alt="configserver" width="100" height="100"/>
-  
-<img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure" width="100" height="100"/>
-  
-<img src="https://avatars.githubusercontent.com/u/66094040?s=280&v=4" width="130" height="130"/>
-</p>
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
 <li><a href="#master-url-list">Master URL List</a></li>
@@ -288,10 +298,10 @@ Configuration</a></li>
 <p><strong>Deployed Services</strong></p>
 <table>
 <colgroup>
-<col style="width: 12%" />
-<col style="width: 36%" />
-<col style="width: 15%" />
-<col style="width: 36%" />
+<col style="width: 10%" />
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 30%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -378,6 +388,16 @@ href="https://sg-devops.centralindia.cloudapp.azure.com/jaeger">https://sg-devop
 <td>-</td>
 <td><a
 href="http://localhost:16686/jaeger">http://localhost:16686/jaeger</a></td>
+</tr>
+<tr class="even">
+<td>Openobserve</td>
+<td><a
+href="https://sg-devops.centralindia.cloudapp.azure.com/observe">https://sg-devops.centralindia.cloudapp.azure.com/observe</a></td>
+<td>ROOT: <code>admin@test.com</code>,
+<code>Change#123</code><br/>ADMIN: <code>user@test.com</code>,
+<code>Password@123</code></td>
+<td><a
+href="https://sg-devops.centralindia.cloudapp.azure.com/observe">https://sg-devops.centralindia.cloudapp.azure.com/observe</a></td>
 </tr>
 </tbody>
 </table>
@@ -2475,66 +2495,439 @@ Process Control</h3>
 <hr />
 <h1 id="observability"><u><strong>Observability</strong></u></h1>
 <h2 id="jaeger-tracing"><strong>Jaeger</strong> Tracing</h2>
+<p>Jaeger tracing is an open-source, distributed tracing platform used
+to monitor, troubleshoot, and optimize complex microservices-based
+software systems. It tracks the full journey of individual requests as
+they pass across multiple services, networks, and databases. Originally
+created by Uber Technologies and now a graduated project of the Cloud
+Native Computing Foundation (CNCF).</p>
 <p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbYJKz5xjCtVNT7OI4hymn19bveI-t3kM0OpFqvhGhQ5AZQSNDvA0uaN8&s=10" alt="jaeger SVG Logos - Logo Search" style="zoom:67%;" /></p>
-<p><strong>Installation and Setup:</strong></p>
+<p><strong>Installation</strong></p>
+<p><a href="https://www.jaegertracing.io/download/">Download |
+Jaeger</a></p>
+<pre class="shell"><code>cd /home/azureuser/
+mkdir jaeger
+cd jaeger/
+wget https://download.jaegertracing.io/v2.20.0/jaeger-2.20.0-linux-amd64.tar.gz
+tar -xzf jaeger-2.20.0-linux-amd64.tar.gz
+JAEGER_VERSION=2.20.0
+sudo cp jaeger-${JAEGER_VERSION}-linux-amd64/jaeger /usr/local/bin/
+sudo chmod +x /usr/local/bin/jaeger
+jaeger version
+sudo mkdir -p /var/lib/jaeger/badger /etc/jaeger
+sudo chown -R azureuser:azureuser /var/lib/jaeger
+sudo chown -R azureuser:azureuser /etc/jaeger
+sudo chown -R azureuser:azureuser /usr/local/bin/jaeger</code></pre>
 <p><strong>Implementation Steps:</strong></p>
 <ul>
-<li><p><strong>Step 1</strong>: <strong><em>pom.xml</em></strong>
+<li><p><strong>Step 1</strong> :
+<strong><em><code>/etc/jaeger/config.yaml</code></em></strong></p>
+<div class="sourceCode" id="cb53"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># nano /etc/jaeger/config.yaml</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">service</span><span class="kw">:</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">extensions</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">jaeger_storage</span><span class="kw">,</span><span class="at"> jaeger_query</span><span class="kw">,</span><span class="at"> healthcheckv2</span><span class="kw">]</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pipelines</span><span class="kw">:</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">traces</span><span class="kw">:</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">receivers</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">otlp</span><span class="kw">]</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">processors</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">filter/eureka</span><span class="kw">,</span><span class="at"> batch</span><span class="kw">]</span><span class="co">      # 👈 filter first</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">exporters</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">jaeger_storage_exporter</span><span class="kw">]</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">telemetry</span><span class="kw">:</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">resource</span><span class="kw">:</span></span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">service.name</span><span class="kw">:</span><span class="at"> jaeger</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">metrics</span><span class="kw">:</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">level</span><span class="kw">:</span><span class="at"> detailed</span></span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">readers</span><span class="kw">:</span></span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">pull</span><span class="kw">:</span></span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">exporter</span><span class="kw">:</span></span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a><span class="at">              </span><span class="fu">prometheus</span><span class="kw">:</span></span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">host</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.0.0.0</span></span>
+<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">port</span><span class="kw">:</span><span class="at"> </span><span class="dv">8890</span><span class="co">        # 👈 moved off 8888 (your config server)</span></span>
+<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">logs</span><span class="kw">:</span></span>
+<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">level</span><span class="kw">:</span><span class="at"> info</span></span>
+<span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-23"><a href="#cb53-23" aria-hidden="true" tabindex="-1"></a><span class="fu">extensions</span><span class="kw">:</span></span>
+<span id="cb53-24"><a href="#cb53-24" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">healthcheckv2</span><span class="kw">:</span></span>
+<span id="cb53-25"><a href="#cb53-25" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">use_v2</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb53-26"><a href="#cb53-26" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">http</span><span class="kw">:</span></span>
+<span id="cb53-27"><a href="#cb53-27" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">endpoint</span><span class="kw">:</span><span class="at"> 0.0.0.0:13133</span></span>
+<span id="cb53-28"><a href="#cb53-28" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">jaeger_query</span><span class="kw">:</span></span>
+<span id="cb53-29"><a href="#cb53-29" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">base_path</span><span class="kw">:</span><span class="at"> /jaeger</span><span class="co"> # 👈 register UI + API routes under /jaeger</span></span>
+<span id="cb53-30"><a href="#cb53-30" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">storage</span><span class="kw">:</span></span>
+<span id="cb53-31"><a href="#cb53-31" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">traces</span><span class="kw">:</span><span class="at"> main_storage</span></span>
+<span id="cb53-32"><a href="#cb53-32" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">http</span><span class="kw">:</span></span>
+<span id="cb53-33"><a href="#cb53-33" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">endpoint</span><span class="kw">:</span><span class="at"> 0.0.0.0:16686</span><span class="co">        # Web UI</span></span>
+<span id="cb53-34"><a href="#cb53-34" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">jaeger_storage</span><span class="kw">:</span></span>
+<span id="cb53-35"><a href="#cb53-35" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">backends</span><span class="kw">:</span></span>
+<span id="cb53-36"><a href="#cb53-36" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">main_storage</span><span class="kw">:</span></span>
+<span id="cb53-37"><a href="#cb53-37" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">badger</span><span class="kw">:</span></span>
+<span id="cb53-38"><a href="#cb53-38" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">directories</span><span class="kw">:</span></span>
+<span id="cb53-39"><a href="#cb53-39" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">keys</span><span class="kw">:</span><span class="at">   /var/lib/jaeger/badger/keys</span></span>
+<span id="cb53-40"><a href="#cb53-40" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">values</span><span class="kw">:</span><span class="at"> /var/lib/jaeger/badger/values</span></span>
+<span id="cb53-41"><a href="#cb53-41" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">ephemeral</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb53-42"><a href="#cb53-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-43"><a href="#cb53-43" aria-hidden="true" tabindex="-1"></a><span class="fu">receivers</span><span class="kw">:</span></span>
+<span id="cb53-44"><a href="#cb53-44" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">otlp</span><span class="kw">:</span></span>
+<span id="cb53-45"><a href="#cb53-45" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">protocols</span><span class="kw">:</span></span>
+<span id="cb53-46"><a href="#cb53-46" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">grpc</span><span class="kw">:</span></span>
+<span id="cb53-47"><a href="#cb53-47" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">endpoint</span><span class="kw">:</span><span class="at"> 0.0.0.0:4317</span><span class="co">       # apps export here (gRPC)</span></span>
+<span id="cb53-48"><a href="#cb53-48" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">http</span><span class="kw">:</span></span>
+<span id="cb53-49"><a href="#cb53-49" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">endpoint</span><span class="kw">:</span><span class="at"> 0.0.0.0:4318</span><span class="co">       # apps export here (HTTP)</span></span>
+<span id="cb53-50"><a href="#cb53-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-51"><a href="#cb53-51" aria-hidden="true" tabindex="-1"></a><span class="fu">processors</span><span class="kw">:</span></span>
+<span id="cb53-52"><a href="#cb53-52" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">batch</span><span class="kw">:</span><span class="at"> </span><span class="kw">{}</span></span>
+<span id="cb53-53"><a href="#cb53-53" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">filter/eureka</span><span class="kw">:</span></span>
+<span id="cb53-54"><a href="#cb53-54" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">error_mode</span><span class="kw">:</span><span class="at"> ignore</span><span class="co"> # ignore spans missing the attribute</span></span>
+<span id="cb53-55"><a href="#cb53-55" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">traces</span><span class="kw">:</span></span>
+<span id="cb53-56"><a href="#cb53-56" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">span</span><span class="kw">:</span></span>
+<span id="cb53-57"><a href="#cb53-57" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="st">&#39;IsMatch(attributes[&quot;http.url&quot;], &quot;.*/eureka.*&quot;)&#39;</span></span>
+<span id="cb53-58"><a href="#cb53-58" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="st">&#39;IsMatch(attributes[&quot;http.url&quot;], &quot;.*:8761.*&quot;)&#39;</span></span>
+<span id="cb53-59"><a href="#cb53-59" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="st">&#39;IsMatch(attributes[&quot;url.full&quot;], &quot;.*/eureka.*&quot;)&#39;</span></span>
+<span id="cb53-60"><a href="#cb53-60" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="st">&#39;IsMatch(attributes[&quot;url.full&quot;], &quot;.*:8761.*&quot;)&#39;</span></span>
+<span id="cb53-61"><a href="#cb53-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-62"><a href="#cb53-62" aria-hidden="true" tabindex="-1"></a><span class="fu">exporters</span><span class="kw">:</span></span>
+<span id="cb53-63"><a href="#cb53-63" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">jaeger_storage_exporter</span><span class="kw">:</span></span>
+<span id="cb53-64"><a href="#cb53-64" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">trace_storage</span><span class="kw">:</span><span class="at"> main_storage</span></span></code></pre></div></li>
+<li><p><strong>Step 2:</strong> <strong><em>pom.xml</em></strong>
 dependency - Needed in <code>gateway</code>, <code>userservice</code>,
 <code>activityservice</code>, <code>aiservice</code></p>
-<div class="sourceCode" id="cb52"><pre
-class="sourceCode xml"><code class="sourceCode xml"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Actuator required for Micrometer Tracing auto-config --&gt;</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">dependency</span>&gt;</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">groupId</span>&gt;org.springframework.boot&lt;/<span class="kw">groupId</span>&gt;</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">artifactId</span>&gt;spring-boot-starter-actuator&lt;/<span class="kw">artifactId</span>&gt;</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">dependency</span>&gt;</span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- OLTP Exporter (sends spans to Jaeger) --&gt;</span></span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">dependency</span>&gt;</span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">groupId</span>&gt;io.opentelemetry&lt;/<span class="kw">groupId</span>&gt;</span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">artifactId</span>&gt;opentelemetry-exporter-otlp&lt;/<span class="kw">artifactId</span>&gt;</span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">dependency</span>&gt;</span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">dependency</span>&gt;</span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">groupId</span>&gt;org.springframework.boot&lt;/<span class="kw">groupId</span>&gt;</span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">artifactId</span>&gt;spring-boot-starter-opentelemetry&lt;/<span class="kw">artifactId</span>&gt;</span>
-<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">dependency</span>&gt;</span></code></pre></div></li>
-<li><p><strong>Step 2</strong>:
+<div class="sourceCode" id="cb54"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Actuator required for Micrometer Tracing auto-config --&gt;</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">dependency</span>&gt;</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">groupId</span>&gt;org.springframework.boot&lt;/<span class="kw">groupId</span>&gt;</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">artifactId</span>&gt;spring-boot-starter-actuator&lt;/<span class="kw">artifactId</span>&gt;</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">dependency</span>&gt;</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- OLTP Exporter (sends spans to Jaeger) --&gt;</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">dependency</span>&gt;</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">groupId</span>&gt;io.opentelemetry&lt;/<span class="kw">groupId</span>&gt;</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">artifactId</span>&gt;opentelemetry-exporter-otlp&lt;/<span class="kw">artifactId</span>&gt;</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">dependency</span>&gt;</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">dependency</span>&gt;</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">groupId</span>&gt;org.springframework.boot&lt;/<span class="kw">groupId</span>&gt;</span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">artifactId</span>&gt;spring-boot-starter-opentelemetry&lt;/<span class="kw">artifactId</span>&gt;</span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">dependency</span>&gt;</span></code></pre></div></li>
+<li><p><strong>Step 3</strong>:
 <strong><em>application.yaml</em></strong> - Updated
 <code>configserver</code> yaml files for <code>gateway</code>,
 <code>userservice</code>, <code>activityservice</code>,
 <code>aiservice</code></p>
-<div class="sourceCode" id="cb53"><pre
-class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenTelemetry Configuration</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">management</span><span class="kw">:</span></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">endpoints</span><span class="kw">:</span></span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">web</span><span class="kw">:</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">exposure</span><span class="kw">:</span></span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">include</span><span class="kw">:</span><span class="at"> health,info,loggers</span></span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">endpoint</span><span class="kw">:</span></span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">health</span><span class="kw">:</span></span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">show-details</span><span class="kw">:</span><span class="at"> always</span></span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">tracing</span><span class="kw">:</span></span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">sampling</span><span class="kw">:</span></span>
-<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">probability</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.0</span><span class="co">  # 100% sampling for demo</span></span>
-<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">otlp</span><span class="kw">:</span></span>
-<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a><span class="co">    # tracing:</span></span>
-<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a><span class="co">    #   endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/traces</span></span>
-<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">metrics</span><span class="kw">:</span></span>
-<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">export</span><span class="kw">:</span></span>
-<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">enabled</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">opentelemetry</span><span class="kw">:</span></span>
-<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">tracing</span><span class="kw">:</span></span>
-<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">export</span><span class="kw">:</span></span>
-<span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">otlp</span><span class="kw">:</span></span>
-<span id="cb53-23"><a href="#cb53-23" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">endpoint</span><span class="kw">:</span><span class="at"> ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/traces</span></span>
-<span id="cb53-24"><a href="#cb53-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-25"><a href="#cb53-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Logging with trace correlation</span></span>
-<span id="cb53-26"><a href="#cb53-26" aria-hidden="true" tabindex="-1"></a><span class="co"># logging:</span></span>
-<span id="cb53-27"><a href="#cb53-27" aria-hidden="true" tabindex="-1"></a><span class="co">#   pattern:</span></span>
-<span id="cb53-28"><a href="#cb53-28" aria-hidden="true" tabindex="-1"></a><span class="co">#     level: &quot;%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]&quot;</span></span>
-<span id="cb53-29"><a href="#cb53-29" aria-hidden="true" tabindex="-1"></a><span class="co">#   level:</span></span>
-<span id="cb53-30"><a href="#cb53-30" aria-hidden="true" tabindex="-1"></a><span class="co">#     root: INFO</span></span>
-<span id="cb53-31"><a href="#cb53-31" aria-hidden="true" tabindex="-1"></a><span class="co">#     com.sg.fitness: DEBUG</span></span></code></pre></div></li>
+<div class="sourceCode" id="cb55"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenTelemetry Configuration</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">management</span><span class="kw">:</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">endpoints</span><span class="kw">:</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">web</span><span class="kw">:</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">exposure</span><span class="kw">:</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">include</span><span class="kw">:</span><span class="at"> health,info,loggers</span></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">endpoint</span><span class="kw">:</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">health</span><span class="kw">:</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">show-details</span><span class="kw">:</span><span class="at"> always</span></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">tracing</span><span class="kw">:</span></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">sampling</span><span class="kw">:</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">probability</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.0</span><span class="co">  # 100% sampling for demo</span></span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">otlp</span><span class="kw">:</span></span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a><span class="co">    # tracing:</span></span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a><span class="co">    #   endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/traces</span></span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">metrics</span><span class="kw">:</span></span>
+<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">export</span><span class="kw">:</span></span>
+<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">enabled</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">opentelemetry</span><span class="kw">:</span></span>
+<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">tracing</span><span class="kw">:</span></span>
+<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">export</span><span class="kw">:</span></span>
+<span id="cb55-22"><a href="#cb55-22" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">otlp</span><span class="kw">:</span></span>
+<span id="cb55-23"><a href="#cb55-23" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">endpoint</span><span class="kw">:</span><span class="at"> ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318}/v1/traces</span></span>
+<span id="cb55-24"><a href="#cb55-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-25"><a href="#cb55-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Logging with trace correlation</span></span>
+<span id="cb55-26"><a href="#cb55-26" aria-hidden="true" tabindex="-1"></a><span class="co"># logging:</span></span>
+<span id="cb55-27"><a href="#cb55-27" aria-hidden="true" tabindex="-1"></a><span class="co">#   pattern:</span></span>
+<span id="cb55-28"><a href="#cb55-28" aria-hidden="true" tabindex="-1"></a><span class="co">#     level: &quot;%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]&quot;</span></span>
+<span id="cb55-29"><a href="#cb55-29" aria-hidden="true" tabindex="-1"></a><span class="co">#   level:</span></span>
+<span id="cb55-30"><a href="#cb55-30" aria-hidden="true" tabindex="-1"></a><span class="co">#     root: INFO</span></span>
+<span id="cb55-31"><a href="#cb55-31" aria-hidden="true" tabindex="-1"></a><span class="co">#     com.sg.fitness: DEBUG</span></span></code></pre></div></li>
 </ul>
+<p><strong>Reverse Proxy Setup</strong></p>
+<p><strong><em><code>/etc/nginx/sites-available/default</code></em></strong></p>
+<pre class="properties"><code>    # Jaeger Tracing UI
+    location /jaeger/ {
+        proxy_pass http://localhost:16686;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # WebSocket support (Jaeger UI live features)
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &quot;upgrade&quot;;
+    }
+
+    # Jaeger OTLP/HTTP trace ingestion
+    location /telemetry/ {
+        # Strip /telemetry, forward the rest (e.g. /v1/traces) to Jaeger&#39;s OTLP HTTP port
+        proxy_pass http://localhost:4318/;
+
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # OTLP payloads are batched protobuf — raise the body limit to avoid 413
+        client_max_body_size 16m;
+        proxy_read_timeout 30s;
+    }</code></pre>
+<p><strong>Supervisorctl file - Jaeger</strong></p>
+<p><strong><em><code>/etc/supervisor/conf.d/jaeger-16686.conf</code></em></strong></p>
+<pre class="properties"><code>[program:jaeger-16686]
+command=/usr/local/bin/jaeger --config /etc/jaeger/config.yaml
+directory=/home/azureuser/jaeger/jaeger-2.20.0-linux-amd64
+autostart=true
+autorestart=true
+priority=1
+stderr_logfile=/home/azureuser/ai-fitness/logs/jaeger-16686.log
+stdout_logfile=/home/azureuser/ai-fitness/logs/jaeger-16686.log
+user=azureuser</code></pre>
+<hr />
+<h2 id="openobserve"><strong>Openobserve</strong></h2>
+<p><a href="https://openobserve.ai/">OpenObserve</a> is an open-source,
+cloud-native observability platform that unifies <strong>logs, metrics,
+traces, and real user monitoring (RUM) into a single tool</strong>. It
+is designed as a low-cost, high-performance alternative to tools like
+Elasticsearch, Datadog, and Splunk</p>
+<p><img src="https://openobserve.ai/img/logo/o2-logo-readme.svg" title="" alt="GitHub - openobserve/openobserve: Open source observability ..." width="496"></p>
+<p><strong>Installation</strong></p>
+<pre class="shell"><code>mkdir openobserve
+cd openobserve/
+curl -L https://raw.githubusercontent.com/openobserve/openobserve/main/downloadO2.sh | sh -s o2-enterprise v0.91.5
+openobserve --version
+sudo cp openobserve /usr/local/bin/
+sudo mkdir -p /var/lib/openobserve
+sudo chown -R azureuser:azureuser /var/lib/openobserve 
+
+# Update Nginx and Supervisor
+sudo nano /etc/nginx/sites-available/default
+sudo nginx -t
+systemctl restart nginx
+sudo systemctl restart nginx
+nano /etc/supervisor/conf.d/openobserve-5080.conf
+sudo supervisorctl reread
+sudo supervisorctl update
+
+# Testing
+echo -n &#39;admin@test.com:ChangeMe#123&#39; | base64
+telnet localhost 5080
+curl -i -X POST   -H &quot;Authorization: Basic YWRtaW5AdGVzdC5jb206bzJvaV80QmFUcjZoMG5hUVlMRlFWMkZGYkdJa3V2WnBxbWQ5eg==&quot;   -H &quot;Content-Type: application/json&quot;   --data &#39;{&quot;resourceSpans&quot;:[]}&#39;   http://localhost:5080/observe/api/default/v1/traces</code></pre>
+<p><strong>Implementation Steps:</strong></p>
+<p>Below Setup needs to be replicated in <code>gateway</code>,
+<code>userservice</code>, <code>activityservice</code>,
+<code>aiservice</code></p>
+<ul>
+<li><p><strong>Step 1</strong> : Server side configuration: Nothing
+needed.</p>
+<div class="sourceCode" id="cb59"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="at">Nothing needed.</span></span></code></pre></div></li>
+<li><p><strong>Step 2:</strong> <strong><em>pom.xml</em></strong>
+dependency</p>
+<div class="sourceCode" id="cb60"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">dependency</span>&gt;</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">groupId</span>&gt;io.opentelemetry.instrumentation&lt;/<span class="kw">groupId</span>&gt;</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">artifactId</span>&gt;opentelemetry-logback-appender-1.0&lt;/<span class="kw">artifactId</span>&gt;</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">version</span>&gt;2.21.0-alpha&lt;/<span class="kw">version</span>&gt;</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">dependency</span>&gt;</span></code></pre></div></li>
+<li><p><strong>Step 3</strong>:
+<strong><em>application.yaml</em></strong> - Updated
+<code>configserver</code> yaml files for</p>
+<div class="sourceCode" id="cb61"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenTelemetry Configuration</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">management</span><span class="kw">:</span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">endpoints</span><span class="kw">:</span></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">web</span><span class="kw">:</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">exposure</span><span class="kw">:</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">include</span><span class="kw">:</span><span class="at"> health,info,loggers</span></span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">endpoint</span><span class="kw">:</span></span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">health</span><span class="kw">:</span></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">show-details</span><span class="kw">:</span><span class="at"> always</span></span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">tracing</span><span class="kw">:</span></span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">sampling</span><span class="kw">:</span></span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">probability</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.0</span><span class="co">  # 100% sampling for demo</span></span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">otlp</span><span class="kw">:</span></span>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">metrics</span><span class="kw">:</span></span>
+<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">export</span><span class="kw">:</span></span>
+<span id="cb61-16"><a href="#cb61-16" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">enabled</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb61-17"><a href="#cb61-17" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">url</span><span class="kw">:</span><span class="at"> ${API_HOST}/observe/api/default/v1/metrics</span></span>
+<span id="cb61-18"><a href="#cb61-18" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">step</span><span class="kw">:</span><span class="at"> 30s</span><span class="co">     # export interval</span></span>
+<span id="cb61-19"><a href="#cb61-19" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">headers</span><span class="kw">:</span></span>
+<span id="cb61-20"><a href="#cb61-20" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">Authorization</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Basic ${OTEL_EXPORTER_OTLP_AUTH_TOKEN}&quot;</span></span>
+<span id="cb61-21"><a href="#cb61-21" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">opentelemetry</span><span class="kw">:</span></span>
+<span id="cb61-22"><a href="#cb61-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">tracing</span><span class="kw">:</span></span>
+<span id="cb61-23"><a href="#cb61-23" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">export</span><span class="kw">:</span></span>
+<span id="cb61-24"><a href="#cb61-24" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">otlp</span><span class="kw">:</span></span>
+<span id="cb61-25"><a href="#cb61-25" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">endpoint</span><span class="kw">:</span><span class="at"> ${API_HOST}/observe/api/default/v1/traces</span></span>
+<span id="cb61-26"><a href="#cb61-26" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">headers</span><span class="kw">:</span></span>
+<span id="cb61-27"><a href="#cb61-27" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">Authorization</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Basic ${OTEL_EXPORTER_OTLP_AUTH_TOKEN}&quot;</span></span>
+<span id="cb61-28"><a href="#cb61-28" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">logging</span><span class="kw">:</span></span>
+<span id="cb61-29"><a href="#cb61-29" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">export</span><span class="kw">:</span></span>
+<span id="cb61-30"><a href="#cb61-30" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">otlp</span><span class="kw">:</span></span>
+<span id="cb61-31"><a href="#cb61-31" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">endpoint</span><span class="kw">:</span><span class="at"> ${API_HOST}/observe/api/default/v1/logs</span></span>
+<span id="cb61-32"><a href="#cb61-32" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">headers</span><span class="kw">:</span></span>
+<span id="cb61-33"><a href="#cb61-33" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">Authorization</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Basic ${OTEL_EXPORTER_OTLP_AUTH_TOKEN}&quot;</span></span></code></pre></div></li>
+<li><p><strong>Step 4:</strong>
+<strong><em><code>src\main\resources\logback-spring.xml</code></em></strong>
+- Added new file and also mentioned the package name which logs I dont
+want to keep in <strong>Openobserve</strong>, basically silence those
+logs.</p>
+<div class="sourceCode" id="cb62"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;?xml</span><span class="ot"> version=</span><span class="st">&quot;1.0&quot;</span><span class="ot"> encoding=</span><span class="st">&quot;UTF-8&quot;</span><span class="fu">?&gt;</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">configuration</span>&gt;</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">include</span><span class="ot"> resource=</span><span class="st">&quot;org/springframework/boot/logging/logback/base.xml&quot;</span>/&gt;</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">appender</span><span class="ot"> name=</span><span class="st">&quot;OTEL&quot;</span><span class="ot"> class=</span><span class="st">&quot;io.opentelemetry.instrumentation.logback.appender.v1_0.OpenTelemetryAppender&quot;</span>&gt;</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">appender</span>&gt;</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Eureka / Netflix discovery --&gt;</span></span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">logger</span><span class="ot"> name=</span><span class="st">&quot;com.netflix.discovery&quot;</span><span class="ot"> level=</span><span class="st">&quot;WARN&quot;</span>/&gt;</span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">logger</span><span class="ot"> name=</span><span class="st">&quot;com.netflix.eureka&quot;</span><span class="ot"> level=</span><span class="st">&quot;WARN&quot;</span>/&gt;</span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">logger</span><span class="ot"> name=</span><span class="st">&quot;org.springframework.cloud.netflix.eureka&quot;</span><span class="ot"> level=</span><span class="st">&quot;WARN&quot;</span>/&gt;</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- MongoDB driver - huge settings dump + cluster discovery spam --&gt;</span></span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">logger</span><span class="ot"> name=</span><span class="st">&quot;org.mongodb.driver.client&quot;</span><span class="ot"> level=</span><span class="st">&quot;WARN&quot;</span>/&gt;</span>
+<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Kafka client - biggest offender, 80+ line config dump + rebalance chatter --&gt;</span></span>
+<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">logger</span><span class="ot"> name=</span><span class="st">&quot;org.apache.kafka&quot;</span><span class="ot"> level=</span><span class="st">&quot;WARN&quot;</span>/&gt;</span>
+<span id="cb62-18"><a href="#cb62-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-19"><a href="#cb62-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Generic Spring/Boot bootstrap noise --&gt;</span></span>
+<span id="cb62-20"><a href="#cb62-20" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">logger</span><span class="ot"> name=</span><span class="st">&quot;org.springframework.data.repository.config.RepositoryConfigurationDelegate&quot;</span><span class="ot"> level=</span><span class="st">&quot;WARN&quot;</span>/&gt;</span>
+<span id="cb62-21"><a href="#cb62-21" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">logger</span><span class="ot"> name=</span><span class="st">&quot;org.springframework.cloud.context.scope.GenericScope&quot;</span><span class="ot"> level=</span><span class="st">&quot;WARN&quot;</span>/&gt;</span>
+<span id="cb62-22"><a href="#cb62-22" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">logger</span><span class="ot"> name=</span><span class="st">&quot;org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver&quot;</span><span class="ot"> level=</span><span class="st">&quot;WARN&quot;</span>/&gt;</span>
+<span id="cb62-23"><a href="#cb62-23" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">logger</span><span class="ot"> name=</span><span class="st">&quot;org.springdoc.core.events.SpringDocAppInitializer&quot;</span><span class="ot"> level=</span><span class="st">&quot;OFF&quot;</span>/&gt;</span>
+<span id="cb62-24"><a href="#cb62-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-25"><a href="#cb62-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Postgres and Hibernate / JPA related logs --&gt;</span></span>
+<span id="cb62-26"><a href="#cb62-26" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">logger</span><span class="ot"> name=</span><span class="st">&quot;org.hibernate.orm.connections.pooling&quot;</span><span class="ot"> level=</span><span class="st">&quot;WARN&quot;</span>/&gt;</span>
+<span id="cb62-27"><a href="#cb62-27" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">logger</span><span class="ot"> name=</span><span class="st">&quot;org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo&quot;</span><span class="ot"> level=</span><span class="st">&quot;WARN&quot;</span>/&gt;</span>
+<span id="cb62-28"><a href="#cb62-28" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">logger</span><span class="ot"> name=</span><span class="st">&quot;org.springframework.data.jpa.repository.query.QueryEnhancerFactories&quot;</span><span class="ot"> level=</span><span class="st">&quot;WARN&quot;</span>/&gt;</span>
+<span id="cb62-29"><a href="#cb62-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-30"><a href="#cb62-30" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">root</span><span class="ot"> level=</span><span class="st">&quot;INFO&quot;</span>&gt;</span>
+<span id="cb62-31"><a href="#cb62-31" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">appender-ref</span><span class="ot"> ref=</span><span class="st">&quot;CONSOLE&quot;</span>/&gt;</span>
+<span id="cb62-32"><a href="#cb62-32" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">appender-ref</span><span class="ot"> ref=</span><span class="st">&quot;OTEL&quot;</span>/&gt;</span>
+<span id="cb62-33"><a href="#cb62-33" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">root</span>&gt;</span>
+<span id="cb62-34"><a href="#cb62-34" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">configuration</span>&gt;</span></code></pre></div></li>
+<li><p><strong>Step 5:</strong>
+<strong><em><code>src\main\java\com\sg\fitness\activityservice\config\TracingConfig.java</code></em></strong>
+- Added new file to ignore eureka traces from
+<strong>OpenObserve</strong>.</p>
+<div class="sourceCode" id="cb63"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">io</span><span class="op">.</span><span class="im">micrometer</span><span class="op">.</span><span class="im">tracing</span><span class="op">.</span><span class="im">exporter</span><span class="op">.</span><span class="im">SpanExportingPredicate</span><span class="op">;</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">context</span><span class="op">.</span><span class="im">annotation</span><span class="op">.</span><span class="im">Bean</span><span class="op">;</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">context</span><span class="op">.</span><span class="im">annotation</span><span class="op">.</span><span class="im">Configuration</span><span class="op">;</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="at">@Configuration</span></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> TracingConfig <span class="op">{</span></span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Bean</span></span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>    SpanExportingPredicate <span class="fu">noEurekaSpans</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> span <span class="op">-&gt;</span> <span class="op">{</span></span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>            <span class="bu">String</span> url <span class="op">=</span> span<span class="op">.</span><span class="fu">getTags</span><span class="op">().</span><span class="fu">get</span><span class="op">(</span><span class="st">&quot;http.url&quot;</span><span class="op">);</span></span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>url <span class="op">==</span> <span class="kw">null</span><span class="op">)</span> url <span class="op">=</span> span<span class="op">.</span><span class="fu">getTags</span><span class="op">().</span><span class="fu">get</span><span class="op">(</span><span class="st">&quot;url.full&quot;</span><span class="op">);</span></span>
+<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>            <span class="dt">boolean</span> isEureka <span class="op">=</span> url <span class="op">!=</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> <span class="op">(</span>url<span class="op">.</span><span class="fu">contains</span><span class="op">(</span><span class="st">&quot;/eureka&quot;</span><span class="op">)</span> <span class="op">||</span> url<span class="op">.</span><span class="fu">contains</span><span class="op">(</span><span class="st">&quot;:8761&quot;</span><span class="op">));</span></span>
+<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="op">!</span>isEureka<span class="op">;</span>   <span class="co">// false = drop</span></span>
+<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a>        <span class="op">};</span></span>
+<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
+<li><p><strong>Step 6:</strong>
+<strong><em><code>src\main\java\com\sg\fitness\activityservice\config\OpenTelemetryAppender.java</code></em></strong>
+- Added new file to append logs into <strong>OpenObserve</strong>.</p>
+<div class="sourceCode" id="cb64"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">io</span><span class="op">.</span><span class="im">opentelemetry</span><span class="op">.</span><span class="im">api</span><span class="op">.</span><span class="im">OpenTelemetry</span><span class="op">;</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">beans</span><span class="op">.</span><span class="im">factory</span><span class="op">.</span><span class="im">InitializingBean</span><span class="op">;</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">springframework</span><span class="op">.</span><span class="im">stereotype</span><span class="op">.</span><span class="im">Component</span><span class="op">;</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="at">@Component</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> OpenTelemetryAppender <span class="kw">implements</span> InitializingBean <span class="op">{</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">final</span> OpenTelemetry openTelemetry<span class="op">;</span></span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="fu">OpenTelemetryAppender</span><span class="op">(</span>OpenTelemetry openTelemetry<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span><span class="fu">openTelemetry</span> <span class="op">=</span> openTelemetry<span class="op">;</span></span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Override</span></span>
+<span id="cb64-15"><a href="#cb64-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">afterPropertiesSet</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb64-16"><a href="#cb64-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;&gt;&gt;&gt; Installing OTel Logback appender &lt;&lt;&lt;&quot;</span><span class="op">);</span></span>
+<span id="cb64-17"><a href="#cb64-17" aria-hidden="true" tabindex="-1"></a>        io<span class="op">.</span><span class="fu">opentelemetry</span><span class="op">.</span><span class="fu">instrumentation</span><span class="op">.</span><span class="fu">logback</span><span class="op">.</span><span class="fu">appender</span><span class="op">.</span><span class="fu">v1_0</span><span class="op">.</span><span class="fu">OpenTelemetryAppender</span><span class="op">.</span><span class="fu">install</span><span class="op">(</span><span class="kw">this</span><span class="op">.</span><span class="fu">openTelemetry</span><span class="op">);</span></span>
+<span id="cb64-18"><a href="#cb64-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb64-19"><a href="#cb64-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></li>
+<li><p><strong>Step 7: </strong> : <strong>Environment Variable</strong>
+addition in microservices (Server level)</p>
+<pre class="properties"><code>API_HOST=https://sg-devops.centralindia.cloudapp.azure.com
+OTEL_EXPORTER_OTLP_AUTH_TOKEN=&quot;&lt;your token&gt;&quot;</code></pre></li>
+</ul>
+<p><strong>Reverse Proxy Setup</strong> :
+<strong><em><code>/etc/nginx/sites-available/default</code></em></strong></p>
+<pre class="properties"><code>    # OpenObserve UI — redirect bare path so assets resolve
+    location /observe {
+        return 302 /observe/;
+    }
+
+    # OpenObserve UI + API
+    location /observe/ {
+        proxy_pass http://127.0.0.1:5080;      # 👈 NO trailing slash (must match ZO_BASE_URI)
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # WebSocket support (live UI features)
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &quot;upgrade&quot;;
+
+        # OTLP/ingestion payloads can be large
+        client_max_body_size 16m;
+        proxy_read_timeout 30s;
+    }</code></pre>
+<p><strong>Supervisorctl file - Openobserve</strong></p>
+<p><strong><em><code>/etc/supervisor/conf.d/openobserve-5080.conf</code></em></strong></p>
+<pre class="properties"><code>[program:openobserve-5080]
+command=/usr/local/bin/openobserve
+directory=/home/azureuser/openobserve
+autostart=true
+autorestart=true
+priority=1
+stderr_logfile=/home/azureuser/ai-fitness/logs/openobserve-5080.log
+stdout_logfile=/home/azureuser/ai-fitness/logs/openobserve-5080.log
+user=azureuser
+environment=ZO_ROOT_USER_EMAIL=&quot;admin@test.com&quot;,ZO_ROOT_USER_PASSWORD=&quot;Change#123&quot;,ZO_DATA_DIR=&quot;/var/lib/openobserve&quot;,ZO_HTTP_PORT=&quot;5080&quot;,ZO_GRPC_PORT=&quot;5081&quot;,ZO_BASE_URI=&quot;/observe&quot;,ZO_META_STORE=&quot;sqlite&quot;,ZO_LOCAL_MODE=&quot;true&quot;,ZO_TELEMETRY=&quot;false&quot;</code></pre>
+<hr />
+<h1 id="annexure">Annexure</h1>
+<p>
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/spring/spring-original.svg" alt="springboot" width="100" height="100"/>
+  
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="react" width="100" height="100"/>
+  
+<img src="https://spring.io/img/projects/spring-cloud.svg" alt="eureka" width="100" height="100"/>
+  
+<img src="https://icon.icepanel.io/GCP/svg/Cloud-API-Gateway.svg" alt="gateway" width="100" height="100"/>
+  
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Logo_of_Keycloak.svg" alt="keycloak" width="200" height="100"/>
+  
+<img src="https://www.svgrepo.com/show/353950/kafka.svg" alt="kafka" width="250" height="100"/>
+  
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="postgresql" width="100" height="100"/>
+  
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="mysql" width="100" height="100"/>
+  
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/93/MongoDB_Logo.svg" alt="mongodb" width="200" height="100"/>
+  
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Google_Gemini_logo_2025.svg" alt="gemini" width="150" height="100"/>
+  
+<img src="https://uxwing.com/wp-content/themes/uxwing/download/tools-equipment-construction/configuration-icon.svg" alt="configserver" width="100" height="100"/>
+  
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure" width="100" height="100"/>
+  
+<img src="https://avatars.githubusercontent.com/u/66094040?s=280&v=4" width="130" height="130"/>
+  
+<img src="https://openobserve.ai/img/logo/o2-logo-readme.svg" height="60"/>
+</p>
         </div>
       </div>
     </div>
