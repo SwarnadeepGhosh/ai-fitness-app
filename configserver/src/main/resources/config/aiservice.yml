@@ -75,7 +75,7 @@ management:
       export:
         enabled: true
         url: ${API_HOST}/observe/api/default/v1/metrics
-        step: 30s     # export interval
+        step: 120s     # export interval
         headers:
           Authorization: "Basic ${OTEL_EXPORTER_OTLP_AUTH_TOKEN}"
   opentelemetry:

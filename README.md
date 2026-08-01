@@ -18,6 +18,7 @@
 ![Jaeger Tracing](https://img.shields.io/badge/Jaeger%20Tracing-000?logo=opentelemetry&logoColor=fff)
 ![Supervisor](https://img.shields.io/badge/Supervisor-808080?logo=homeassistant&logoColor=00FF00)
 ![Repsy](https://img.shields.io/badge/Repsy-FFC0CB?logo=jfrog&logoColor=000)
+![OpenObserve](https://img.shields.io/badge/OpenObserve-F46800?logo=grafana&logoColor=fff)
 
 
 
@@ -2284,7 +2285,7 @@ Below Setup needs to be replicated in `gateway`, `userservice`, `activityservice
         export:
           enabled: true
           url: ${API_HOST}/observe/api/default/v1/metrics
-          step: 30s     # export interval
+          step: 120s     # export interval
           headers:
             Authorization: "Basic ${OTEL_EXPORTER_OTLP_AUTH_TOKEN}"
     opentelemetry:
