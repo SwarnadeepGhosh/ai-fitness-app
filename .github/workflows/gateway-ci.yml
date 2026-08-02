@@ -21,6 +21,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env:
+      API_HOST: ${{ vars.API_HOST }}
+      OTEL_EXPORTER_OTLP_AUTH_TOKEN: ${{ secrets.OTEL_EXPORTER_OTLP_AUTH_TOKEN }}
+
     steps:
       - name: SCM Checkout
         uses: actions/checkout@v5
