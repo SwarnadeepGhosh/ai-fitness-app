@@ -1,0 +1,54 @@
+name: Snyk Security Scan
+
+on:
+  workflow_dispatch:
+
+jobs:
+  snyk-scan:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        service: [activityservice, userservice, aiservice, gateway]
+
+    steps:
+      - name: SCM Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: ${{ matrix.service }}/pom.xml
+
+      - name: Create Maven Settings
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<EOF
+          <settings>
+            <servers>
+              <server>
+                <id>repsy</id>
+                <username>${{ secrets.REPSY_USERNAME }}</username>
+                <password>${{ secrets.REPSY_PASSWORD }}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+
+      - name: Setup Snyk CLI
+        uses: snyk/actions/setup@master
+
+      - name: Snyk Test (fail on high severity vulnerabilities)
+        working-directory: ${{ matrix.service }}
+        run: snyk test --severity-threshold=high
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      - name: Snyk Monitor (push to dashboard)
+        working-directory: ${{ matrix.service }}
+        run: snyk monitor --project-name=${{ matrix.service }}
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
