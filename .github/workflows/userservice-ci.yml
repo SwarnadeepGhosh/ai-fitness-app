@@ -17,6 +17,7 @@ on:
   #     - 'userservice/**'
   #     - '.github/workflows/userservice.yml'
   workflow_dispatch:
+  workflow_call:        # ← add this so it can be called from the orchestrator
 
 jobs:
   build:
@@ -75,3 +76,4 @@ jobs:
           format: jacoco
           base-path: userservice/src/main/java
           flag-name: userservice
+          parallel: true

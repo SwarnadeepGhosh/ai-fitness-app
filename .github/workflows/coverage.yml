@@ -1,0 +1,33 @@
+name: Combined Coverage
+
+on:
+  workflow_dispatch:
+
+jobs:
+  activityservice:
+    uses: ./.github/workflows/activityservice.yml
+    secrets: inherit
+
+  userservice:
+    uses: ./.github/workflows/userservice.yml
+    secrets: inherit
+
+  # aiservice:
+  #   uses: ./.github/workflows/aiservice.yml
+  #   secrets: inherit
+
+  # gateway:
+  #   uses: ./.github/workflows/gateway.yml
+  #   secrets: inherit
+
+  finish:
+    needs: [activityservice, userservice]
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close parallel build
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel-finished: true
+          carryforward: "activityservice,userservice"
