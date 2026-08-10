@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  snyk-scan:
+  snyk-scan-maven:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        service: [activityservice, userservice, aiservice, gateway]
+        service: [activityservice, userservice, aiservice, gateway, configserver, eureka]
 
     steps:
       - name: SCM Checkout
@@ -41,7 +41,7 @@ jobs:
       - name: Setup Snyk CLI
         uses: snyk/actions/setup@master
 
-      - name: Snyk Test (fail on high severity vulnerabilities)
+      - name: Snyk Test (report only, does not fail build)
         working-directory: ${{ matrix.service }}
         run: snyk test # --severity-threshold=high
         continue-on-error: true
@@ -51,5 +51,38 @@ jobs:
       - name: Snyk Monitor (push to dashboard)
         working-directory: ${{ matrix.service }}
         run: snyk monitor --project-name=${{ matrix.service }}
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+  snyk-scan-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SCM Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: fitness-ui/package-lock.json
+
+      - name: Install dependencies
+        working-directory: fitness-ui
+        run: npm ci
+
+      - name: Setup Snyk CLI
+        uses: snyk/actions/setup@master
+
+      - name: Snyk Test (report only, does not fail build)
+        working-directory: fitness-ui
+        run: snyk test # --severity-threshold=high
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      - name: Snyk Monitor (push to dashboard)
+        working-directory: fitness-ui
+        run: snyk monitor --project-name=fitness-ui
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
