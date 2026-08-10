@@ -73,5 +73,5 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           file: activityservice/target/site/jacoco/jacoco.xml
           format: jacoco
-          base-path: activityservice
+          base-path: activityservice/src/main/java
           flag-name: activityservice
