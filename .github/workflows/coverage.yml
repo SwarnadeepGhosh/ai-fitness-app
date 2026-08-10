@@ -4,24 +4,65 @@ on:
   workflow_dispatch:
 
 jobs:
-  activityservice:
-    uses: ./.github/workflows/activityservice.yml
-    secrets: inherit
+  test-and-coverage:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        service: [activityservice, userservice, aiservice, gateway]
 
-  userservice:
-    uses: ./.github/workflows/userservice.yml
-    secrets: inherit
+    env:
+      POSTGRES_HOST: ${{ vars.POSTGRES_HOST }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
+      KAFKA_PASSWORD: ${{ secrets.KAFKA_PASSWORD }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      API_HOST: ${{ vars.API_HOST }}
+      OTEL_EXPORTER_OTLP_AUTH_TOKEN: ${{ secrets.OTEL_EXPORTER_OTLP_AUTH_TOKEN }}
 
-  # aiservice:
-  #   uses: ./.github/workflows/aiservice.yml
-  #   secrets: inherit
+    steps:
+      - name: SCM Checkout
+        uses: actions/checkout@v5
 
-  # gateway:
-  #   uses: ./.github/workflows/gateway.yml
-  #   secrets: inherit
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: ${{ matrix.service }}/pom.xml
+
+      - name: Create Maven Settings
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<EOF
+          <settings>
+            <servers>
+              <server>
+                <id>repsy</id>
+                <username>${{ secrets.REPSY_USERNAME }}</username>
+                <password>${{ secrets.REPSY_PASSWORD }}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+
+      - name: Run Tests with Coverage
+        working-directory: ${{ matrix.service }}
+        run: mvn -B clean test
+
+      - name: Upload Coverage to Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ matrix.service }}/target/site/jacoco/jacoco.xml
+          format: jacoco
+          base-path: ${{ matrix.service }}/src/main/java
+          flag-name: ${{ matrix.service }}
+          parallel: true
 
   finish:
-    needs: [activityservice, userservice]
+    needs: test-and-coverage
     if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
@@ -30,4 +71,4 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel-finished: true
-          carryforward: "activityservice,userservice"
+          carryforward: "activityservice,userservice,aiservice,gateway"

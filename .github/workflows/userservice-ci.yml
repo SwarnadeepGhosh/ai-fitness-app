@@ -17,7 +17,7 @@ on:
   #     - 'userservice/**'
   #     - '.github/workflows/userservice.yml'
   workflow_dispatch:
-  workflow_call:        # ← add this so it can be called from the orchestrator
+  # workflow_call:        # ← add this so it can be called from the orchestrator
 
 jobs:
   build:
@@ -68,12 +68,12 @@ jobs:
         working-directory: userservice
         run: mvn -B clean deploy
 
-      - name: Upload Coverage to Coveralls
-        uses: coverallsapp/github-action@v2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          file: userservice/target/site/jacoco/jacoco.xml
-          format: jacoco
-          base-path: userservice/src/main/java
-          flag-name: userservice
-          parallel: true
+      # - name: Upload Coverage to Coveralls
+      #   uses: coverallsapp/github-action@v2
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     file: userservice/target/site/jacoco/jacoco.xml
+      #     format: jacoco
+      #     base-path: userservice/src/main/java
+      #     flag-name: userservice
+      #     parallel: true
