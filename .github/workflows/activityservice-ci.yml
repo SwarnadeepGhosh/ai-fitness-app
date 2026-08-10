@@ -66,3 +66,12 @@ jobs:
         # if: ${{ secrets.REPSY_USERNAME != '' && secrets.REPSY_PASSWORD != '' }}
         working-directory: activityservice
         run: mvn -B clean deploy
+
+      - name: Upload Coverage to Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          file: activityservice/target/site/jacoco/jacoco.xml
+          format: jacoco
+          base-path: activityservice
+          flag-name: activityservice
