@@ -22,9 +22,17 @@
 
 
 
+
+
 CICD Status: 
 
 [![configserver CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/configserver-ci.yml/badge.svg)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/configserver-ci.yml) [![userservice CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/userservice-ci.yml/badge.svg)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/userservice-ci.yml)  [![activityservice CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/activityservice-ci.yml/badge.svg?branch=master)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/activityservice-ci.yml)  [![aiservice CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/aiservice-ci.yml/badge.svg?branch=master)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/aiservice-ci.yml) [![gateway CI](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/gateway-ci.yml/badge.svg?branch=master)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/gateway-ci.yml)  [![.github/workflows/eureka-ci.yml](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/eureka-ci.yml/badge.svg?event=check_run)](https://github.com/SwarnadeepGhosh/ai-fitness-app/actions/workflows/eureka-ci.yml)
+
+
+
+Code Quality : 
+
+![Coveralls](https://img.shields.io/badge/Coveralls-3F5767?logo=coveralls&logoColor=fff) [![Coverage Status](https://coveralls.io/repos/github/SwarnadeepGhosh/ai-fitness-app/badge.svg?branch=master)](https://coveralls.io/github/SwarnadeepGhosh/ai-fitness-app?branch=master) ![Snyk](https://img.shields.io/badge/Snyk-4C4A73?logo=snyk&logoColor=fff)
 
 
 
@@ -50,8 +58,18 @@ CICD Status:
   * [Frontend Development](#frontend-development)
 - [DevOps](#devops)
   * [**Repsy** - Artifact Storage](#repsy---artifact-storage)
-  * [**Github Actions** - Pipeline](#github-actions---pipeline)
   * [Externalized Configuration](#externalized-configuration)
+  * [CI - **Github Actions**](#ci---github-actions)
+  * [Continuous Deployment - **Supervisor**](#continuous-deployment)
+- [**Observability**](#observability)
+  * [**Jaeger** Tracing](#jaeger-tracing)
+  * [**Openobserve**](#openobserve)
+- [Code Quality](#code-quality)
+  - [**Coveralls**](#coveralls)
+  - [**Snyk**](#snyk)
+
+- [Annexure](#annexure)
+
 
 
 
@@ -1876,12 +1894,20 @@ The frontend and backend services now use environment variables and Spring place
 - **Runtime Configuration - through Supervisor** (*Check below Supervisor section under Continuous Deployment*)
 
   - ```properties
-    TODO
+    [program:gateway-8080]
+    command=java -jar /home/azureuser/ai-fitness/backend/gateway-8080.jar --httpPort=8080
+    directory=/home/azureuser/ai-fitness/backend
+    autostart=true
+    autorestart=true
+    priority=5
+    stderr_logfile=/home/azureuser/ai-fitness/logs/gateway-8080-error.log
+    stdout_logfile=/home/azureuser/ai-fitness/logs/gateway-8080.log
+    user=azureuser
+    environment=API_HOST=https://sg-devops.centralindia.cloudapp.azure.com,OTEL_EXPORTER_OTLP_AUTH_TOKEN=<your auth token here>
     ```
-
-  - 
-
   
+
+
 
 
 
@@ -1928,6 +1954,8 @@ The frontend and backend services now use environment variables and Spring place
         MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
         KAFKA_PASSWORD: ${{ secrets.KAFKA_PASSWORD }}
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        API_HOST: ${{ vars.API_HOST }}
+        OTEL_EXPORTER_OTLP_AUTH_TOKEN: ${{ secrets.OTEL_EXPORTER_OTLP_AUTH_TOKEN }}
   
       steps:
         - name: SCM Checkout
@@ -1965,7 +1993,7 @@ The frontend and backend services now use environment variables and Spring place
           working-directory: userservice
           run: mvn -B clean deploy
   ```
-
+  
   
 
 
@@ -1976,6 +2004,71 @@ The frontend and backend services now use environment variables and Spring place
 ## Continuous Deployment
 
 ### Deploy Script
+
+- ***`/home/azureuser/ai-fitness/deploy-gateway.sh`***
+
+  ```bash
+  #!/bin/bash
+  
+  RED='\033[0;31m'
+  GREEN='\033[0;32m'
+  YELLOW='\033[1;33m'
+  NC='\033[0m'
+  
+  JAR_DIR="/home/azureuser/ai-fitness/backend"
+  JAR_FILE="gateway-8080.jar"
+  SERVICE_NAME="gateway-8080"
+  REPO_URL="https://repo.repsy.io/mvn/swarnadeepghosh/repojar/com/sg/fitness/gateway/8080/gateway-8080.jar"
+  
+  if [ -f "$JAR_DIR/$JAR_FILE" ]; then
+      rm -f "$JAR_DIR/$JAR_FILE"
+      echo -e "$(date '+%Y-%m-%d %H:%M:%S') - ${GREEN}✓ Existing JAR file deleted${NC}"
+  else
+      echo -e "$(date '+%Y-%m-%d %H:%M:%S') - ${YELLOW}⚠ JAR file not found ${NC}"
+  fi
+  
+  cd "$JAR_DIR"
+  if wget "$REPO_URL" -O "$JAR_FILE" -q; then
+      echo -e "$(date '+%Y-%m-%d %H:%M:%S') - ${GREEN}✓ JAR file downloaded successfully${NC}"
+  else
+      echo -e "$(date '+%Y-%m-%d %H:%M:%S') - ${RED}✗ Failed to download JAR file${NC}"
+      exit 1
+  fi
+  
+  if sudo supervisorctl restart "$SERVICE_NAME"; then
+      echo -e "$(date '+%Y-%m-%d %H:%M:%S') - ${GREEN}✓ Service restarted successfully${NC}"
+  else
+      echo -e "$(date '+%Y-%m-%d %H:%M:%S') - ${RED}✗ Failed to restart service${NC}"
+      exit 1
+  fi
+  
+  exit 0
+  ```
+
+- ***`/etc/supervisor/conf.d/ai-fitness-deploys.conf`***
+
+  ```bash
+  [program:deploy-aiservice]
+  command=/home/azureuser/ai-fitness/deploy-aiservice.sh
+  autostart=false
+  autorestart=false
+  startsecs=0
+  stdout_logfile=/home/azureuser/ai-fitness/logs/deploy-aiservice.log
+  stderr_logfile=/home/azureuser/ai-fitness/logs/deploy-aiservice.log
+  user=azureuser
+  
+  [program:deploy-gateway]
+  command=/home/azureuser/ai-fitness/deploy-gateway.sh
+  autostart=false
+  autorestart=false
+  startsecs=0
+  stdout_logfile=/home/azureuser/ai-fitness/logs/deploy-gateway.log
+  stderr_logfile=/home/azureuser/ai-fitness/logs/deploy-gateway.log
+  user=azureuser
+  
+  [group:ai-fitness-deploys]
+  programs=deploy-configserver,deploy-userservice,deploy-activityservice,deploy-aiservice,deploy-gateway
+  ```
 
 
 
@@ -2441,6 +2534,250 @@ stdout_logfile=/home/azureuser/ai-fitness/logs/openobserve-5080.log
 user=azureuser
 environment=ZO_ROOT_USER_EMAIL="admin@test.com",ZO_ROOT_USER_PASSWORD="Change#123",ZO_DATA_DIR="/var/lib/openobserve",ZO_HTTP_PORT="5080",ZO_GRPC_PORT="5081",ZO_BASE_URI="/observe",ZO_META_STORE="sqlite",ZO_LOCAL_MODE="true",ZO_TELEMETRY="false"
 ```
+
+
+
+---
+
+# <u>Code Quality</u>
+
+## **Coveralls**
+
+<img src="https://s3.amazonaws.com/assets.coveralls.io/coveralls_logotype-01.png" alt="GitHub - coverallsapp/github-action: Coveralls Github Action · GitHub" style="zoom: 8%;" />
+
+[Coveralls](https://coveralls.io/) is a web-based service used to track, display, and archive test code coverage data for software projects over time. It integrates with continuous integration (CI) systems to process coverage reports, highlight untested code gaps, and show coverage trends on pull requests and repository readmes
+
+**Integration Steps :** 
+
+- **Step 1: ** Create an account at [Coveralls](https://coveralls.io/) -> Add Repo -> Give GitHub Access
+
+- **Step 2:** No need to add **GITHUB_TOKEN** manually as GitHub automatically resolves this for Coveralls when we give repo access.
+
+- Step 3: Add **jacoco plugin** in ***pom.xml***
+  ```xml
+  
+  <build>
+      <plugins>
+          <plugin>
+              <groupId>org.jacoco</groupId>
+              <artifactId>jacoco-maven-plugin</artifactId>
+              <version>0.8.15</version>
+              <executions>
+                  <execution>
+                      <goals>
+                          <goal>prepare-agent</goal>
+                      </goals>
+                  </execution>
+                  <execution>
+                      <id>report</id>
+                      <phase>test</phase>
+                      <goals>
+                          <goal>report</goal>
+                      </goals>
+                  </execution>
+              </executions>
+          </plugin>
+      </plugins>
+  </build>
+  ```
+
+  
+
+- **Step 4:** GitHub Actions Pipeline Setup: 
+  ***`.github\workflows\coverage.yml`***
+
+  ```yaml
+  name: Combined Coverage
+  
+  on:
+    workflow_dispatch:
+  
+  jobs:
+    test-and-coverage:
+      runs-on: ubuntu-latest
+      strategy:
+        fail-fast: false
+        matrix:
+          service: [activityservice, userservice, aiservice, gateway]
+  
+      env:
+        POSTGRES_HOST: ${{ vars.POSTGRES_HOST }}
+        POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
+        KAFKA_PASSWORD: ${{ secrets.KAFKA_PASSWORD }}
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        API_HOST: ${{ vars.API_HOST }}
+        OTEL_EXPORTER_OTLP_AUTH_TOKEN: ${{ secrets.OTEL_EXPORTER_OTLP_AUTH_TOKEN }}
+  
+      steps:
+        - name: SCM Checkout
+          uses: actions/checkout@v5
+  
+        - name: Set up JDK 21
+          uses: actions/setup-java@v5
+          with:
+            distribution: temurin
+            java-version: '21'
+            cache: maven
+            cache-dependency-path: ${{ matrix.service }}/pom.xml
+  
+        - name: Create Maven Settings
+          run: |
+            mkdir -p ~/.m2
+            cat > ~/.m2/settings.xml <<EOF
+            <settings>
+              <servers>
+                <server>
+                  <id>repsy</id>
+                  <username>${{ secrets.REPSY_USERNAME }}</username>
+                  <password>${{ secrets.REPSY_PASSWORD }}</password>
+                </server>
+              </servers>
+            </settings>
+            EOF
+  
+        - name: Run Tests with Coverage
+          working-directory: ${{ matrix.service }}
+          run: mvn -B clean test
+  
+        - name: Upload Coverage to Coveralls
+          uses: coverallsapp/github-action@v2
+          with:
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+            file: ${{ matrix.service }}/target/site/jacoco/jacoco.xml
+            format: jacoco
+            base-path: ${{ matrix.service }}/src/main/java
+            flag-name: ${{ matrix.service }}
+            parallel: true
+  
+    finish:
+      needs: test-and-coverage
+      if: ${{ always() }}
+      runs-on: ubuntu-latest
+      steps:
+        - name: Close parallel build
+          uses: coverallsapp/github-action@v2
+          with:
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+            parallel-finished: true
+            carryforward: "activityservice,userservice,aiservice,gateway"
+  ```
+
+  
+
+
+
+---
+
+## **Snyk**
+
+<img src="https://www.freelogovectors.net/wp-content/uploads/2022/10/snyk-logo-freelogovectors.net_.png" alt="Snyk Logo | v1 - PNG Logo Vector Brand Downloads (SVG, EPS)" style="zoom: 33%;" />
+
+
+
+[Snyk](https://snyk.io/) is a developer-first security platform that finds and fixes security flaws in custom code, open-source libraries, container images, and cloud infrastructure. It integrates directly into developer workflows—such as code editors, GitHub, and CI/CD pipelines—to catch and repair vulnerabilities early.
+
+**Integration Steps :** 
+
+- **Step 1: ** Create an account at [https://snyk.io/](https://snyk.io/) and Create a **Personal Access Token (Max Validity=90 days)**
+
+- **Step 2:** Add that token(**SNYK_TOKEN**) into GitHub Actions (*GitHub Repository Home -> Settings -> Secrets and Variables -> Actions -> Add Repository secrets and Repository variables here)*
+
+- **Step 3:** GitHub Actions Pipeline Setup: 
+  ***`.github\workflows\snyk-scan.yml`***
+
+  ```yaml
+  name: Snyk Security Scan
+  
+  on:
+    workflow_dispatch:
+  
+  jobs:
+    snyk-scan-maven:
+      runs-on: ubuntu-latest
+      strategy:
+        fail-fast: false
+        matrix:
+          service: [activityservice, userservice, aiservice, gateway, configserver, eureka]
+  
+      steps:
+        - name: SCM Checkout
+          uses: actions/checkout@v5
+  
+        - name: Set up JDK 21
+          uses: actions/setup-java@v5
+          with:
+            distribution: temurin
+            java-version: '21'
+            cache: maven
+            cache-dependency-path: ${{ matrix.service }}/pom.xml
+  
+        - name: Create Maven Settings
+          run: |
+            mkdir -p ~/.m2
+            cat > ~/.m2/settings.xml <<EOF
+            <settings>
+              <servers>
+                <server>
+                  <id>repsy</id>
+                  <username>${{ secrets.REPSY_USERNAME }}</username>
+                  <password>${{ secrets.REPSY_PASSWORD }}</password>
+                </server>
+              </servers>
+            </settings>
+            EOF
+  
+        - name: Setup Snyk CLI
+          uses: snyk/actions/setup@master
+  
+        - name: Snyk Test (report only, does not fail build)
+          working-directory: ${{ matrix.service }}
+          run: snyk test # --severity-threshold=high
+          continue-on-error: true
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  
+        - name: Snyk Monitor (push to dashboard)
+          working-directory: ${{ matrix.service }}
+          run: snyk monitor --project-name=${{ matrix.service }}
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  
+    snyk-scan-frontend:
+      runs-on: ubuntu-latest
+      steps:
+        - name: SCM Checkout
+          uses: actions/checkout@v5
+  
+        - name: Set up Node.js
+          uses: actions/setup-node@v5
+          with:
+            node-version: '24'
+            cache: npm
+            cache-dependency-path: fitness-ui/package-lock.json
+  
+        - name: Install dependencies
+          working-directory: fitness-ui
+          run: npm ci
+  
+        - name: Setup Snyk CLI
+          uses: snyk/actions/setup@master
+  
+        - name: Snyk Test (report only, does not fail build)
+          working-directory: fitness-ui
+          run: snyk test # --severity-threshold=high
+          continue-on-error: true
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  
+        - name: Snyk Monitor (push to dashboard)
+          working-directory: fitness-ui
+          run: snyk monitor --project-name=fitness-ui
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  ```
+
+  
 
 
 
