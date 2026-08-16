@@ -36,11 +36,17 @@ Code Quality :
 
 
 
+**Summary**
+
+> A fitness platform with **Java + Spring Boot Microservices** (User, Activity, AI Recommendation) behind **Eureka + API Gateway**, using **Kafka** for async activity processing, **Google Gemini** for AI-generated insights, **Keycloak** for OAuth2 auth, **PostgreSQL/MongoDB** for storage, **GitHub Actions → Repsy Artifact Registry → Deploy and running via Supervisor on Azure VM**, logs and tracing through **Jaeger + OpenObserve**, and quality-gated by **Coveralls**(Coverage) + **Snyk** (dependency security).
+
+
+
 ## Table of Contents
 
   * [Master URL List](#master-url-list)
   * [System](#system)
-    + [Application Architecture](#application-architecture)
+    + [Architecture](#architecture)
 - [Microservices](#microservices)
   * [👤 User Service](#user-service)
   * [🏃 Activity Service](#activity-service)
@@ -110,68 +116,31 @@ Code Quality :
 
 
 
-## Application Architecture
+## Architecture
 
-![mermaid-diagram-2026-05-23T19-04-32](img/mermaid-diagram-2026-05-23T19-04-32.svg)
-
-
-
-```mermaid
-flowchart LR
-    A[POSTMAN / Frontend] --> B[Gateway]
-
-    %% Core services
-    B --> C[Keycloak Auth]
-    B --> D[User Service]
-    B --> E[Activity Service]
-    B --> G[AI Recommendation Service]
-
-    %% Kafka as async bridge
-    E --> F[KAFKA Messaging]
-    F --> G
-
-    %% Databases
-    D --> DDB[(User DB: PostgreSQL)]
-    E --> EDB[(Activity DB: MongoDB)]
-    G --> GDB[(AI DB: MongoDB)]
-
-    %% External integration
-    G --> H[Google Gemini LLM]
-
-    %% Infra
-    I[Config Server] --> B
-    J[Eureka Registry] --> B
-
-    %% Styling for clarity
-    style B fill:#f9f,stroke:#333,stroke-width:1px
-    style C fill:#9cf,stroke:#333,stroke-width:1px
-    style D fill:#c9f,stroke:#333,stroke-width:1px
-    style E fill:#c9f,stroke:#333,stroke-width:1px
-    style F fill:#ffd,stroke:#333,stroke-width:1px
-    style G fill:#c9f,stroke:#333,stroke-width:1px
-    style H fill:#9f9,stroke:#333,stroke-width:1px
-    style I fill:#ccc,stroke:#333,stroke-width:1px
-    style J fill:#ccc,stroke:#333,stroke-width:1px
-
-```
-
-**Tech Stack**
-
-- Spring Boot + React Frontend
-- Eureka Server (Spring Cloud Netflix)
-- Spring Cloud Gateway
-- Keycloak - Authentication and Authorization
-- Apache Kafka - Async inter-service communication
-- PostgreSQL + MySQL + MongoDB
-- Google Gemini API - AI model
-- Spring Cloud Config Server
+<img src="img/A_fitness_platform_with_Java_Spring_Boot_Microservices_Us.png" alt="mermaid-diagram-2026-05-23T19-04-32" style="zoom: 72%;" />
 
 
 
-**Key Highlights**
+**Tech Stack Used**
 
-- Fully Featured Fitness app on microservice architecture.
-- AI Integration on microservices
+- **Java + Spring Boot + React** – Backend microservices and frontend
+- **Spring Cloud Netflix Eureka** – Service discovery
+- **Spring Cloud Gateway** – API Gateway and request routing
+- **Apache Kafka** – Asynchronous inter-service communication
+- **Keycloak** – Authentication and authorization
+- **PostgreSQL + MongoDB** – Data storage
+- **Google Gemini API** – AI-powered recommendations and insights
+- **Spring Cloud Config Server** – Centralized configuration management
+- **Nginx** – Reverse proxy and HTTPS routing
+- **GitHub Actions** – CI/CD automation
+- **Repsy** – Maven artifact repository
+- **Microsoft Azure VM** – Application hosting
+- **Supervisor** – Microservice process management
+- **OpenObserve** – Application logging, Tracing, Metrics and observability
+- **Jaeger** - Distributed Tracing
+- **Coveralls** – Code coverage
+- **Snyk** – Dependency security scanning
 
 
 
@@ -2818,3 +2787,53 @@ environment=ZO_ROOT_USER_EMAIL="admin@test.com",ZO_ROOT_USER_PASSWORD="Change#12
   &nbsp;&nbsp;
   <img src="https://openobserve.ai/img/logo/o2-logo-readme.svg" height="60"/>
 </p>
+
+
+**Application Architecture**
+
+![mermaid-diagram-2026-05-23T19-04-32](img/mermaid-diagram-2026-05-23T19-04-32.svg)
+
+
+
+```mermaid
+flowchart LR
+    A[POSTMAN / Frontend] --> B[Gateway]
+
+    %% Core services
+    B --> C[Keycloak Auth]
+    B --> D[User Service]
+    B --> E[Activity Service]
+    B --> G[AI Recommendation Service]
+
+    %% Kafka as async bridge
+    E --> F[KAFKA Messaging]
+    F --> G
+
+    %% Databases
+    D --> DDB[(User DB: PostgreSQL)]
+    E --> EDB[(Activity DB: MongoDB)]
+    G --> GDB[(AI DB: MongoDB)]
+
+    %% External integration
+    G --> H[Google Gemini LLM]
+
+    %% Infra
+    I[Config Server] --> B
+    J[Eureka Registry] --> B
+
+    %% Styling for clarity
+    style B fill:#f9f,stroke:#333,stroke-width:1px
+    style C fill:#9cf,stroke:#333,stroke-width:1px
+    style D fill:#c9f,stroke:#333,stroke-width:1px
+    style E fill:#c9f,stroke:#333,stroke-width:1px
+    style F fill:#ffd,stroke:#333,stroke-width:1px
+    style G fill:#c9f,stroke:#333,stroke-width:1px
+    style H fill:#9f9,stroke:#333,stroke-width:1px
+    style I fill:#ccc,stroke:#333,stroke-width:1px
+    style J fill:#ccc,stroke:#333,stroke-width:1px
+
+```
+
+Architecture type - 2
+
+<img src="img/Create_seperate_application_architecture_and_seperate_deploy.png" alt="mermaid-diagram-2026-05-23T19-04-32" style="zoom:67%;" />
